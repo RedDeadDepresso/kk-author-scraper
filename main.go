@@ -54,6 +54,7 @@ type Author struct {
 	PixivUserIDs  []string       `json:"pixiv_user_ids"`
 	PixivUserURLs []string       `json:"pixiv_user_urls"`
 	CreatorLinks  []string       `json:"creator_links,omitempty"` // fanbox/patreon links from authors.json
+	Bepis         []BepisRef     `json:"bepis,omitempty"`
 	Pawchive      *PawchiveMatch `json:"pawchive,omitempty"`
 }
 
@@ -85,6 +86,7 @@ type Mapping struct {
 	PixivUsers       map[string]*PixivUser    `json:"pixiv_users"`
 	PixivUserURLToID map[string]string        `json:"pixiv_user_url_to_id"`
 	PawchiveUsers    map[string]*PawchiveUser `json:"pawchive_users"`
+	BepisAuthors     map[string]*BepisAuthor  `json:"bepis_authors"`
 }
 
 func (m *Mapping) init() {
@@ -102,6 +104,9 @@ func (m *Mapping) init() {
 	}
 	if m.PixivUsers == nil {
 		m.PixivUsers = map[string]*PixivUser{}
+	}
+	if m.BepisAuthors == nil {
+		m.BepisAuthors = map[string]*BepisAuthor{}
 	}
 	if m.PawchiveUsers == nil {
 		m.PawchiveUsers = map[string]*PawchiveUser{}
@@ -242,6 +247,7 @@ type App struct {
 
 	rateLimitHits int
 	oncePerAuthor bool
+	lastHeader    http.Header // headers of the last successful response
 	fileIdx       *authorIndex
 	fileMemo      map[string]fileResult
 }
@@ -296,6 +302,7 @@ func (a *App) get(ctx context.Context, rawURL string, headers map[string]string)
 				case resp.StatusCode >= 500:
 					lastErr = fmt.Errorf("HTTP %d from %s", resp.StatusCode, rawURL)
 				default:
+					a.lastHeader = resp.Header
 					return resp.StatusCode, body, nil
 				}
 			}
@@ -724,8 +731,15 @@ func run() (err error) {
 	pawCache := flag.String("pawchive-cache", "", "pawchive creators cache path (default <cache>/pawchive_creators.json)")
 	pawMaxAge := flag.Duration("pawchive-max-age", 24*time.Hour, "re-download the pawchive creators list when the cache is older than this")
 	noPawchive := flag.Bool("no-pawchive", false, "skip the pawchive matching step")
+	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
+	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
+	bepisMaxAge := flag.Duration("bepis-max-age", 24*time.Hour, "re-check the bepis cards.json when the cache is older than this")
+	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
 	authorsFile := flag.String("authors-file", "", "authors.json with known pixiv links (default <data>/authors.json if it exists)")
 	flag.Parse()
+	if *bepisCache == "" {
+		*bepisCache = filepath.Join(*cacheDir, "bepis_authors.json")
+	}
 	if *pawCache == "" {
 		*pawCache = filepath.Join(*cacheDir, "pawchive_creators.json")
 	}
@@ -853,6 +867,13 @@ pages:
 	if !*noPawchive && ctx.Err() == nil {
 		if err := a.runPawchive(ctx, *pawFile, *pawCache, *pawMaxAge); err != nil {
 			return err
+		}
+	}
+	// Bepis matching is recomputed over the whole mapping every run, after the
+	// pixiv accounts are final. A failed download only warns: the rest is already done.
+	if !*noBepis && ctx.Err() == nil {
+		if err := a.runBepis(ctx, *bepisURL, *bepisCache, *bepisMaxAge); err != nil {
+			log.Printf("warning: bepis step failed: %v", err)
 		}
 	}
 	log.Printf("finished: %d posts processed, newest=%s", processed, a.mapping.NewestPost)
