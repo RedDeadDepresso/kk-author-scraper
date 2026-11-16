@@ -18,6 +18,9 @@ func TestParseCards(t *testing.T) {
 	if len(cards) != 12 {
 		t.Fatalf("got %d cards", len(cards))
 	}
+	if cards[0].Work != "Blue Archive" || cards[1].Work != "Azur Lane" || cards[11].Work != "The Idolmaster" {
+		t.Fatalf("works: %q %q %q", cards[0].Work, cards[1].Work, cards[11].Work)
+	}
 	for _, c := range cards {
 		t.Logf("%+v", c)
 		if c.Author == "" {

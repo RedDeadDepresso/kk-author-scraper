@@ -43,6 +43,7 @@ type Post struct {
 	AuthorSlug  string `json:"author_slug,omitempty"`
 	PixivUserID string `json:"pixiv_user_id,omitempty"`
 	PawchiveURL string `json:"pawchive_url,omitempty"`
+	WorkName    string `json:"work_name,omitempty"`
 }
 
 // Author is a koikatsucards author tag and the pixiv accounts seen for it.
@@ -129,8 +130,8 @@ func authorURL(slug string) string {
 // Caches (cache/*.json)
 // ---------------------------------------------------------------------------
 
-// AuthorEntry caches the result of /api/tags/search for an author name.
-type AuthorEntry struct {
+// TagEntry caches the result of /api/tags/search for an author or work name.
+type TagEntry struct {
 	Found     bool   `json:"found"`
 	ID        int    `json:"id,omitempty"`
 	Name      string `json:"name,omitempty"`
@@ -233,7 +234,7 @@ type App struct {
 	kThrottle   throttle
 	pThrottle   throttle
 	mapping     *Mapping
-	authorCache map[string]AuthorEntry
+	authorCache map[string]TagEntry
 	pixivCache  map[string]PixivEntry
 	mappingPath string
 	authorPath  string
@@ -326,6 +327,7 @@ func (a *App) saveAll() error {
 // ---------------------------------------------------------------------------
 
 type Card struct {
+	Work    string
 	PixivID string
 	Title   string
 	Author  string
@@ -335,6 +337,7 @@ var (
 	contentHrefRe = regexp.MustCompile(`href="/contents/([^"]+)"`)
 	pixivSlugRe   = regexp.MustCompile(`^pixiv-(\d+)$`)
 	nextLinkRe    = regexp.MustCompile(`<a[^>]*aria-disabled="(true|false)"[^>]*>\s*Next\s*</a`)
+	eyebrowRe     = regexp.MustCompile(`<div class="eyebrow">([^<]*)</div>`)
 	mutedRe       = regexp.MustCompile(`<p class="muted">([^<]*)</p>`)
 	titleRe       = regexp.MustCompile(`<h3>([^<]*)</h3>`)
 )
@@ -379,6 +382,9 @@ func parsePage(page string) pageResult {
 		if mm := titleRe.FindStringSubmatch(seg); mm != nil {
 			c.Title = strings.TrimSpace(html.UnescapeString(mm[1]))
 		}
+		if mm := eyebrowRe.FindStringSubmatch(seg); mm != nil {
+			c.Work = strings.TrimSpace(html.UnescapeString(mm[1]))
+		}
 		res.Cards = append(res.Cards, c)
 	}
 	if m := nextLinkRe.FindStringSubmatch(page); m != nil {
@@ -408,21 +414,27 @@ func (a *App) fetchPage(ctx context.Context, page int) (pageResult, error) {
 // koikatsucards: author tag lookup
 // ---------------------------------------------------------------------------
 
-func (a *App) lookupAuthor(ctx context.Context, name string) (AuthorEntry, error) {
+func (a *App) lookupAuthor(ctx context.Context, name string) (TagEntry, error) {
+	return a.lookupTag(ctx, "AUTHOR", name, 1, a.authorCache)
+}
+
+// lookupTag resolves a tag name through /api/tags/search, caching the answer
+// (including "not found"). Only a normalized exact name match is accepted.
+func (a *App) lookupTag(ctx context.Context, typ, name string, limit int, cache map[string]TagEntry) (TagEntry, error) {
 	key := strings.ToLower(name)
-	if e, ok := a.authorCache[key]; ok {
+	if e, ok := cache[key]; ok {
 		return e, nil
 	}
 	if err := a.kThrottle.wait(ctx); err != nil {
-		return AuthorEntry{}, err
+		return TagEntry{}, err
 	}
-	u := koikatsuBase + "/api/tags/search?type=AUTHOR&limit=1&q=" + url.QueryEscape(name)
+	u := fmt.Sprintf("%s/api/tags/search?type=%s&limit=%d&q=%s", koikatsuBase, typ, limit, url.QueryEscape(name))
 	status, body, err := a.get(ctx, u, nil)
 	if err != nil {
-		return AuthorEntry{}, err
+		return TagEntry{}, err
 	}
 	if status != http.StatusOK {
-		return AuthorEntry{}, fmt.Errorf("author lookup %q: HTTP %d", name, status)
+		return TagEntry{}, fmt.Errorf("%s lookup %q: HTTP %d", strings.ToLower(typ), name, status)
 	}
 	var r struct {
 		Items []struct {
@@ -432,16 +444,20 @@ func (a *App) lookupAuthor(ctx context.Context, name string) (AuthorEntry, error
 		} `json:"items"`
 	}
 	if err := json.Unmarshal(body, &r); err != nil {
-		return AuthorEntry{}, fmt.Errorf("author lookup %q: %w", name, err)
+		return TagEntry{}, fmt.Errorf("%s lookup %q: %w", strings.ToLower(typ), name, err)
 	}
-	e := AuthorEntry{CheckedAt: time.Now().UTC().Format(time.RFC3339)}
-	// limit=1 returns the best fuzzy hit, so require a case-insensitive exact match.
-	if len(r.Items) > 0 && strings.EqualFold(r.Items[0].Name, name) {
-		e.Found, e.ID, e.Name, e.Slug = true, r.Items[0].ID, r.Items[0].Name, r.Items[0].Slug
-	} else if len(r.Items) > 0 {
-		log.Printf("author %q: top hit %q is not an exact match, skipping", name, r.Items[0].Name)
+	e := TagEntry{CheckedAt: time.Now().UTC().Format(time.RFC3339)}
+	want := normName(name)
+	for _, it := range r.Items {
+		if strings.EqualFold(it.Name, name) || (want != "" && normName(it.Name) == want) {
+			e.Found, e.ID, e.Name, e.Slug = true, it.ID, it.Name, it.Slug
+			break
+		}
 	}
-	a.authorCache[key] = e
+	if !e.Found && len(r.Items) > 0 {
+		log.Printf("%s %q: top hit %q is not an exact match, skipping", strings.ToLower(typ), name, r.Items[0].Name)
+	}
+	cache[key] = e
 	return e, nil
 }
 
@@ -629,6 +645,9 @@ func (a *App) process(ctx context.Context, c Card) error {
 		}
 	}
 
+	// The work (series) shown above the title, e.g. "Blue Archive".
+	post.WorkName = c.Work
+
 	link := func(userID, userName, source string) { m.linkPixiv(slug, userID, userName, source) }
 	finish := func() {
 		m.Posts[c.PixivID] = post
@@ -720,7 +739,7 @@ func run() (err error) {
 		pThrottle:     throttle{d: *pDelay},
 		oncePerAuthor: *once,
 		mapping:       &Mapping{},
-		authorCache:   map[string]AuthorEntry{},
+		authorCache:   map[string]TagEntry{},
 		pixivCache:    map[string]PixivEntry{},
 		mappingPath:   filepath.Join(*dataDir, "mapping.json"),
 		authorPath:    filepath.Join(*cacheDir, "authors.json"),
@@ -755,7 +774,7 @@ func run() (err error) {
 		log.Println("no authors.json found; all pixiv accounts will come from the pixiv API")
 	}
 	if a.authorCache == nil {
-		a.authorCache = map[string]AuthorEntry{}
+		a.authorCache = map[string]TagEntry{}
 	}
 	if a.pixivCache == nil {
 		a.pixivCache = map[string]PixivEntry{}
