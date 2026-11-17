@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -27,12 +28,35 @@ func TestParseBepisCards(t *testing.T) {
 }
 
 func TestBepisAuthorURL(t *testing.T) {
-	if got := bepisAuthorURL("kenzei"); got != "https://db.bepis.moe/api/frontend/search?cardType=KK&cardAuthor=kenzei&orderType=mostRecent" {
+	if got := bepisAuthorURL("kenzei"); got != "https://db.bepis.moe/koikatsu?cardAuthor=kenzei" {
 		t.Fatal(got)
 	}
-	if got := bepisAuthorURL("a&b c"); !strings.Contains(got, "cardAuthor=a%26b+c&") {
+	if got := bepisAuthorURL("a&b c[1]"); got != "https://db.bepis.moe/koikatsu?cardAuthor=a%26b%20c%5B1%5D" {
 		t.Fatal(got)
 	}
+}
+
+func TestBepisPlaceholdersSkipped(t *testing.T) {
+	m := &Mapping{}
+	m.init()
+	m.Authors["author-anonymous"] = &Author{Name: "Anonymous", Slug: "author-anonymous", KoikatsuURL: authorURL("author-anonymous")}
+	n := m.applyBepis(map[string]int{"Anonymous": 189315, "[Unknown]": 105803, "Evaan": 6116}, nil)
+	if n != 0 || len(m.BepisAuthors) != 1 || m.BepisAuthors["Evaan"] == nil {
+		t.Fatalf("matched=%d %v", n, m.BepisAuthors)
+	}
+}
+
+func TestRealBepisCards(t *testing.T) {
+	f, err := os.Open("/mnt/user-data/uploads/cards.json")
+	if err != nil {
+		t.Skip("no sample")
+	}
+	defer f.Close()
+	cards, authors, err := parseBepisCards(f)
+	if err != nil || cards < 400000 || authors["Evaan"] < 5000 || len(authors) < 8000 {
+		t.Fatalf("cards=%d authors=%d err=%v", cards, len(authors), err)
+	}
+	t.Logf("cards=%d authors=%d", cards, len(authors))
 }
 
 func TestApplyBepis(t *testing.T) {

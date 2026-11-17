@@ -248,6 +248,8 @@ type App struct {
 	rateLimitHits int
 	oncePerAuthor bool
 	lastHeader    http.Header // headers of the last successful response
+	profilePath   string
+	profileCache  map[string]ProfileEntry
 	fileIdx       *authorIndex
 	fileMemo      map[string]fileResult
 }
@@ -326,6 +328,7 @@ func (a *App) saveAll() error {
 		saveJSON(a.mappingPath, a.mapping),
 		saveJSON(a.authorPath, a.authorCache),
 		saveJSON(a.pixivPath, a.pixivCache),
+		saveJSON(a.profilePath, a.profileCache),
 	)
 }
 
@@ -734,9 +737,25 @@ func run() (err error) {
 	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
 	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
 	bepisMaxAge := flag.Duration("bepis-max-age", 24*time.Hour, "re-check the bepis cards.json when the cache is older than this")
+	slimPath := flag.String("slim", "", "slim lookup file for the browser extension (default <data>/slim.json)")
+	frontendPath := flag.String("frontend", "", "frontend list for the website (default <data>/frontend.json)")
+	noFrontend := flag.Bool("no-frontend", false, "do not write the frontend list")
+	namesSrc := flag.String("names-url", namesURL, "names.json (pepper-scene-hasher): archive names -> authors.json names")
+	namesFile := flag.String("names-file", "", "use this local names.json instead of downloading")
+	rentrySrc := flag.String("rentry-url", sceneArchiveURL, "Scene Archive rentry page")
+	rentryFile := flag.String("rentry-file", "", "use this local saved rentry HTML instead of downloading")
+	sourceMaxAge := flag.Duration("source-max-age", 24*time.Hour, "re-download names.json and the rentry page when older than this")
+	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
+	noSlim := flag.Bool("no-slim", false, "do not write the slim file")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
 	authorsFile := flag.String("authors-file", "", "authors.json with known pixiv links (default <data>/authors.json if it exists)")
 	flag.Parse()
+	if *frontendPath == "" {
+		*frontendPath = filepath.Join(*dataDir, "frontend.json")
+	}
+	if *slimPath == "" {
+		*slimPath = filepath.Join(*dataDir, "slim.json")
+	}
 	if *bepisCache == "" {
 		*bepisCache = filepath.Join(*cacheDir, "bepis_authors.json")
 	}
@@ -758,6 +777,7 @@ func run() (err error) {
 		mappingPath:   filepath.Join(*dataDir, "mapping.json"),
 		authorPath:    filepath.Join(*cacheDir, "authors.json"),
 		pixivPath:     filepath.Join(*cacheDir, "pixiv_posts.json"),
+		profilePath:   filepath.Join(*cacheDir, "pixiv_profiles.json"),
 	}
 	if a.session == "" {
 		log.Println("warning: PIXIV_PHPSESSID not set; restricted works will be unavailable")
@@ -766,6 +786,7 @@ func run() (err error) {
 		loadJSON(a.mappingPath, a.mapping),
 		loadJSON(a.authorPath, &a.authorCache),
 		loadJSON(a.pixivPath, &a.pixivCache),
+		loadJSON(a.profilePath, &a.profileCache),
 	); err != nil {
 		return fmt.Errorf("loading state: %w", err)
 	}
@@ -789,6 +810,9 @@ func run() (err error) {
 	}
 	if a.authorCache == nil {
 		a.authorCache = map[string]TagEntry{}
+	}
+	if a.profileCache == nil {
+		a.profileCache = map[string]ProfileEntry{}
 	}
 	if a.pixivCache == nil {
 		a.pixivCache = map[string]PixivEntry{}
@@ -875,6 +899,37 @@ pages:
 		if err := a.runBepis(ctx, *bepisURL, *bepisCache, *bepisMaxAge); err != nil {
 			log.Printf("warning: bepis step failed: %v", err)
 		}
+	}
+	if !*noSlim && ctx.Err() == nil {
+		slim := a.mapping.buildSlim()
+		if err := saveJSONCompact(*slimPath, slim); err != nil {
+			return err
+		}
+		log.Printf("slim file: %d posts, %d accounts -> %s", len(slim.Posts), len(slim.Users), *slimPath)
+	}
+	if !*noFrontend && ctx.Err() == nil {
+		src := a.loadFrontendSources(ctx, sourceOpts{
+			NamesURL: *namesSrc, NamesFile: *namesFile,
+			RentryURL: *rentrySrc, RentryFile: *rentryFile,
+			CacheDir: *cacheDir, MaxAge: *sourceMaxAge,
+		})
+		rows := a.buildFrontend(ctx, src, *pixivIcons)
+		if err := saveJSONCompact(*frontendPath, rows); err != nil {
+			return err
+		}
+		dl, rec, ms := 0, 0, 0
+		for _, r := range rows {
+			if r.Links.Download != "" {
+				dl++
+			}
+			if r.IsRecommended {
+				rec++
+			}
+			if r.MakeScenes {
+				ms++
+			}
+		}
+		log.Printf("frontend list: %d authors (%d with download, %d recommended, %d make scenes) -> %s", len(rows), dl, rec, ms, *frontendPath)
 	}
 	log.Printf("finished: %d posts processed, newest=%s", processed, a.mapping.NewestPost)
 	return nil

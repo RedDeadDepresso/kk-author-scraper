@@ -17,13 +17,18 @@ import (
 )
 
 const (
-	bepisCardsURL   = "https://github.com/RedDeadDepresso/kk-mod-scraper/raw/refs/heads/main/cache/bepis/cards.json"
-	bepisSearchBase = "https://db.bepis.moe/api/frontend/search"
+	bepisCardsURL = "https://github.com/RedDeadDepresso/kk-mod-scraper/raw/refs/heads/main/cache/bepis/cards.json"
+	bepisBase     = "https://db.bepis.moe/koikatsu"
 )
 
+// bepisAuthorURL is the human-facing Koikatsu search page for one author name.
 func bepisAuthorURL(name string) string {
-	return bepisSearchBase + "?cardType=KK&cardAuthor=" + url.QueryEscape(name) + "&orderType=mostRecent"
+	return bepisBase + "?cardAuthor=" + strings.ReplaceAll(url.QueryEscape(name), "+", "%20")
 }
+
+// bepisPlaceholders are "authors" that only mean "not credited" (normalized with
+// normName); they cover hundreds of thousands of cards and must not match anyone.
+var bepisPlaceholders = map[string]bool{"anonymous": true, "unknown": true}
 
 // BepisAuthor is an author name found in bepis cards.json, with the reverse links.
 type BepisAuthor struct {
@@ -138,6 +143,9 @@ func (m *Mapping) applyBepis(authors map[string]int, fileIdx *authorIndex) (matc
 	m.BepisAuthors = make(map[string]*BepisAuthor, len(authors))
 	byNorm := map[string][]string{}
 	for name, n := range authors {
+		if bepisPlaceholders[normName(name)] {
+			continue
+		}
 		m.BepisAuthors[name] = &BepisAuthor{Name: name, URL: bepisAuthorURL(name), CardCount: n}
 		if k := normName(name); utf8.RuneCountInString(k) >= 2 {
 			byNorm[k] = append(byNorm[k], name)
