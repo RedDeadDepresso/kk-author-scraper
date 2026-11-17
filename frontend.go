@@ -447,8 +447,9 @@ func (m *Mapping) bepisURL(name string) string {
 	return bepisAuthorURL(name)
 }
 
-// buildFrontend creates one row per koikatsucards author plus one per bepis author
-// that is not linked to a koikatsucards author (case variants are merged).
+// buildFrontend creates one row per koikatsucards author, one per bepis author that
+// is not linked to a koikatsucards author (case variants are merged), and one per
+// authors.json entry that matched neither.
 func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIcons bool) []FrontendAuthor {
 	m := a.mapping
 	if src == nil {
@@ -494,6 +495,17 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 
 	var rows []FrontendAuthor
 
+	// authors.json entries that already have a row (matched by name/alias or by pixiv account)
+	usedEntries := map[*fileAuthor]bool{}
+	knownPixiv := map[string]bool{}
+	markUsed := func(name string) {
+		if a.fileIdx != nil {
+			for _, e := range a.fileIdx.findAll(name) {
+				usedEntries[e] = true
+			}
+		}
+	}
+
 	slugs := make([]string, 0, len(m.Authors))
 	for slug := range m.Authors {
 		slugs = append(slugs, slug)
@@ -502,6 +514,10 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 
 	for _, slug := range slugs {
 		au := m.Authors[slug]
+		markUsed(au.Name)
+		for _, id := range au.PixivUserIDs {
+			knownPixiv[id] = true
+		}
 		var entry *fileAuthor
 		if a.fileIdx != nil {
 			entry, _ = a.fileIdx.find(au.Name)
@@ -584,6 +600,9 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 	sort.Strings(keys)
 	for _, k := range keys {
 		names := m.bepisByCards(groups[k])
+		for _, n := range names {
+			markUsed(n)
+		}
 		row := FrontendAuthor{
 			Name:   names[0],
 			Alias:  []string{},
@@ -601,6 +620,68 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 			row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
 		}
 		rows = append(rows, row)
+	}
+
+	// authors.json entries matched by neither koikatsucards nor bepis
+	if a.fileIdx != nil {
+		for _, e := range a.fileIdx.entries {
+			if usedEntries[e] || strings.TrimSpace(e.Name) == "" {
+				continue
+			}
+			ids, _ := pixivRefs(e.Links) // artwork links would need a pixiv API call per entry: skipped
+			shared := false
+			for _, id := range ids {
+				if knownPixiv[id] {
+					shared = true
+				}
+			}
+			if shared {
+				continue
+			}
+			row := FrontendAuthor{Name: e.Name, Alias: []string{}, Series: []string{}}
+			aliases := newAliasSet(e.Name)
+			for _, al := range e.Alias {
+				aliases.add(al)
+			}
+			row.Alias = aliases.list
+
+			var paw *PawchiveMatch
+			if a.pawIdx != nil {
+				paw = a.pawIdx.resolve(ids, []string{e.Name}, creatorHandles(e.Links))
+			}
+			pawID := ""
+			if paw != nil && paw.Service == "fanbox" {
+				pawID = paw.ID
+			}
+			primary := ""
+			for _, id := range ids {
+				if primary == "" || id == pawID {
+					primary = id
+				}
+			}
+			if primary != "" {
+				if pu := m.PixivUsers[primary]; pu != nil {
+					row.Links.Pixiv = pu.URL
+				} else {
+					row.Links.Pixiv = pixivBase + "/users/" + primary
+				}
+			}
+			if paw != nil {
+				row.Links.Pawchive = paw.URL
+				row.Favorited = paw.Favorited
+				row.Icon = pawchiveIcon(paw.Service, paw.ID)
+				row.Banner = pawchiveBanner(paw.Service, paw.ID)
+			} else if primary != "" {
+				row.Icon = icon(primary)
+			}
+			lookup := append([]string{e.Name}, e.Alias...)
+			makeScenes, dl, ok := src.find(lookup...)
+			row.MakeScenes = makeScenes
+			if ok {
+				row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
+			}
+			rows = append(rows, row)
+		}
 	}
 
 	sort.SliceStable(rows, func(i, j int) bool {

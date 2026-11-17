@@ -252,6 +252,7 @@ type App struct {
 	profileCache  map[string]ProfileEntry
 	fileIdx       *authorIndex
 	fileMemo      map[string]fileResult
+	pawIdx        *creatorIndex // pawchive creators, set by runPawchive
 }
 
 // get performs a GET with retries. Network errors and 5xx get short exponential

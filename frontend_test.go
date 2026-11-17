@@ -96,7 +96,9 @@ func TestBuildFrontend(t *testing.T) {
 	a := frontendApp(t)
 	m := a.mapping
 	e := &fileAuthor{Name: "AnnaAnon", Alias: []string{"Anna Anon", "TheSafeAnnaAnon", "anna-anon"}}
-	a.fileIdx = &authorIndex{byName: map[string][]*fileAuthor{"annaanon": {e}}, byAlias: map[string][]*fileAuthor{}, count: 1}
+	onlyFile := &fileAuthor{Name: "FileOnly", Alias: []string{"file-only"}, Links: []string{"https://www.pixiv.net/users/999"}}
+	sharedPixiv := &fileAuthor{Name: "OtherName", Links: []string{"https://www.pixiv.net/users/555"}} // same account as Plain
+	a.fileIdx = &authorIndex{byName: map[string][]*fileAuthor{"annaanon": {e}, "fileonly": {onlyFile}, "othername": {sharedPixiv}}, byAlias: map[string][]*fileAuthor{}, entries: []*fileAuthor{e, onlyFile, sharedPixiv}, count: 3}
 
 	// AnnaAnon: pawchive + download + recommended + series
 	m.Authors["author-annaanon"] = &Author{
@@ -134,7 +136,14 @@ func TestBuildFrontend(t *testing.T) {
 	for _, r := range rows {
 		by[r.Name] = r
 	}
-	if len(rows) != 4 || rows[0].Name != "AnnaAnon" {
+	fo, ok := by["FileOnly"]
+	if !ok || fo.Links.Pixiv != "https://www.pixiv.net/users/999" || strings.Join(fo.Alias, ",") != "file-only" || fo.Links.Koikatsucards != "" {
+		t.Fatalf("authors.json-only row: %+v", fo)
+	}
+	if _, dup := by["OtherName"]; dup {
+		t.Fatal("entry sharing a pixiv account with an existing author must not get its own row")
+	}
+	if len(rows) != 5 || rows[0].Name != "AnnaAnon" {
 		t.Fatalf("rows=%d first=%q", len(rows), rows[0].Name)
 	}
 

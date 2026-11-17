@@ -21,6 +21,7 @@ type fileAuthor struct {
 type authorIndex struct {
 	byName  map[string][]*fileAuthor
 	byAlias map[string][]*fileAuthor
+	entries []*fileAuthor // every entry in file order
 	count   int
 }
 
@@ -45,6 +46,7 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 	}
 	for i := range f.Authors {
 		e := &f.Authors[i]
+		ix.entries = append(ix.entries, e)
 		nameKey := normName(e.Name)
 		if nameKey != "" {
 			ix.byName[nameKey] = append(ix.byName[nameKey], e)
@@ -81,6 +83,21 @@ func (ix *authorIndex) find(name string) (entry *fileAuthor, ambiguous bool) {
 		}
 	}
 	return nil, false
+}
+
+// findAll is like find but returns every entry of the best matching tier, so callers
+// can tell which entries a name touches even when the match is ambiguous.
+func (ix *authorIndex) findAll(name string) []*fileAuthor {
+	key := normName(name)
+	if key == "" {
+		return nil
+	}
+	for _, tier := range []map[string][]*fileAuthor{ix.byName, ix.byAlias} {
+		if matches := tier[key]; len(matches) > 0 {
+			return matches
+		}
+	}
+	return nil
 }
 
 var (
