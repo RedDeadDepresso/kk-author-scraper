@@ -50,8 +50,8 @@ jobs:
           echo "Generated $(jq 'length' _site/indices/author.json) authors"
 
       # Built from the saved data/mapping.json, no network needed.
-      - name: Build indices/extension.json
-        run: go run . -extension-only -extension _site/indices/extension.json
+      - name: Build indices/lookup.json
+        run: go run . -lookup-only -lookup _site/indices/lookup.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -738,8 +738,8 @@ func run() (err error) {
 	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
 	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
 	bepisMaxAge := flag.Duration("bepis-max-age", 24*time.Hour, "re-check the bepis cards.json when the cache is older than this")
-	extensionPath := flag.String("extension", "", "write the lookup file for the browser extension to this path (not written when empty)")
-	extensionOnly := flag.Bool("extension-only", false, "only build the extension file from the saved <data>/mapping.json (no network) and exit; needs -extension")
+	lookupPath := flag.String("lookup", "", "write the lookup file for the browser extension to this path (not written when empty)")
+	lookupOnly := flag.Bool("lookup-only", false, "only build the lookup file from the saved <data>/mapping.json (no network) and exit; needs -lookup")
 	noAuthorsWrite := flag.Bool("no-authors-write", false, "do not update the authors file at the end of the run")
 	namesSrc := flag.String("names-url", namesURL, "names.json (pepper-scene-hasher): archive names -> authors.json names")
 	namesFile := flag.String("names-file", "", "use this local names.json instead of downloading")
@@ -750,16 +750,16 @@ func run() (err error) {
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	flag.Parse()
-	if *extensionOnly {
-		if *extensionPath == "" {
-			return errors.New("-extension-only needs -extension <path>")
+	if *lookupOnly {
+		if *lookupPath == "" {
+			return errors.New("-lookup-only needs -lookup <path>")
 		}
 		m := &Mapping{}
 		if err := loadJSON(filepath.Join(*dataDir, "mapping.json"), m); err != nil {
 			return fmt.Errorf("loading mapping: %w", err)
 		}
 		m.init()
-		return writeExtension(m, *extensionPath)
+		return writeLookup(m, *lookupPath)
 	}
 	if *bepisCache == "" {
 		*bepisCache = filepath.Join(*cacheDir, "bepis_authors.json")
@@ -904,8 +904,8 @@ pages:
 			log.Printf("warning: bepis step failed: %v", err)
 		}
 	}
-	if *extensionPath != "" && ctx.Err() == nil {
-		if err := writeExtension(a.mapping, *extensionPath); err != nil {
+	if *lookupPath != "" && ctx.Err() == nil {
+		if err := writeLookup(a.mapping, *lookupPath); err != nil {
 			return err
 		}
 	}

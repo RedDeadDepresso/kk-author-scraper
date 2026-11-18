@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestBuildExtension(t *testing.T) {
+func TestBuildLookup(t *testing.T) {
 	m := &Mapping{}
 	m.init()
 	m.Posts["200"] = &Post{PixivID: "200"}
@@ -22,7 +22,7 @@ func TestBuildExtension(t *testing.T) {
 	m.Authors["author-b"].Pawchive = &PawchiveMatch{Service: "fanbox", ID: "8", Favorited: 500}
 	m.PixivUsers["1"].Pawchive = &PawchiveMatch{Service: "fanbox", ID: "1", Favorited: 1} // own match beats author's
 
-	s := m.buildExtension()
+	s := m.buildLookup()
 	if len(s.Posts) != 2 || s.Posts[0] != 50 || s.Posts[1] != 200 {
 		t.Fatalf("posts %v", s.Posts)
 	}
@@ -42,7 +42,7 @@ func TestBuildExtension(t *testing.T) {
 		t.Fatalf("authors %v", s.Authors)
 	}
 	b, _ := json.Marshal(s)
-	var back Extension
+	var back Lookup
 	if err := json.Unmarshal(b, &back); err != nil || back.Version != 1 || back.URLs["bepis"] != "https://db.bepis.moe/koikatsu?cardAuthor={name}" || back.URLs["pawchive"] != "https://pawchive.pw/{service}/user/{id}" {
 		t.Fatalf("%v %s", err, b)
 	}
