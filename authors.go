@@ -22,10 +22,10 @@ const (
 )
 
 // ---------------------------------------------------------------------------
-// Output (data/frontend.json)
+// Output (data/authors.json, which is also the scraper's author list)
 // ---------------------------------------------------------------------------
 
-type FrontendLinks struct {
+type AuthorLinks struct {
 	Pixiv         string `json:"pixiv"`
 	Download      string `json:"download"`
 	Pawchive      string `json:"pawchive"`
@@ -33,17 +33,17 @@ type FrontendLinks struct {
 	Koikatsucards string `json:"koikatsucards"`
 }
 
-// FrontendAuthor is one entry of the frontend list. Missing values are "" / false / [].
-type FrontendAuthor struct {
-	Links         FrontendLinks `json:"links"`
-	IsRecommended bool          `json:"isRecommended"`
-	Favorited     int           `json:"favorited"`
-	Icon          string        `json:"icon"`
-	Banner        string        `json:"banner"`
-	Name          string        `json:"name"`
-	Alias         []string      `json:"alias"`
-	MakeScenes    bool          `json:"makeScenes"`
-	Series        []string      `json:"series"`
+// AuthorRow is one entry of authors.json. Missing values are "" / false / [].
+type AuthorRow struct {
+	Name          string      `json:"name"`
+	Alias         []string    `json:"alias"`
+	Series        []string    `json:"series"`
+	IsRecommended bool        `json:"isRecommended"`
+	MakeScenes    bool        `json:"makeScenes"`
+	Favorited     int         `json:"favorited"`
+	Icon          string      `json:"icon"`
+	Banner        string      `json:"banner"`
+	Links         AuthorLinks `json:"links"`
 }
 
 // ---------------------------------------------------------------------------
@@ -163,22 +163,22 @@ func parseNames(b []byte) (makeScenes map[string]bool, keyToAuthor map[string]st
 	return makeScenes, keyToAuthor, nil
 }
 
-// frontendSources holds what the rentry page and names.json tell us.
-type frontendSources struct {
+// authorSources holds what the rentry page and names.json tell us.
+type authorSources struct {
 	makeScenes map[string]bool         // normalized authors.json names that make scenes
 	byAuthor   map[string]DownloadLink // normalized authors.json name -> link (via names.json)
 	byText     map[string]DownloadLink // normalized rentry link text -> link
 }
 
-func newSources() *frontendSources {
-	return &frontendSources{
+func newSources() *authorSources {
+	return &authorSources{
 		makeScenes: map[string]bool{},
 		byAuthor:   map[string]DownloadLink{},
 		byText:     map[string]DownloadLink{},
 	}
 }
 
-func buildSources(links []DownloadLink, makeScenes map[string]bool, keyToAuthor map[string]string) *frontendSources {
+func buildSources(links []DownloadLink, makeScenes map[string]bool, keyToAuthor map[string]string) *authorSources {
 	s := newSources()
 	for k := range makeScenes {
 		s.makeScenes[k] = true
@@ -203,7 +203,7 @@ func buildSources(links []DownloadLink, makeScenes map[string]bool, keyToAuthor 
 
 // find looks up the candidate names (most reliable first). The authors.json name
 // route through names.json wins over a plain text match.
-func (s *frontendSources) find(names ...string) (makeScenes bool, dl DownloadLink, ok bool) {
+func (s *authorSources) find(names ...string) (makeScenes bool, dl DownloadLink, ok bool) {
 	for _, n := range names {
 		k := normName(n)
 		if k == "" {
@@ -235,9 +235,9 @@ type sourceOpts struct {
 	MaxAge                time.Duration
 }
 
-// loadFrontendSources never fails the run: missing sources just leave
+// loadAuthorSources never fails the run: missing sources just leave
 // download / isRecommended / makeScenes empty, with a warning.
-func (a *App) loadFrontendSources(ctx context.Context, o sourceOpts) *frontendSources {
+func (a *App) loadAuthorSources(ctx context.Context, o sourceOpts) *authorSources {
 	var links []DownloadLink
 	var makeScenes map[string]bool
 	var keyToAuthor map[string]string
@@ -277,7 +277,7 @@ func (a *App) loadFrontendSources(ctx context.Context, o sourceOpts) *frontendSo
 	}
 
 	src := buildSources(links, makeScenes, keyToAuthor)
-	log.Printf("frontend sources: %d archive links, %d linked via names.json, %d makeScenes names", len(links), len(src.byAuthor), len(src.makeScenes))
+	log.Printf("author sources: %d archive links, %d linked via names.json, %d makeScenes names", len(links), len(src.byAuthor), len(src.makeScenes))
 	return src
 }
 
@@ -361,7 +361,7 @@ func (a *App) pixivProfile(ctx context.Context, id string) (ProfileEntry, error)
 }
 
 // ---------------------------------------------------------------------------
-// Building the frontend list
+// Building the authors list
 // ---------------------------------------------------------------------------
 
 func pawchiveIcon(service, id string) string { return pawchiveBase + "/icons/" + service + "/" + id }
@@ -447,10 +447,10 @@ func (m *Mapping) bepisURL(name string) string {
 	return bepisAuthorURL(name)
 }
 
-// buildFrontend creates one row per koikatsucards author, one per bepis author that
+// buildAuthorRows creates one row per koikatsucards author, one per bepis author that
 // is not linked to a koikatsucards author (case variants are merged), and one per
 // authors.json entry that matched neither.
-func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIcons bool) []FrontendAuthor {
+func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIcons bool) []AuthorRow {
 	m := a.mapping
 	if src == nil {
 		src = newSources()
@@ -493,7 +493,7 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 		return ""
 	}
 
-	var rows []FrontendAuthor
+	var rows []AuthorRow
 
 	// authors.json entries that already have a row (matched by name/alias or by pixiv account)
 	usedEntries := map[*fileAuthor]bool{}
@@ -542,11 +542,11 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 			aliases.add(b.Name)
 		}
 
-		row := FrontendAuthor{
+		row := AuthorRow{
 			Name:   name,
 			Alias:  aliases.list,
 			Series: []string{},
-			Links:  FrontendLinks{Koikatsucards: authorURL(slug)},
+			Links:  AuthorLinks{Koikatsucards: authorURL(slug)},
 		}
 		if names := m.bepisByCards(bepisNames); len(names) > 0 {
 			row.Links.Bepis = m.bepisURL(names[0])
@@ -582,6 +582,12 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 	}
 
 	// bepis authors with no koikatsucards author; names differing only by case/punctuation are merged
+	kcRows := map[string]int{} // exact name -> index of its koikatsucards row
+	for i := range rows {
+		if rows[i].Links.Koikatsucards != "" {
+			kcRows[rows[i].Name] = i
+		}
+	}
 	groups := map[string][]string{}
 	for name, ba := range m.BepisAuthors {
 		if len(ba.KoikatsuAuthorURLs) > 0 {
@@ -589,6 +595,15 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 		}
 		k := normName(name)
 		if k == "" {
+			// names without letters or digits ("." or ":)") cannot be matched by
+			// normalized name; an identical name on a koikatsucards row is the same author
+			if i, ok := kcRows[name]; ok {
+				if rows[i].Links.Bepis == "" {
+					rows[i].Links.Bepis = m.bepisURL(name)
+				}
+				markUsed(name)
+				continue
+			}
 			k = name
 		}
 		groups[k] = append(groups[k], name)
@@ -603,15 +618,32 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 		for _, n := range names {
 			markUsed(n)
 		}
-		row := FrontendAuthor{
+		row := AuthorRow{
 			Name:   names[0],
 			Alias:  []string{},
 			Series: []string{},
-			Links:  FrontendLinks{Bepis: m.bepisURL(names[0])},
+			Links:  AuthorLinks{Bepis: m.bepisURL(names[0])},
 		}
 		aliases := newAliasSet(names[0])
 		for _, n := range names[1:] {
 			aliases.add(n)
+		}
+		if a.fileIdx != nil { // keep what the file already has for this author: names, aliases, pixiv account
+			var ids []string
+			for _, n := range names {
+				for _, e := range a.fileIdx.findAll(n) {
+					aliases.add(e.Name)
+					for _, al := range e.Alias {
+						aliases.add(al)
+					}
+					u, _ := pixivRefs(e.Links)
+					ids = append(ids, u...)
+				}
+			}
+			if len(ids) > 0 {
+				row.Links.Pixiv = pixivBase + "/users/" + ids[0]
+				row.Icon = icon(ids[0])
+			}
 		}
 		row.Alias = aliases.list
 		makeScenes, dl, ok := src.find(names...)
@@ -638,7 +670,7 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 			if shared {
 				continue
 			}
-			row := FrontendAuthor{Name: e.Name, Alias: []string{}, Series: []string{}}
+			row := AuthorRow{Name: e.Name, Alias: []string{}, Series: []string{}}
 			aliases := newAliasSet(e.Name)
 			for _, al := range e.Alias {
 				aliases.add(al)
@@ -671,6 +703,10 @@ func (a *App) buildFrontend(ctx context.Context, src *frontendSources, lookupIco
 				row.Favorited = paw.Favorited
 				row.Icon = pawchiveIcon(paw.Service, paw.ID)
 				row.Banner = pawchiveBanner(paw.Service, paw.ID)
+			} else if a.pawIdx == nil && e.prev != nil && e.prev.Links.Pawchive != "" {
+				// no pawchive list this run (-no-pawchive): keep what the file has
+				row.Links.Pawchive, row.Favorited = e.prev.Links.Pawchive, e.prev.Favorited
+				row.Icon, row.Banner = e.prev.Icon, e.prev.Banner
 			} else if primary != "" {
 				row.Icon = icon(primary)
 			}

@@ -16,8 +16,8 @@ func newTestApp(t *testing.T) *App {
 		pixivCache:  map[string]PixivEntry{},
 		fileMemo:    map[string]fileResult{},
 	}
-	if _, err := os.Stat("/mnt/user-data/uploads/authors.json"); err == nil {
-		a.fileIdx, _ = loadAuthorsFile("/mnt/user-data/uploads/authors.json")
+	if _, err := os.Stat("data/authors.json"); err == nil {
+		a.fileIdx, _ = loadAuthorsFile("data/authors.json")
 	}
 	return a
 }

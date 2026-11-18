@@ -1,7 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"os"
+	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -19,7 +23,7 @@ func TestPixivRefs(t *testing.T) {
 }
 
 func TestRealAuthorsFile(t *testing.T) {
-	const path = "/mnt/user-data/uploads/authors.json"
+	const path = "data/authors.json"
 	if _, err := os.Stat(path); err != nil {
 		t.Skip("no sample")
 	}
@@ -89,5 +93,61 @@ func TestCreatorHandles(t *testing.T) {
 		if got[i] != want[i] {
 			t.Errorf("%d: got %v want %v", i, got[i], want[i])
 		}
+	}
+}
+
+func TestAuthorsFileRoundTrip(t *testing.T) {
+	rows := []AuthorRow{
+		{Name: "<!>", Alias: []string{"a&b"}, Series: []string{}, Links: AuthorLinks{
+			Pixiv: "https://www.pixiv.net/users/12", Pawchive: "https://pawchive.pw/patreon/user/600"}},
+		{Name: "Fan", Alias: []string{}, Series: []string{}, Links: AuthorLinks{
+			Pawchive: "https://pawchive.pw/fanbox/user/34"}},
+	}
+	path := filepath.Join(t.TempDir(), "authors.json")
+	if err := saveJSONIndent(path, rows); err != nil {
+		t.Fatal(err)
+	}
+	b, _ := os.ReadFile(path)
+	if !strings.Contains(string(b), "\n  {\n    \"name\": ") || !strings.Contains(string(b), `"<!>"`) || !strings.Contains(string(b), `"a&b"`) {
+		t.Fatalf("expected indented, unescaped output:\n%s", b)
+	}
+	ix, err := loadAuthorsFile(path)
+	if err != nil || ix.count != 2 {
+		t.Fatalf("%v %+v", err, ix)
+	}
+	e := ix.entries[0] // a name without letters or digits cannot be looked up by name
+	// the stored pawchive creator comes back as a creator link, so pawchive matching keeps working
+	if e == nil || len(e.Links) != 2 {
+		t.Fatalf("%+v", e)
+	}
+	if u, _ := pixivRefs(e.Links); len(u) != 1 || u[0] != "12" {
+		t.Fatalf("%v", e.Links)
+	}
+	if h := creatorHandles(e.Links); len(h) != 1 || h[0] != (Handle{"patreon", true, "600"}) {
+		t.Fatalf("%v", h)
+	}
+	if f, _ := ix.find("Fan"); f == nil || creatorHandles(f.Links)[0] != (Handle{"fanbox", true, "34"}) {
+		t.Fatalf("%+v", f)
+	}
+}
+
+// The committed data/authors.json must be exactly what the scraper itself would write,
+// so a run without changes leaves no diff.
+func TestDataAuthorsFileIsCanonical(t *testing.T) {
+	const path = "data/authors.json"
+	orig, err := os.ReadFile(path)
+	if err != nil {
+		t.Skip("no data/authors.json")
+	}
+	var rows []AuthorRow
+	if err := json.Unmarshal(orig, &rows); err != nil {
+		t.Fatal(err)
+	}
+	tmp := filepath.Join(t.TempDir(), "authors.json")
+	if err := saveJSONIndent(tmp, rows); err != nil {
+		t.Fatal(err)
+	}
+	if again, _ := os.ReadFile(tmp); !bytes.Equal(orig, again) {
+		t.Fatal("data/authors.json differs from the scraper's own output format")
 	}
 }

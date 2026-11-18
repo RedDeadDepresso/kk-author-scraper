@@ -1,19 +1,21 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
+	"log"
 	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
 )
 
-// Slim is the small lookup file for the browser extension (data/slim.json).
+// Extension is the small lookup file for the browser extension (the extension file).
 // It only holds what a pixiv page needs: is this post / this account known?
 //
 // URL templates are included so the extension does not hard-code them:
 // {id} and {slug} are used as-is, {name} must be URL-encoded by the consumer.
-type Slim struct {
+type Extension struct {
 	Version int               `json:"version"`
 	URLs    map[string]string `json:"urls"`
 	// Posts: pixiv post ids that exist on koikatsucards (sorted).
@@ -21,28 +23,39 @@ type Slim struct {
 	// Authors: koikatsucards author slug -> display name (only slugs used by Users).
 	Authors map[string]string `json:"authors"`
 	// Users: pixiv user id -> koikatsucards author slugs and bepis author names.
-	Users map[string]*SlimUser `json:"users"`
+	Users map[string]*ExtensionUser `json:"users"`
 }
 
-// SlimUser is one pixiv account.
-type SlimUser struct {
+// ExtensionUser is one pixiv account.
+type ExtensionUser struct {
 	Authors []string `json:"authors"`         // koikatsucards author slugs
 	Bepis   []string `json:"bepis,omitempty"` // bepis author names (cardAuthor values)
 	// Pawchive is the creator with the most favorites among the account's matches.
-	Pawchive *SlimPawchive `json:"pawchive,omitempty"`
+	Pawchive *ExtensionPawchive `json:"pawchive,omitempty"`
 }
 
-// SlimPawchive identifies a pawchive creator; URL template "pawchive" in Slim.URLs.
-type SlimPawchive struct {
+// ExtensionPawchive identifies a pawchive creator; URL template "pawchive" in Extension.URLs.
+type ExtensionPawchive struct {
 	Service string `json:"service"`
 	ID      string `json:"id"`
 }
 
-const slimVersion = 1
+const extensionVersion = 1
 
-func (m *Mapping) buildSlim() *Slim {
-	s := &Slim{
-		Version: slimVersion,
+// writeExtension builds the extension lookup file from m and writes it to path. It is
+// not kept in the repository: the GitHub Pages workflow generates and deploys it.
+func writeExtension(m *Mapping, path string) error {
+	ext := m.buildExtension()
+	if err := saveJSONCompact(path, ext); err != nil {
+		return err
+	}
+	log.Printf("extension file: %d posts, %d accounts -> %s", len(ext.Posts), len(ext.Users), path)
+	return nil
+}
+
+func (m *Mapping) buildExtension() *Extension {
+	s := &Extension{
+		Version: extensionVersion,
 		URLs: map[string]string{
 			"post":     koikatsuBase + "/contents/pixiv-{id}",
 			"author":   koikatsuBase + "/search?author={slug}",
@@ -51,7 +64,7 @@ func (m *Mapping) buildSlim() *Slim {
 		},
 		Posts:   make([]int64, 0, len(m.Posts)),
 		Authors: map[string]string{},
-		Users:   map[string]*SlimUser{},
+		Users:   map[string]*ExtensionUser{},
 	}
 
 	for id := range m.Posts {
@@ -62,7 +75,7 @@ func (m *Mapping) buildSlim() *Slim {
 	sort.Slice(s.Posts, func(i, j int) bool { return s.Posts[i] < s.Posts[j] })
 
 	for id, pu := range m.PixivUsers {
-		u := &SlimUser{Authors: []string{}}
+		u := &ExtensionUser{Authors: []string{}}
 		best := pu.Pawchive // the account's own match wins
 		for _, slug := range pu.AuthorSlugs {
 			au := m.Authors[slug]
@@ -80,7 +93,7 @@ func (m *Mapping) buildSlim() *Slim {
 			}
 		}
 		if best != nil {
-			u.Pawchive = &SlimPawchive{Service: best.Service, ID: best.ID}
+			u.Pawchive = &ExtensionPawchive{Service: best.Service, ID: best.ID}
 		}
 		// accounts with neither an author tag nor a pawchive match are covered by Posts only
 		if len(u.Authors) > 0 || u.Pawchive != nil {
@@ -90,7 +103,7 @@ func (m *Mapping) buildSlim() *Slim {
 	return s
 }
 
-// saveJSONCompact writes minified JSON atomically (the slim file is shipped to clients).
+// saveJSONCompact writes minified JSON atomically (the extension file is shipped to clients).
 func saveJSONCompact(path string, v any) error {
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return err
@@ -99,6 +112,27 @@ func saveJSONCompact(path string, v any) error {
 	if err != nil {
 		return err
 	}
+	tmp := path + ".tmp"
+	if err := os.WriteFile(tmp, b, 0o644); err != nil {
+		return err
+	}
+	return os.Rename(tmp, path)
+}
+
+// saveJSONIndent writes v indented with two spaces, without escaping <, > and & so
+// names such as "<!>" stay readable in the file.
+func saveJSONIndent(path string, v any) error {
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return err
+	}
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(v); err != nil {
+		return err
+	}
+	b := bytes.TrimRight(buf.Bytes(), "\n")
 	tmp := path + ".tmp"
 	if err := os.WriteFile(tmp, b, 0o644); err != nil {
 		return err

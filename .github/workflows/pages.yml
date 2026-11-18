@@ -1,0 +1,73 @@
+name: Deploy authors to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "**.go"
+      - go.mod
+      - .github/workflows/pages.yml
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows,
+  # so deploy explicitly after the scrape workflow finishes.
+  workflow_run:
+    workflows: ["Scrape authors"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # workflow_run checks out the default branch by default; pin explicitly
+          # so we always deploy the branch the scrape workflow just updated.
+          ref: main
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build indices/author.json (data/authors.json, no indentation)
+        run: |
+          mkdir -p _site/indices
+          # -e makes jq fail on an empty/invalid file; -c = compact output (no indentation).
+          jq -e -c 'if type == "array" and length > 0 then . else error("authors.json is empty") end' data/authors.json > _site/indices/author.json
+          echo "Generated $(jq 'length' _site/indices/author.json) authors"
+
+      # Built from the saved data/mapping.json, no network needed.
+      - name: Build indices/extension.json
+        run: go run . -extension-only -extension _site/indices/extension.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

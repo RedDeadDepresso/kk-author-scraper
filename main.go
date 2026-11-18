@@ -738,24 +738,28 @@ func run() (err error) {
 	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
 	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
 	bepisMaxAge := flag.Duration("bepis-max-age", 24*time.Hour, "re-check the bepis cards.json when the cache is older than this")
-	slimPath := flag.String("slim", "", "slim lookup file for the browser extension (default <data>/slim.json)")
-	frontendPath := flag.String("frontend", "", "frontend list for the website (default <data>/frontend.json)")
-	noFrontend := flag.Bool("no-frontend", false, "do not write the frontend list")
+	extensionPath := flag.String("extension", "", "write the lookup file for the browser extension to this path (not written when empty)")
+	extensionOnly := flag.Bool("extension-only", false, "only build the extension file from the saved <data>/mapping.json (no network) and exit; needs -extension")
+	noAuthorsWrite := flag.Bool("no-authors-write", false, "do not update the authors file at the end of the run")
 	namesSrc := flag.String("names-url", namesURL, "names.json (pepper-scene-hasher): archive names -> authors.json names")
 	namesFile := flag.String("names-file", "", "use this local names.json instead of downloading")
 	rentrySrc := flag.String("rentry-url", sceneArchiveURL, "Scene Archive rentry page")
 	rentryFile := flag.String("rentry-file", "", "use this local saved rentry HTML instead of downloading")
 	sourceMaxAge := flag.Duration("source-max-age", 24*time.Hour, "re-download names.json and the rentry page when older than this")
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
-	noSlim := flag.Bool("no-slim", false, "do not write the slim file")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
-	authorsFile := flag.String("authors-file", "", "authors.json with known pixiv links (default <data>/authors.json if it exists)")
+	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	flag.Parse()
-	if *frontendPath == "" {
-		*frontendPath = filepath.Join(*dataDir, "frontend.json")
-	}
-	if *slimPath == "" {
-		*slimPath = filepath.Join(*dataDir, "slim.json")
+	if *extensionOnly {
+		if *extensionPath == "" {
+			return errors.New("-extension-only needs -extension <path>")
+		}
+		m := &Mapping{}
+		if err := loadJSON(filepath.Join(*dataDir, "mapping.json"), m); err != nil {
+			return fmt.Errorf("loading mapping: %w", err)
+		}
+		m.init()
+		return writeExtension(m, *extensionPath)
 	}
 	if *bepisCache == "" {
 		*bepisCache = filepath.Join(*cacheDir, "bepis_authors.json")
@@ -795,19 +799,18 @@ func run() (err error) {
 	a.fileMemo = map[string]fileResult{}
 	if *authorsFile == "" {
 		*authorsFile = filepath.Join(*dataDir, "authors.json")
-		if _, err := os.Stat(*authorsFile); err != nil {
-			*authorsFile = ""
-		}
 	}
-	if *authorsFile != "" {
+	if _, err := os.Stat(*authorsFile); err == nil {
 		idx, err := loadAuthorsFile(*authorsFile)
 		if err != nil {
 			return fmt.Errorf("loading %s: %w", *authorsFile, err)
 		}
 		a.fileIdx = idx
 		log.Printf("authors file: %d entries from %s", idx.count, *authorsFile)
+	} else if os.IsNotExist(err) {
+		log.Printf("no %s yet; all pixiv accounts will come from the pixiv API and the file is created at the end of the run", *authorsFile)
 	} else {
-		log.Println("no authors.json found; all pixiv accounts will come from the pixiv API")
+		return err
 	}
 	if a.authorCache == nil {
 		a.authorCache = map[string]TagEntry{}
@@ -901,21 +904,19 @@ pages:
 			log.Printf("warning: bepis step failed: %v", err)
 		}
 	}
-	if !*noSlim && ctx.Err() == nil {
-		slim := a.mapping.buildSlim()
-		if err := saveJSONCompact(*slimPath, slim); err != nil {
+	if *extensionPath != "" && ctx.Err() == nil {
+		if err := writeExtension(a.mapping, *extensionPath); err != nil {
 			return err
 		}
-		log.Printf("slim file: %d posts, %d accounts -> %s", len(slim.Posts), len(slim.Users), *slimPath)
 	}
-	if !*noFrontend && ctx.Err() == nil {
-		src := a.loadFrontendSources(ctx, sourceOpts{
+	if !*noAuthorsWrite && ctx.Err() == nil {
+		src := a.loadAuthorSources(ctx, sourceOpts{
 			NamesURL: *namesSrc, NamesFile: *namesFile,
 			RentryURL: *rentrySrc, RentryFile: *rentryFile,
 			CacheDir: *cacheDir, MaxAge: *sourceMaxAge,
 		})
-		rows := a.buildFrontend(ctx, src, *pixivIcons)
-		if err := saveJSONCompact(*frontendPath, rows); err != nil {
+		rows := a.buildAuthorRows(ctx, src, *pixivIcons)
+		if err := saveJSONIndent(*authorsFile, rows); err != nil {
 			return err
 		}
 		dl, rec, ms := 0, 0, 0
@@ -930,7 +931,7 @@ pages:
 				ms++
 			}
 		}
-		log.Printf("frontend list: %d authors (%d with download, %d recommended, %d make scenes) -> %s", len(rows), dl, rec, ms, *frontendPath)
+		log.Printf("authors file: %d authors (%d with download, %d recommended, %d make scenes) -> %s", len(rows), dl, rec, ms, *authorsFile)
 	}
 	log.Printf("finished: %d posts processed, newest=%s", processed, a.mapping.NewestPost)
 	return nil

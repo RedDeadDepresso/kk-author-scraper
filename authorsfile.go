@@ -9,19 +9,41 @@ import (
 	"strings"
 )
 
-// fileAuthor is one entry of authors.json.
+// fileAuthor is one entry of authors.json, reduced to what the scraper uses to match
+// authors: the name, its aliases and the account links derived from the row.
 type fileAuthor struct {
-	Name  string   `json:"name"`
-	Alias []string `json:"alias"`
-	ID    string   `json:"id"`
-	Links []string `json:"links"`
+	Name  string
+	Alias []string
+	Links []string
+	prev  *AuthorRow // the row as stored in the file
+}
+
+// accountLinks turns a stored row into the pixiv / fanbox / patreon links the matching code
+// understands. The pawchive url of a row is mapped back to the creator it points to.
+func (r *AuthorRow) accountLinks() []string {
+	var links []string
+	if r.Links.Pixiv != "" {
+		links = append(links, r.Links.Pixiv)
+	}
+	if u, err := url.Parse(r.Links.Pawchive); err == nil && u.Host != "" {
+		if segs := pathSegments(u.Path); len(segs) == 3 && segs[1] == "user" && isDigits(segs[2]) {
+			switch segs[0] {
+			case "fanbox":
+				links = append(links, "https://www.fanbox.cc/creator/"+segs[2])
+			case "patreon":
+				links = append(links, "https://www.patreon.com/user?u="+segs[2])
+			}
+		}
+	}
+	return links
 }
 
 // authorIndex looks up authors.json entries by normalized name or alias.
 type authorIndex struct {
 	byName  map[string][]*fileAuthor
 	byAlias map[string][]*fileAuthor
-	entries []*fileAuthor // every entry in file order
+	byExact map[string][]*fileAuthor // names without letters or digits ("." or ":)"), by exact name
+	entries []*fileAuthor            // every entry in file order
 	count   int
 }
 
@@ -30,26 +52,28 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 	if err != nil {
 		return nil, err
 	}
-	var f struct {
-		Authors []fileAuthor `json:"authors"`
-	}
-	if err := json.Unmarshal(b, &f); err != nil {
+	var rows []AuthorRow
+	if err := json.Unmarshal(b, &rows); err != nil {
 		return nil, err
 	}
-	if len(f.Authors) == 0 {
+	if len(rows) == 0 {
 		return nil, errors.New("no authors in file")
 	}
 	ix := &authorIndex{
 		byName:  map[string][]*fileAuthor{},
 		byAlias: map[string][]*fileAuthor{},
-		count:   len(f.Authors),
+		byExact: map[string][]*fileAuthor{},
+		count:   len(rows),
 	}
-	for i := range f.Authors {
-		e := &f.Authors[i]
+	for i := range rows {
+		r := &rows[i]
+		e := &fileAuthor{Name: r.Name, Alias: r.Alias, Links: r.accountLinks(), prev: r}
 		ix.entries = append(ix.entries, e)
 		nameKey := normName(e.Name)
 		if nameKey != "" {
 			ix.byName[nameKey] = append(ix.byName[nameKey], e)
+		} else if n := strings.TrimSpace(e.Name); n != "" {
+			ix.byExact[n] = append(ix.byExact[n], e)
 		}
 		seen := map[string]bool{nameKey: true}
 		for _, al := range e.Alias {
@@ -70,7 +94,14 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 func (ix *authorIndex) find(name string) (entry *fileAuthor, ambiguous bool) {
 	key := normName(name)
 	if key == "" {
-		return nil, false
+		switch matches := ix.byExact[strings.TrimSpace(name)]; len(matches) {
+		case 1:
+			return matches[0], false
+		case 0:
+			return nil, false
+		default:
+			return nil, true
+		}
 	}
 	for _, tier := range []map[string][]*fileAuthor{ix.byName, ix.byAlias} {
 		switch matches := tier[key]; len(matches) {
@@ -90,7 +121,7 @@ func (ix *authorIndex) find(name string) (entry *fileAuthor, ambiguous bool) {
 func (ix *authorIndex) findAll(name string) []*fileAuthor {
 	key := normName(name)
 	if key == "" {
-		return nil
+		return ix.byExact[strings.TrimSpace(name)]
 	}
 	for _, tier := range []map[string][]*fileAuthor{ix.byName, ix.byAlias} {
 		if matches := tier[key]; len(matches) > 0 {

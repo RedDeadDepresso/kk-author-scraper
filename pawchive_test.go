@@ -96,7 +96,7 @@ func TestRealLinkCoverage(t *testing.T) {
 	}
 	creators, _ := parseCreators(cb)
 	ix := buildIndex(creators)
-	af, err := loadAuthorsFile("/mnt/user-data/uploads/authors.json")
+	af, err := loadAuthorsFile("data/authors.json")
 	if err != nil {
 		t.Skip("no authors.json")
 	}

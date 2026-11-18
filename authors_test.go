@@ -85,15 +85,15 @@ func TestParseNamesAndSources(t *testing.T) {
 	}
 }
 
-func frontendApp(t *testing.T) *App {
+func authorsApp(t *testing.T) *App {
 	t.Helper()
 	a := &App{mapping: &Mapping{}, profileCache: map[string]ProfileEntry{}, pixivCache: map[string]PixivEntry{}} // http is nil: a real request would panic
 	a.mapping.init()
 	return a
 }
 
-func TestBuildFrontend(t *testing.T) {
-	a := frontendApp(t)
+func TestBuildAuthorRows(t *testing.T) {
+	a := authorsApp(t)
 	m := a.mapping
 	e := &fileAuthor{Name: "AnnaAnon", Alias: []string{"Anna Anon", "TheSafeAnnaAnon", "anna-anon"}}
 	onlyFile := &fileAuthor{Name: "FileOnly", Alias: []string{"file-only"}, Links: []string{"https://www.pixiv.net/users/999"}}
@@ -131,8 +131,8 @@ func TestBuildFrontend(t *testing.T) {
 	ms, keys, _ := parseNames([]byte(namesFixture))
 	src := buildSources(parseSceneArchive(rentryFixture), ms, keys)
 
-	rows := a.buildFrontend(context.Background(), src, false)
-	by := map[string]FrontendAuthor{}
+	rows := a.buildAuthorRows(context.Background(), src, false)
+	by := map[string]AuthorRow{}
 	for _, r := range rows {
 		by[r.Name] = r
 	}
@@ -148,7 +148,7 @@ func TestBuildFrontend(t *testing.T) {
 	}
 
 	anna := by["AnnaAnon"]
-	wantLinks := FrontendLinks{
+	wantLinks := AuthorLinks{
 		Pixiv:         "https://www.pixiv.net/users/37736420", // matches the pawchive fanbox id, not the account with more posts
 		Download:      "https://buzzheavier.com/a92fqd1x2mho",
 		Pawchive:      "https://pawchive.pw/fanbox/user/37736420",
@@ -218,5 +218,34 @@ func TestFetchCached(t *testing.T) {
 	b, err := a.fetchCached(ctx, "x", srv.URL, path, time.Hour, ok)
 	if err != nil || string(b) != `{"a":"b"}` {
 		t.Fatalf("stale fallback: %v %s", err, b)
+	}
+}
+
+func TestBuildAuthorRowsKeepsFileAliasesAndMergesPlaceholderNames(t *testing.T) {
+	a := authorsApp(t)
+	m := a.mapping
+	// the file knows "Yata'Ryhna" (bepis name) under another spelling and an alias
+	e := &fileAuthor{Name: "Yata’Ryhna", Alias: []string{"Yata_Durian"}}
+	a.fileIdx = &authorIndex{
+		byName: map[string][]*fileAuthor{normName("Yata’Ryhna"): {e}}, byAlias: map[string][]*fileAuthor{},
+		entries: []*fileAuthor{e}, count: 1,
+	}
+	m.BepisAuthors["Yata'Ryhna"] = &BepisAuthor{Name: "Yata'Ryhna", URL: bepisAuthorURL("Yata'Ryhna"), CardCount: 2}
+
+	// a placeholder name has no letters or digits, so it cannot be matched by normalized name
+	m.Authors["author-unknown-1"] = &Author{Name: ".", Slug: "author-unknown-1", KoikatsuURL: authorURL("author-unknown-1")}
+	m.BepisAuthors["."] = &BepisAuthor{Name: ".", URL: bepisAuthorURL("."), CardCount: 1}
+
+	rows := a.buildAuthorRows(context.Background(), nil, false)
+	by := map[string][]AuthorRow{}
+	for _, r := range rows {
+		by[r.Name] = append(by[r.Name], r)
+	}
+	if y := by["Yata'Ryhna"]; len(y) != 1 || strings.Join(y[0].Alias, ",") != "Yata’Ryhna,Yata_Durian" {
+		t.Fatalf("%+v", y)
+	}
+	dot := by["."]
+	if len(dot) != 1 || dot[0].Links.Koikatsucards == "" || dot[0].Links.Bepis != bepisAuthorURL(".") {
+		t.Fatalf("placeholder-name duplicates must merge into one row: %+v", dot)
 	}
 }

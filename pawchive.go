@@ -372,7 +372,7 @@ func (a *App) runPawchive(ctx context.Context, file, cachePath string, maxAge ti
 	if len(creators) == 0 {
 		return errors.New("pawchive creators list is empty")
 	}
-	a.pawIdx = buildIndex(creators) // also used for authors.json-only rows of the frontend list
+	a.pawIdx = buildIndex(creators) // also used for authors.json-only rows of the authors list
 	authors, users := a.mapping.applyPawchive(creators)
 	log.Printf("pawchive: %d creators indexed; matched %d/%d authors, %d/%d pixiv accounts",
 		len(creators), authors, len(a.mapping.Authors), users, len(a.mapping.PixivUsers))

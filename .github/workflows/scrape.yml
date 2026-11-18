@@ -1,0 +1,53 @@
+name: Scrape authors
+
+on:
+  schedule:
+    # Runs at 03:00 UTC every day. Adjust to taste.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      # Incremental: stops at the newest post of the previous run, so most runs are short.
+      # PIXIV_PHPSESSID is optional (restricted works are unavailable without it).
+      - name: Run scraper
+        timeout-minutes: 330
+        env:
+          PIXIV_PHPSESSID: ${{ secrets.PIXIV_PHPSESSID }}
+        run: go run .
+
+      # Also runs after a failed or timed-out scrape: the scraper saves its progress after
+      # every page, so committing it lets the next run resume instead of starting over.
+      - name: Commit data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data cache
+          if git diff --cached --quiet; then
+            echo "Nothing changed"
+          else
+            git commit -m "Update authors data"
+            git pull --rebase
+            git push
+          fi
