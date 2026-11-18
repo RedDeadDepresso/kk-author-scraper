@@ -111,7 +111,7 @@ func TestBuildAuthorRows(t *testing.T) {
 	m.PixivUsers["37736420"] = &PixivUser{ID: "37736420", URL: pixivBase + "/users/37736420"}
 	m.BepisAuthors["annaanon"] = &BepisAuthor{Name: "annaanon", URL: bepisAuthorURL("annaanon"), CardCount: 3, KoikatsuAuthorURLs: []string{"x"}}
 	m.BepisAuthors["AnnaAnon"] = &BepisAuthor{Name: "AnnaAnon", URL: bepisAuthorURL("AnnaAnon"), CardCount: 9, KoikatsuAuthorURLs: []string{"x"}}
-	for i, w := range []string{"Uma Musume", "Uma Musume", "Blue Archive", "Unknown work", ""} {
+	for i, w := range []string{"Uma Musume", "Uma Musume", "Blue Archive", "Unknown work", "", "Original", "Unknown", " original "} {
 		id := string(rune('a' + i))
 		m.Posts[id] = &Post{PixivID: id, AuthorSlug: "author-annaanon", WorkName: w, PixivUserID: "111"}
 	}

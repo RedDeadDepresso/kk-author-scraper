@@ -161,9 +161,7 @@
   {
     "name": "HONGCHA",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 5010,
@@ -183,9 +181,7 @@
       "moonlightmask4",
       "moonlight mask"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": true,
     "makeScenes": true,
     "favorited": 4859,
@@ -309,9 +305,7 @@
   {
     "name": "Tachumi",
     "alias": [],
-    "series": [
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 3285,
@@ -351,7 +345,6 @@
       "juedge"
     ],
     "series": [
-      "Unknown",
       "Wuthering Waves",
       "Girls' Frontline",
       "Honkai: Star Rail",
@@ -390,7 +383,6 @@
       "Honkai: Star Rail",
       "Azur Lane",
       "Blue Archive",
-      "Unknown",
       "Genshin Impact",
       "Honkai Impact 3rd",
       "Uma Musume: Pretty Derby",
@@ -463,9 +455,7 @@
       "SK",
       "ScratchKey"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 2552,
@@ -488,7 +478,6 @@
     "series": [
       "Zenless Zone Zero",
       "Honkai Impact 3rd",
-      "Unknown",
       "Wuthering Waves",
       "Honkai: Star Rail",
       "Genshin Impact",
@@ -516,8 +505,7 @@
     "series": [
       "The Testament of Sister New Devil",
       "A Certain Magical Index",
-      "A Certain Scientific Railgun",
-      "Unknown"
+      "A Certain Scientific Railgun"
     ],
     "isRecommended": false,
     "makeScenes": true,
@@ -542,7 +530,6 @@
       "Honkai: Star Rail",
       "Genshin Impact",
       "Wuthering Waves",
-      "Unknown",
       "Arknights",
       "Honkai Impact 3rd"
     ],
@@ -563,7 +550,6 @@
     "name": "ABCEEFG",
     "alias": [],
     "series": [
-      "Unknown",
       "Baku Ane",
       "Blue Archive",
       "Maken-Ki!",
@@ -612,8 +598,7 @@
       "Genshin Impact",
       "Wuthering Waves",
       "Azur Lane",
-      "Blue Archive",
-      "Unknown"
+      "Blue Archive"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -640,7 +625,6 @@
       "Zenless Zone Zero",
       "Wuthering Waves",
       "Genshin Impact",
-      "Unknown",
       "MiSide",
       "One-Punch Man"
     ],
@@ -661,8 +645,6 @@
     "name": "PiS",
     "alias": [],
     "series": [
-      "Unknown",
-      "Original",
       "Kaguya-sama: Love Is War",
       "To Love-Ru",
       "Boku Girl",
@@ -696,7 +678,6 @@
       "Azur Lane",
       "Blue Archive",
       "Girls' Frontline",
-      "Unknown",
       "Date A Live",
       "Honkai: Star Rail",
       "Nijisanji"
@@ -776,7 +757,6 @@
     "alias": [],
     "series": [
       "Goddess of Victory: NIKKE",
-      "Unknown",
       "Blue Archive",
       "Azur Lane",
       "Wuthering Waves",
@@ -784,8 +764,7 @@
       "To Love-Ru",
       "Alya Sometimes Hides Her Feelings in Russian",
       "Arcaea",
-      "Echocalypse",
-      "Original"
+      "Echocalypse"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -852,7 +831,6 @@
       "Zenless Zone Zero",
       "Genshin Impact",
       "The Idolmaster",
-      "Unknown",
       "Honkai Impact 3rd"
     ],
     "isRecommended": false,
@@ -902,7 +880,6 @@
       "Fate/Grand Order",
       "Honkai Impact 3rd",
       "Honkai: Star Rail",
-      "Unknown",
       "Wuthering Waves",
       "Zenless Zone Zero"
     ],
@@ -940,7 +917,6 @@
     "name": "KaosKatsu",
     "alias": [],
     "series": [
-      "Unknown",
       "Delicious in Dungeon"
     ],
     "isRecommended": false,
@@ -997,7 +973,6 @@
     "alias": [],
     "series": [
       "Zenless Zone Zero",
-      "Unknown",
       "Wuthering Waves"
     ],
     "isRecommended": false,
@@ -1037,7 +1012,6 @@
     ],
     "series": [
       "Wuthering Waves",
-      "Unknown",
       "Aether Gazer",
       "Snowbreak: Containment Zone",
       "Azur Lane",
@@ -1079,9 +1053,7 @@
   {
     "name": "Debu",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 1405,
@@ -1216,8 +1188,7 @@
     "name": "Saul Goodman",
     "alias": [],
     "series": [
-      "BanG Dream!",
-      "Unknown"
+      "BanG Dream!"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -1256,9 +1227,7 @@
     "alias": [
       "Roku40"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": true,
     "makeScenes": true,
     "favorited": 1264,
@@ -1319,7 +1288,6 @@
       "Goddess of Victory: NIKKE",
       "Granblue Fantasy",
       "Unicorn Overlord",
-      "Unknown",
       "Atelier",
       "KonoSuba: God's Blessing on This Wonderful World!",
       "NieR",
@@ -1381,7 +1349,6 @@
       "koikingu"
     ],
     "series": [
-      "Unknown",
       "Hololive Production",
       "A Certain Magical Index",
       "Trapped in a Dating Sim: The World of Otome Games Is Tough for Mobs",
@@ -1436,8 +1403,7 @@
     "name": "HiTo",
     "alias": [],
     "series": [
-      "I Got Married to the Girl I Hate Most in Class",
-      "Unknown"
+      "I Got Married to the Girl I Hate Most in Class"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -1475,7 +1441,6 @@
     "name": "Gin26",
     "alias": [],
     "series": [
-      "Unknown",
       "Manyuu Hikenchou",
       "Overflow"
     ],
@@ -1555,7 +1520,6 @@
     "name": "HIMIKO",
     "alias": [],
     "series": [
-      "Unknown",
       "Zenless Zone Zero",
       "Genshin Impact"
     ],
@@ -1617,10 +1581,8 @@
     "name": "xbrand",
     "alias": [],
     "series": [
-      "Unknown",
       "Goddess of Victory: NIKKE",
       "High School DxD",
-      "Original",
       "Zenless Zone Zero"
     ],
     "isRecommended": false,
@@ -1717,7 +1679,6 @@
     "name": "Sankuku",
     "alias": [],
     "series": [
-      "Unknown",
       "Vtuber"
     ],
     "isRecommended": false,
@@ -1803,7 +1764,6 @@
     "name": "Peter247",
     "alias": [],
     "series": [
-      "Unknown",
       "The Eminence in Shadow",
       "Akame ga Kill!",
       "Future Diary",
@@ -1831,7 +1791,6 @@
       "sweii1"
     ],
     "series": [
-      "Unknown",
       "Akame ga Kill!",
       "Date A Live"
     ],
@@ -1973,9 +1932,7 @@
   {
     "name": "DrunkMage",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 803,
@@ -1996,7 +1953,6 @@
       "Azur Lane",
       "Blue Archive",
       "Alya Sometimes Hides Her Feelings in Russian",
-      "Unknown",
       "Arknights",
       "Goddess of Victory: NIKKE",
       "Lycoris Recoil",
@@ -2021,9 +1977,7 @@
       "HappyDolly",
       "HAPPYDOLLY_kk"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 746,
@@ -2055,7 +2009,6 @@
       "Re:Zero - Starting Life in Another World",
       "Senran Kagura",
       "The Light Winged Valkyries",
-      "Unknown",
       "Vtuber",
       "Xenoblade Chronicles"
     ],
@@ -2079,7 +2032,6 @@
     ],
     "series": [
       "Hololive Production",
-      "Unknown",
       "Blue Archive",
       "Fate/Grand Order",
       "Genshin Impact",
@@ -2128,8 +2080,7 @@
       "PhantomKoikatsu"
     ],
     "series": [
-      "The Idolmaster",
-      "Unknown"
+      "The Idolmaster"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -2187,11 +2138,9 @@
     "alias": [],
     "series": [
       "Blue Archive",
-      "Unknown",
       "Azur Lane",
       "Girls' Frontline",
       "Honkai: Star Rail",
-      "Original",
       "VRChat",
       "Vocaloid",
       "Wuthering Waves"
@@ -2215,8 +2164,7 @@
       "Ldki1018"
     ],
     "series": [
-      "Hololive Production",
-      "Unknown"
+      "Hololive Production"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -2239,7 +2187,6 @@
     "series": [
       "Girls' Frontline",
       "Arknights",
-      "Unknown",
       "Honkai Impact 3rd",
       "Punishing: Gray Raven"
     ],
@@ -2323,7 +2270,6 @@
     "series": [
       "Horizon Walker",
       "Punishing: Gray Raven",
-      "Unknown",
       "Wuthering Waves",
       "Girls' Frontline"
     ],
@@ -2432,7 +2378,6 @@
     "series": [
       "Wuthering Waves",
       "Honkai: Star Rail",
-      "Unknown",
       "Genshin Impact"
     ],
     "isRecommended": false,
@@ -2480,7 +2425,6 @@
       "kirikumorimori"
     ],
     "series": [
-      "Unknown",
       "Wuthering Waves",
       "Creative Commons",
       "Honkai: Star Rail"
@@ -2617,7 +2561,6 @@
       "fgmntz"
     ],
     "series": [
-      "Unknown",
       "Boarding School Juliet",
       "The Shiunji Family Children"
     ],
@@ -2655,7 +2598,6 @@
     "name": "keiyuu",
     "alias": [],
     "series": [
-      "Unknown",
       "ATRI -My Dear Moments-",
       "Girls' Frontline",
       "Goddess of Victory: NIKKE",
@@ -2702,9 +2644,7 @@
       "Sam",
       "oOSamOo"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 443,
@@ -2724,9 +2664,7 @@
       "拗れ切った人 KJ",
       "kojire"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 439,
@@ -2807,7 +2745,6 @@
       "liulingqian"
     ],
     "series": [
-      "Unknown",
       "Backstabbed in a Backwater Dungeon: My Trusted Companions Tried to Kill Me, but Thanks to the Gift of an Unlimited Gacha I Got LVL 9999 Friends and Am Out for Revenge on My Former Party Members and the World",
       "Chillin' in Another World with Level 2 Super Cheat Powers",
       "Dandadan",
@@ -2858,7 +2795,6 @@
     "series": [
       "Wuthering Waves",
       "Azur Lane",
-      "Unknown",
       "Honkai: Star Rail",
       "The Idolmaster",
       "Zenless Zone Zero"
@@ -2896,9 +2832,7 @@
   {
     "name": "Sinnai",
     "alias": [],
-    "series": [
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 375,
@@ -2934,9 +2868,7 @@
   {
     "name": "earthship",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": true,
     "favorited": 374,
@@ -2996,7 +2928,6 @@
       "Blue Archive",
       "Gundam",
       "Girls Band Cry",
-      "Unknown",
       "Dolphin Wave",
       "My Teen Romantic Comedy SNAFU",
       "Re:Zero - Starting Life in Another World",
@@ -3093,9 +3024,7 @@
   {
     "name": "Akiwax",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 344,
@@ -3118,7 +3047,6 @@
       "Black Rock Shooter",
       "God Eater",
       "Gundam",
-      "Unknown",
       "Yu-Gi-Oh!"
     ],
     "isRecommended": false,
@@ -3159,7 +3087,6 @@
       "void_Ye"
     ],
     "series": [
-      "Unknown",
       "Azur Lane",
       "Clothes"
     ],
@@ -3342,8 +3269,7 @@
     "name": "DNP",
     "alias": [],
     "series": [
-      "Uma Musume: Pretty Derby",
-      "Unknown"
+      "Uma Musume: Pretty Derby"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -3385,9 +3311,7 @@
     "alias": [
       "Singer Yue"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 293,
@@ -3493,8 +3417,7 @@
       "Fate/Grand Order",
       "Frieren: Beyond Journey's End",
       "Genshin Impact",
-      "Honkai Impact 3rd",
-      "Original"
+      "Honkai Impact 3rd"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -3518,7 +3441,6 @@
     "series": [
       "Genshin Impact",
       "Zenless Zone Zero",
-      "Unknown",
       "Honkai Impact 3rd",
       "Honkai: Star Rail"
     ],
@@ -3545,7 +3467,6 @@
       "Genshin Impact",
       "Guilty Gear",
       "Sakuna: Of Rice and Ruin",
-      "Unknown",
       "Yu-Gi-Oh!"
     ],
     "isRecommended": false,
@@ -3631,8 +3552,7 @@
       "Classroom of the Elite",
       "Code Geass",
       "Ranma 1/2",
-      "The Apothecary Diaries",
-      "Unknown"
+      "The Apothecary Diaries"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -3693,8 +3613,6 @@
       "unagi4545"
     ],
     "series": [
-      "Unknown",
-      "Original",
       "Dolphin Wave",
       "Nijisanji",
       "A Salad Bowl of Eccentrics",
@@ -3826,9 +3744,7 @@
     "series": [
       "Azur Lane",
       "Blue Archive",
-      "Kantai Collection",
-      "Original",
-      "Unknown"
+      "Kantai Collection"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -3847,9 +3763,7 @@
     "name": "NxhardcorE",
     "alias": [],
     "series": [
-      "Unknown",
-      "Girls' Frontline",
-      "Original"
+      "Girls' Frontline"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -3871,7 +3785,6 @@
       "sunseto10"
     ],
     "series": [
-      "Unknown",
       "Frieren: Beyond Journey's End",
       "Rascal Does Not Dream of Bunny Girl Senpai",
       "7th Time Loop: The Villainess Enjoys a Carefree Life Married to Her Worst Enemy!",
@@ -4023,7 +3936,6 @@
       "TriangleRated"
     ],
     "series": [
-      "Unknown",
       "Girls' Frontline",
       "Trails series",
       "Fairy Fencer F"
@@ -4052,8 +3964,7 @@
       "2.5 Dimensional Seduction",
       "Cosmic Princess Kaguya!",
       "Gushing Over Magical Girls",
-      "Love Live!",
-      "Unknown"
+      "Love Live!"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -4091,7 +4002,6 @@
     "series": [
       "Snowbreak: Containment Zone",
       "Wuthering Waves",
-      "Unknown",
       "MiSide"
     ],
     "isRecommended": false,
@@ -4153,7 +4063,6 @@
     "alias": [],
     "series": [
       "Fate/Grand Order",
-      "Unknown",
       "Alya Sometimes Hides Her Feelings in Russian",
       "Gundam",
       "The Eminence in Shadow"
@@ -4197,8 +4106,7 @@
     "series": [
       "Azur Lane",
       "Goddess of Victory: NIKKE",
-      "Demonbane",
-      "Unknown"
+      "Demonbane"
     ],
     "isRecommended": false,
     "makeScenes": true,
@@ -4344,7 +4252,6 @@
       "Fate/Grand Order",
       "Hyperdimension Neptunia",
       "Kantai Collection",
-      "Original",
       "Ragnarok Online",
       "Re:Creators",
       "Shironeko Project"
@@ -4421,8 +4328,7 @@
       "Frieren: Beyond Journey's End",
       "Hololive Production",
       "Princess Connect! Re:Dive",
-      "Too Many Losing Heroines!",
-      "Unknown"
+      "Too Many Losing Heroines!"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -4600,9 +4506,7 @@
   {
     "name": "asbdaz",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 113,
@@ -4619,9 +4523,7 @@
   {
     "name": "LEE",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 113,
@@ -4655,9 +4557,7 @@
   {
     "name": "未满赤澄",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 111,
@@ -4694,7 +4594,6 @@
     "name": "センダイ",
     "alias": [],
     "series": [
-      "Unknown",
       "Arknights",
       "Dohna Dohna: Let's Do Bad Things Together"
     ],
@@ -4717,9 +4616,7 @@
       "bunskk",
       "Bunscomics"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 109,
@@ -4758,7 +4655,6 @@
       "イズ"
     ],
     "series": [
-      "Unknown",
       "Aether Gazer",
       "Girls' Frontline",
       "Hololive Production",
@@ -4806,8 +4702,7 @@
       "adang"
     ],
     "series": [
-      "Girls' Frontline",
-      "Unknown"
+      "Girls' Frontline"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -4876,10 +4771,7 @@
   {
     "name": "KIM",
     "alias": [],
-    "series": [
-      "Unknown",
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 78,
@@ -4913,9 +4805,7 @@
   {
     "name": "Misaki",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 71,
@@ -4976,7 +4866,6 @@
     "series": [
       "Aether Gazer",
       "Wuthering Waves",
-      "Unknown",
       "Girls' Frontline",
       "Duet Night Abyss",
       "Arknights",
@@ -5004,7 +4893,6 @@
     "series": [
       "A Certain Scientific Railgun",
       "Teasing Master Takagi-san",
-      "Unknown",
       "Vtuber"
     ],
     "isRecommended": false,
@@ -5026,7 +4914,6 @@
       "ylsama"
     ],
     "series": [
-      "Unknown",
       "Aether Gazer",
       "Punishing: Gray Raven",
       "Snowbreak: Containment Zone",
@@ -5054,7 +4941,6 @@
     "name": "Kar",
     "alias": [],
     "series": [
-      "Unknown",
       "Arknights"
     ],
     "isRecommended": false,
@@ -5075,9 +4961,7 @@
     "alias": [
       "Ravenant"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 50,
@@ -5136,7 +5020,6 @@
     "series": [
       "Aether Gazer",
       "Snowbreak: Containment Zone",
-      "Unknown",
       "Honkai Impact 3rd"
     ],
     "isRecommended": false,
@@ -5175,9 +5058,7 @@
   {
     "name": "Polarisakura",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 37,
@@ -5232,7 +5113,6 @@
       "seimeiabe"
     ],
     "series": [
-      "Unknown",
       "Arknights",
       "Girls' Frontline",
       "Honkai: Star Rail",
@@ -5298,9 +5178,7 @@
   {
     "name": "zeetong333",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 24,
@@ -5342,7 +5220,6 @@
       "sanbakarasu"
     ],
     "series": [
-      "Unknown",
       "The Idolmaster",
       "Please Put Them On, Takamine-san",
       "Taimanin",
@@ -5375,7 +5252,6 @@
       "Honkai Impact 3rd",
       "Girls' Frontline",
       "Arknights",
-      "Unknown",
       "Goddess of Victory: NIKKE",
       "Snowbreak: Containment Zone"
     ],
@@ -5401,7 +5277,6 @@
     ],
     "series": [
       "Solo Leveling",
-      "Unknown",
       "Soul Land"
     ],
     "isRecommended": false,
@@ -5420,9 +5295,7 @@
   {
     "name": "What！？",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 14,
@@ -5442,7 +5315,6 @@
       "sk27"
     ],
     "series": [
-      "Unknown",
       "The Idolmaster"
     ],
     "isRecommended": false,
@@ -5480,9 +5352,7 @@
   {
     "name": "McMurphy",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 8,
@@ -5562,7 +5432,6 @@
     ],
     "series": [
       "Nijisanji",
-      "Unknown",
       "Vtuber",
       "Engage Kiss",
       "Mario Series",
@@ -5852,7 +5721,6 @@
       "PAKAPAKA"
     ],
     "series": [
-      "Unknown",
       "Blue Archive",
       "Re:Zero",
       "The Idolmaster"
@@ -6270,9 +6138,7 @@
   {
     "name": "123hv36j8342",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -8357,7 +8223,6 @@
     "name": "AcaCia",
     "alias": [],
     "series": [
-      "Unknown",
       "Vocaloid"
     ],
     "isRecommended": false,
@@ -8513,7 +8378,6 @@
     "name": "Actionbronjonsn",
     "alias": [],
     "series": [
-      "Unknown",
       "Chainsaw Man",
       "Vocaloid"
     ],
@@ -8686,9 +8550,7 @@
   {
     "name": "Adler437",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -9134,8 +8996,7 @@
     "alias": [],
     "series": [
       "Arknights",
-      "Azur Lane",
-      "Unknown"
+      "Azur Lane"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -14454,8 +14315,7 @@
       "arisaka190"
     ],
     "series": [
-      "Goddess of Victory: NIKKE",
-      "Unknown"
+      "Goddess of Victory: NIKKE"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -14952,7 +14812,6 @@
       "As_sin"
     ],
     "series": [
-      "Unknown",
       "Snowbreak: Containment Zone",
       "Strinova",
       "Goddess of Victory: NIKKE"
@@ -15183,10 +15042,7 @@
   {
     "name": "asgf",
     "alias": [],
-    "series": [
-      "Unknown",
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -18203,8 +18059,7 @@
     "name": "BDT",
     "alias": [],
     "series": [
-      "Is It Wrong to Try to Pick Up Girls in a Dungeon?",
-      "Unknown"
+      "Is It Wrong to Try to Pick Up Girls in a Dungeon?"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -19557,8 +19412,7 @@
     "name": "BILI",
     "alias": [],
     "series": [
-      "Girls' Frontline",
-      "Unknown"
+      "Girls' Frontline"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -21440,9 +21294,7 @@
     "name": "BONO",
     "alias": [],
     "series": [
-      "Unknown",
-      "Fate/Grand Order",
-      "Original"
+      "Fate/Grand Order"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -23493,9 +23345,7 @@
     "name": "C_lexx",
     "alias": [],
     "series": [
-      "Unknown",
-      "Infinite Stratos",
-      "Original"
+      "Infinite Stratos"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -24518,9 +24368,7 @@
   {
     "name": "Catstiche",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -25054,9 +24902,7 @@
       "Cephalon",
       "Wilzuki"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -25467,8 +25313,7 @@
     "name": "chapterdaily",
     "alias": [],
     "series": [
-      "Uma Musume: Pretty Derby",
-      "Unknown"
+      "Uma Musume: Pretty Derby"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -26081,9 +25926,7 @@
   {
     "name": "Chilly",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -29616,9 +29459,7 @@
   {
     "name": "CWR",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -32617,7 +32458,6 @@
     "name": "DelDank",
     "alias": [],
     "series": [
-      "Unknown",
       "Needy Streamer Overload"
     ],
     "isRecommended": false,
@@ -34636,9 +34476,7 @@
     "alias": [
       "DUNNE"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -37074,9 +36912,7 @@
       "frank02tw",
       "Σ(Q皿Q"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -39042,9 +38878,7 @@
     "name": "envenenad0",
     "alias": [],
     "series": [
-      "Unknown",
       "Goddess of Victory: NIKKE",
-      "Original",
       "Pokémon"
     ],
     "isRecommended": false,
@@ -40015,9 +39849,7 @@
   {
     "name": "exire",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -43948,9 +43780,7 @@
     "alias": [
       "Sky_Fworks"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -44605,7 +44435,6 @@
     "name": "Gatitos Mods",
     "alias": [],
     "series": [
-      "Unknown",
       "Elden Ring",
       "Marvel",
       "NieR",
@@ -45257,9 +45086,7 @@
   {
     "name": "Ghost",
     "alias": [],
-    "series": [
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -46760,8 +46587,7 @@
     "name": "GOYOU団子",
     "alias": [],
     "series": [
-      "Snowbreak: Containment Zone",
-      "Unknown"
+      "Snowbreak: Containment Zone"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -47748,9 +47574,7 @@
   {
     "name": "GuRuO",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -47922,9 +47746,7 @@
   {
     "name": "gyobobo",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -48352,7 +48174,6 @@
     "name": "hakadrill",
     "alias": [],
     "series": [
-      "Original",
       "Goddess of Victory: NIKKE",
       "Fate/Grand Order",
       "Neon Genesis Evangelion",
@@ -51320,8 +51141,7 @@
       "Genshin Impact",
       "Honkai: Star Rail",
       "Palworld",
-      "Uma Musume: Pretty Derby",
-      "Unknown"
+      "Uma Musume: Pretty Derby"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -53354,7 +53174,6 @@
     "name": "Icecrow",
     "alias": [],
     "series": [
-      "Unknown",
       "Goddess of Victory: NIKKE"
     ],
     "isRecommended": false,
@@ -56473,9 +56292,7 @@
   {
     "name": "jeger",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -61126,8 +60943,7 @@
     "series": [
       "Bocchi the Rock!",
       "Charlotte",
-      "Genshin Impact",
-      "Unknown"
+      "Genshin Impact"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -63453,9 +63269,7 @@
   {
     "name": "Kod443",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -65193,9 +65007,7 @@
   {
     "name": "KsJimmy",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -67743,8 +67555,7 @@
     "name": "Leona",
     "alias": [],
     "series": [
-      "Creative Commons",
-      "Original"
+      "Creative Commons"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -70264,7 +70075,6 @@
     "name": "LR_LR",
     "alias": [],
     "series": [
-      "Unknown",
       "Azur Lane"
     ],
     "isRecommended": false,
@@ -72191,9 +72001,7 @@
   {
     "name": "Makinovs",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -72210,9 +72018,7 @@
   {
     "name": "makix",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -72869,8 +72675,7 @@
       "Zenless Zone Zero",
       "Genshin Impact",
       "Wuthering Waves",
-      "Honkai Impact 3rd",
-      "Unknown"
+      "Honkai Impact 3rd"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -74439,7 +74244,6 @@
     ],
     "series": [
       "Wuthering Waves",
-      "Unknown",
       "Azur Lane",
       "Granblue Fantasy",
       "Honkai: Star Rail",
@@ -81855,9 +81659,7 @@
   {
     "name": "NBLZ",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -84384,8 +84186,7 @@
       "Wuthering Waves",
       "Fate/Grand Order",
       "Genshin Impact",
-      "Girls' Frontline",
-      "Unknown"
+      "Girls' Frontline"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -85855,7 +85656,6 @@
     "name": "NTRyabe",
     "alias": [],
     "series": [
-      "Unknown",
       "Nukitashi",
       "Alya Sometimes Hides Her Feelings in Russian",
       "Frieren: Beyond Journey's End",
@@ -86349,7 +86149,6 @@
     "series": [
       "Wuthering Waves",
       "Honkai: Star Rail",
-      "Unknown",
       "Zenless Zone Zero"
     ],
     "isRecommended": false,
@@ -87120,9 +86919,7 @@
   {
     "name": "Ojika",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -88403,7 +88200,6 @@
     "name": "ORT",
     "alias": [],
     "series": [
-      "Unknown",
       "Fate/Grand Order",
       "Goddess of Victory: NIKKE",
       "Azur Lane",
@@ -91166,7 +90962,6 @@
     "name": "pinocchip0/ NYH",
     "alias": [],
     "series": [
-      "Unknown",
       "Stellar Blade"
     ],
     "isRecommended": false,
@@ -91440,9 +91235,7 @@
   {
     "name": "Pito-otiP",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -93373,9 +93166,7 @@
   {
     "name": "PTX-008L",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -94549,7 +94340,6 @@
     "name": "rac",
     "alias": [],
     "series": [
-      "Unknown",
       "Yume Nikki"
     ],
     "isRecommended": false,
@@ -95170,9 +94960,7 @@
   {
     "name": "randomcat",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -96046,7 +95834,6 @@
     "name": "reb_orange",
     "alias": [],
     "series": [
-      "Unknown",
       "CounterSide",
       "Goddess of Victory: NIKKE",
       "Vtuber"
@@ -97437,8 +97224,7 @@
     "alias": [],
     "series": [
       "High School DxD",
-      "Spy x Family",
-      "Unknown"
+      "Spy x Family"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -97508,7 +97294,6 @@
     "name": "rhino",
     "alias": [],
     "series": [
-      "Unknown",
       "Azur Lane",
       "Fate/Grand Order",
       "Yu-Gi-Oh!"
@@ -98128,7 +97913,6 @@
       "Azur Lane",
       "Blue Archive",
       "Girls' Frontline",
-      "Original",
       "SiNiSistar"
     ],
     "isRecommended": false,
@@ -98165,7 +97949,6 @@
     "name": "RiOAXERᐃLixX",
     "alias": [],
     "series": [
-      "Unknown",
       "Azur Lane",
       "Nukitashi",
       "The Brilliant Healer's New Life in the Shadows"
@@ -99423,8 +99206,7 @@
       "Honkai: Star Rail",
       "Blue Archive",
       "Arknights",
-      "MiSide",
-      "Unknown"
+      "MiSide"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -100037,9 +99819,7 @@
   {
     "name": "Ryzen",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -100775,7 +100555,6 @@
     "series": [
       "Honkai: Star Rail",
       "Girls' Frontline",
-      "Unknown",
       "Aether Gazer",
       "Genshin Impact",
       "Honkai Impact 3rd",
@@ -107211,9 +106990,7 @@
     "alias": [
       "Sostrange"
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -107282,8 +107059,7 @@
     "name": "Sodas汽水",
     "alias": [],
     "series": [
-      "Azur Lane",
-      "Unknown"
+      "Azur Lane"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -109077,9 +108853,7 @@
   {
     "name": "SSI",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -109334,9 +109108,7 @@
   {
     "name": "starimline",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -109779,7 +109551,6 @@
     "name": "stoic",
     "alias": [],
     "series": [
-      "Unknown",
       "Wash it All Away"
     ],
     "isRecommended": false,
@@ -113472,9 +113243,7 @@
   {
     "name": "Tenshi_Akuma",
     "alias": [],
-    "series": [
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -114902,9 +114671,7 @@
   {
     "name": "TheMythicalHobo",
     "alias": [],
-    "series": [
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -115058,7 +114825,6 @@
     "name": "Therranolleo",
     "alias": [],
     "series": [
-      "Unknown",
       "Blue Archive",
       "Genshin Impact",
       "Fate/Grand Order"
@@ -119506,7 +119272,6 @@
       "upiuu"
     ],
     "series": [
-      "Unknown",
       "Fate/Grand Order",
       "Goddess of Victory: NIKKE"
     ],
@@ -120433,8 +120198,7 @@
     "name": "vayneaurelius",
     "alias": [],
     "series": [
-      "Blue Archive",
-      "Unknown"
+      "Blue Archive"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -124010,9 +123774,7 @@
   {
     "name": "WQAYYM",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -125546,9 +125308,7 @@
   {
     "name": "yang liu",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -130010,9 +129770,7 @@
       "naimu-micco",
       "ᴺᵃᶤᵐᵘ-Micco."
     ],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -130048,8 +129806,7 @@
     "alias": [],
     "series": [
       "BanG Dream!",
-      "The Idolmaster",
-      "Unknown"
+      "The Idolmaster"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -130120,9 +129877,7 @@
   {
     "name": "●●●",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -130140,7 +129895,6 @@
     "name": "。",
     "alias": [],
     "series": [
-      "Unknown",
       "Kizuna AI"
     ],
     "isRecommended": false,
@@ -130165,8 +129919,7 @@
       "The Idolmaster",
       "Uma Musume: Pretty Derby",
       "2.5 Dimensional Seduction",
-      "Girls' Frontline",
-      "Unknown"
+      "Girls' Frontline"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -131107,9 +130860,7 @@
   {
     "name": "なるべくがんばります",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -131248,7 +130999,6 @@
     "name": "ぷったね",
     "alias": [],
     "series": [
-      "Unknown",
       "Classroom of the Elite"
     ],
     "isRecommended": false,
@@ -131352,9 +131102,7 @@
   {
     "name": "もみじ",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -131597,7 +131345,6 @@
     "series": [
       "Gundam",
       "My Awkward Senpai",
-      "Unknown",
       "Yowayowa Sensei"
     ],
     "isRecommended": false,
@@ -131636,7 +131383,6 @@
     "name": "アノマロール",
     "alias": [],
     "series": [
-      "Unknown",
       "NieR",
       "The Apothecary Diaries"
     ],
@@ -131690,9 +131436,7 @@
   {
     "name": "アーケオプテリクス",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -131709,9 +131453,7 @@
   {
     "name": "イカ魚",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -132597,8 +132339,7 @@
     "series": [
       "9-nine-",
       "Sword Art Online",
-      "Too Many Losing Heroines!",
-      "Unknown"
+      "Too Many Losing Heroines!"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -132857,8 +132598,7 @@
     "name": "ベタ",
     "alias": [],
     "series": [
-      "Fate/Grand Order",
-      "Unknown"
+      "Fate/Grand Order"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -133203,9 +132943,7 @@
   {
     "name": "リンゴはかせ",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -133311,8 +133049,7 @@
       "Genshin Impact",
       "Closers",
       "Honkai: Star Rail",
-      "Stellar Blade",
-      "Unknown"
+      "Stellar Blade"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -133502,9 +133239,7 @@
   {
     "name": "九璃幻尘",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -133592,7 +133327,6 @@
       "idohori"
     ],
     "series": [
-      "Unknown",
       "Blue Archive",
       "The Idolmaster"
     ],
@@ -133682,7 +133416,6 @@
     "alias": [],
     "series": [
       "Girls' Frontline",
-      "Unknown",
       "Strinova",
       "Aether Gazer",
       "Anchor Panic"
@@ -133893,7 +133626,6 @@
     "name": "冰鮮肺仁",
     "alias": [],
     "series": [
-      "Unknown",
       "Princess Connect! Re:Dive",
       "Xenoblade Chronicles"
     ],
@@ -133913,9 +133645,7 @@
   {
     "name": "冷幽陌",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -134157,8 +133887,7 @@
     "alias": [],
     "series": [
       "Wuthering Waves",
-      "Genshin Impact",
-      "Unknown"
+      "Genshin Impact"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -134211,7 +133940,6 @@
     "name": "可乐鱼",
     "alias": [],
     "series": [
-      "Unknown",
       "Arknights"
     ],
     "isRecommended": false,
@@ -134549,8 +134277,7 @@
     "alias": [],
     "series": [
       "Wuthering Waves",
-      "The Idolmaster",
-      "Unknown"
+      "The Idolmaster"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -134781,9 +134508,7 @@
   {
     "name": "天星952",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -135109,8 +134834,7 @@
     "name": "岡崎悠一",
     "alias": [],
     "series": [
-      "Arknights",
-      "Unknown"
+      "Arknights"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -135925,7 +135649,6 @@
       "Goddess of Victory: NIKKE",
       "Blue Archive",
       "Uma Musume: Pretty Derby",
-      "Unknown",
       "Aether Gazer",
       "Honkai: Star Rail"
     ],
@@ -136049,9 +135772,7 @@
   {
     "name": "柳",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -136105,7 +135826,6 @@
     "name": "梦天冰",
     "alias": [],
     "series": [
-      "Unknown",
       "Honor of Kings",
       "Arknights",
       "Vtuber"
@@ -136281,9 +136001,7 @@
   {
     "name": "沙雕白毛玉",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -136320,8 +136038,7 @@
     "name": "浅蓝",
     "alias": [],
     "series": [
-      "Tower of Fantasy",
-      "Unknown"
+      "Tower of Fantasy"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -136458,9 +136175,7 @@
   {
     "name": "火龍",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -136766,9 +136481,7 @@
   {
     "name": "病猫",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -136963,8 +136676,7 @@
     "alias": [],
     "series": [
       "Genshin Impact",
-      "Honkai: Star Rail",
-      "Unknown"
+      "Honkai: Star Rail"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -136999,10 +136711,7 @@
   {
     "name": "絶対獰猛の平田君",
     "alias": [],
-    "series": [
-      "Unknown",
-      "Original"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -137195,9 +136904,7 @@
   {
     "name": "肝细胞",
     "alias": [],
-    "series": [
-      "Unknown"
-    ],
+    "series": [],
     "isRecommended": false,
     "makeScenes": false,
     "favorited": 0,
@@ -137453,8 +137160,7 @@
     "name": "蒼泉市役所",
     "alias": [],
     "series": [
-      "The Idolmaster",
-      "Unknown"
+      "The Idolmaster"
     ],
     "isRecommended": false,
     "makeScenes": false,
@@ -137476,8 +137182,6 @@
       "Aoicha"
     ],
     "series": [
-      "Unknown",
-      "Original",
       "Punishing: Gray Raven"
     ],
     "isRecommended": false,
@@ -137499,7 +137203,6 @@
       "houraidensetu"
     ],
     "series": [
-      "Unknown",
       "Vtuber",
       "Hololive Production",
       "Uma Musume: Pretty Derby",
@@ -137801,7 +137504,6 @@
     "name": "適当",
     "alias": [],
     "series": [
-      "Unknown",
       "Duel Masters PLAY'S"
     ],
     "isRecommended": false,
@@ -138117,8 +137819,7 @@
     "name": "音速索尼克",
     "alias": [],
     "series": [
-      "BanG Dream!",
-      "Unknown"
+      "BanG Dream!"
     ],
     "isRecommended": false,
     "makeScenes": false,

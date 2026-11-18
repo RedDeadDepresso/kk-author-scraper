@@ -361,6 +361,16 @@ func (a *App) pixivProfile(ctx context.Context, id string) (ProfileEntry, error)
 }
 
 // ---------------------------------------------------------------------------
+// isSeries reports whether a post's work name is a real series; placeholders such as
+// "Original" or "Unknown" are not listed in the series field.
+func isSeries(work string) bool {
+	switch strings.ToLower(strings.TrimSpace(work)) {
+	case "", "original", "unknown", "unknown work":
+		return false
+	}
+	return true
+}
+
 // Building the authors list
 // ---------------------------------------------------------------------------
 
@@ -464,7 +474,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			postCounts[p.PixivUserID]++
 		}
 		w := strings.TrimSpace(p.WorkName)
-		if p.AuthorSlug == "" || w == "" || strings.EqualFold(w, "unknown work") {
+		if p.AuthorSlug == "" || !isSeries(w) {
 			continue
 		}
 		if seriesCount[p.AuthorSlug] == nil {
