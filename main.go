@@ -253,6 +253,7 @@ type App struct {
 	fileIdx       *authorIndex
 	fileMemo      map[string]fileResult
 	pawIdx        *creatorIndex // pawchive creators, set by runPawchive
+	telegram      *telegramTags // channel hashtags, nil when not loaded
 }
 
 // get performs a GET with retries. Network errors and 5xx get short exponential
@@ -747,6 +748,8 @@ func run() (err error) {
 	rentryFile := flag.String("rentry-file", "", "use this local saved rentry HTML instead of downloading")
 	sourceMaxAge := flag.Duration("source-max-age", 24*time.Hour, "re-download names.json and the rentry page when older than this")
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
+	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <data>/telegram_tags.txt)")
+	tgOverrides := flag.String("telegram-overrides", "", `JSON {"author name": "hashtag"} (default <data>/telegram_overrides.json)`)
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	flag.Parse()
@@ -799,6 +802,18 @@ func run() (err error) {
 	a.fileMemo = map[string]fileResult{}
 	if *authorsFile == "" {
 		*authorsFile = filepath.Join(*dataDir, "authors.json")
+	}
+	if *tgTags == "" {
+		*tgTags = filepath.Join(*dataDir, "telegram_tags.txt")
+	}
+	if *tgOverrides == "" {
+		*tgOverrides = filepath.Join(*dataDir, "telegram_overrides.json")
+	}
+	if tt, err := loadTelegramTags(*tgTags, *tgOverrides); err != nil {
+		return fmt.Errorf("loading telegram tags: %w", err)
+	} else if len(tt.byNorm) > 0 || len(tt.overrides) > 0 {
+		a.telegram = tt
+		log.Printf("telegram: %d hashtags, %d overrides", len(tt.byNorm), len(tt.overrides))
 	}
 	if _, err := os.Stat(*authorsFile); err == nil {
 		idx, err := loadAuthorsFile(*authorsFile)

@@ -31,12 +31,13 @@ type AuthorLinks struct {
 	Pawchive      string `json:"pawchive"`
 	Bepis         string `json:"bepis"`
 	Koikatsucards string `json:"koikatsucards"`
+	Telegram      string `json:"telegram"`
 }
 
 // count returns how many of the links are not empty.
 func (l AuthorLinks) count() int {
 	n := 0
-	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards} {
+	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards, l.Telegram} {
 		if v != "" {
 			n++
 		}
@@ -739,6 +740,10 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			}
 			rows = append(rows, row)
 		}
+	}
+
+	if n := a.telegram.apply(rows); a.telegram != nil {
+		log.Printf("telegram: %d authors linked to a hashtag", n)
 	}
 
 	sort.SliceStable(rows, func(i, j int) bool {
