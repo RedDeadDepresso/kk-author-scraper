@@ -33,6 +33,17 @@ type AuthorLinks struct {
 	Koikatsucards string `json:"koikatsucards"`
 }
 
+// count returns how many of the links are not empty.
+func (l AuthorLinks) count() int {
+	n := 0
+	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards} {
+		if v != "" {
+			n++
+		}
+	}
+	return n
+}
+
 // AuthorRow is one entry of authors.json. Missing values are "" / false / [].
 type AuthorRow struct {
 	Name          string      `json:"name"`
@@ -733,6 +744,9 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 	sort.SliceStable(rows, func(i, j int) bool {
 		if rows[i].Favorited != rows[j].Favorited {
 			return rows[i].Favorited > rows[j].Favorited
+		}
+		if li, lj := rows[i].Links.count(), rows[j].Links.count(); li != lj {
+			return li > lj
 		}
 		return strings.ToLower(rows[i].Name) < strings.ToLower(rows[j].Name)
 	})
