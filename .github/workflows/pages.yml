@@ -49,6 +49,11 @@ jobs:
           jq -e -c 'if type == "array" and length > 0 then . else error("authors.json is empty") end' data/authors.json > _site/indices/author.json
           echo "Generated $(jq 'length' _site/indices/author.json) authors"
 
+      - name: Build indices/author_slim.json (name and alias only)
+        run: |
+          jq -e -c 'if type == "array" and length > 0 then map({name, alias}) else error("authors.json is empty") end' data/authors.json > _site/indices/author_slim.json
+          echo "Generated $(jq 'length' _site/indices/author_slim.json) slim authors"
+
       # Built from the saved data/mapping.json, no network needed.
       - name: Build indices/lookup.json
         run: go run . -lookup-only -lookup _site/indices/lookup.json
