@@ -50,7 +50,7 @@ type AuthorRow struct {
 	Alias         []string    `json:"alias"`
 	Series        []string    `json:"series"`
 	IsRecommended bool        `json:"isRecommended"`
-	MakeScenes    bool        `json:"makeScenes"`
+	MakesScenes    bool        `json:"makesScenes"`
 	Favorited     int         `json:"favorited"`
 	Icon          string      `json:"icon"`
 	Banner        string      `json:"banner"`
@@ -157,42 +157,42 @@ var nameSuffixRe = regexp.MustCompile(`_\d{4}(?:-\d{2}-\d{2})?$`)
 // parseNames reads names.json. Keys are archive folder names ("AnnaAnon_2026") and
 // values are the authors.json name (or null). It returns the set of normalized
 // values (authors that make scenes) and normalized key-without-year -> value.
-func parseNames(b []byte) (makeScenes map[string]bool, keyToAuthor map[string]string, err error) {
+func parseNames(b []byte) (makesScenes map[string]bool, keyToAuthor map[string]string, err error) {
 	var raw map[string]*string
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return nil, nil, err
 	}
-	makeScenes = map[string]bool{}
+	makesScenes = map[string]bool{}
 	keyToAuthor = map[string]string{}
 	for k, v := range raw {
 		if v == nil || strings.TrimSpace(*v) == "" {
 			continue
 		}
-		makeScenes[normName(*v)] = true
+		makesScenes[normName(*v)] = true
 		keyToAuthor[normName(nameSuffixRe.ReplaceAllString(k, ""))] = *v
 	}
-	return makeScenes, keyToAuthor, nil
+	return makesScenes, keyToAuthor, nil
 }
 
 // authorSources holds what the rentry page and names.json tell us.
 type authorSources struct {
-	makeScenes map[string]bool         // normalized authors.json names that make scenes
+	makesScenes map[string]bool         // normalized authors.json names that make scenes
 	byAuthor   map[string]DownloadLink // normalized authors.json name -> link (via names.json)
 	byText     map[string]DownloadLink // normalized rentry link text -> link
 }
 
 func newSources() *authorSources {
 	return &authorSources{
-		makeScenes: map[string]bool{},
+		makesScenes: map[string]bool{},
 		byAuthor:   map[string]DownloadLink{},
 		byText:     map[string]DownloadLink{},
 	}
 }
 
-func buildSources(links []DownloadLink, makeScenes map[string]bool, keyToAuthor map[string]string) *authorSources {
+func buildSources(links []DownloadLink, makesScenes map[string]bool, keyToAuthor map[string]string) *authorSources {
 	s := newSources()
-	for k := range makeScenes {
-		s.makeScenes[k] = true
+	for k := range makesScenes {
+		s.makesScenes[k] = true
 	}
 	for _, l := range links {
 		k := normName(l.Text)
@@ -214,14 +214,14 @@ func buildSources(links []DownloadLink, makeScenes map[string]bool, keyToAuthor 
 
 // find looks up the candidate names (most reliable first). The authors.json name
 // route through names.json wins over a plain text match.
-func (s *authorSources) find(names ...string) (makeScenes bool, dl DownloadLink, ok bool) {
+func (s *authorSources) find(names ...string) (makesScenes bool, dl DownloadLink, ok bool) {
 	for _, n := range names {
 		k := normName(n)
 		if k == "" {
 			continue
 		}
-		if s.makeScenes[k] {
-			makeScenes = true
+		if s.makesScenes[k] {
+			makesScenes = true
 		}
 		if d, f := s.byAuthor[k]; f && !ok {
 			dl, ok = d, true
@@ -231,12 +231,12 @@ func (s *authorSources) find(names ...string) (makeScenes bool, dl DownloadLink,
 		for _, n := range names {
 			if k := normName(n); k != "" {
 				if d, f := s.byText[k]; f {
-					return makeScenes, d, true
+					return makesScenes, d, true
 				}
 			}
 		}
 	}
-	return makeScenes, dl, ok
+	return makesScenes, dl, ok
 }
 
 type sourceOpts struct {
@@ -247,10 +247,10 @@ type sourceOpts struct {
 }
 
 // loadAuthorSources never fails the run: missing sources just leave
-// download / isRecommended / makeScenes empty, with a warning.
+// download / isRecommended / makesScenes empty, with a warning.
 func (a *App) loadAuthorSources(ctx context.Context, o sourceOpts) *authorSources {
 	var links []DownloadLink
-	var makeScenes map[string]bool
+	var makesScenes map[string]bool
 	var keyToAuthor map[string]string
 
 	validateNames := func(b []byte) error { _, _, err := parseNames(b); return err }
@@ -269,10 +269,10 @@ func (a *App) loadAuthorSources(ctx context.Context, o sourceOpts) *authorSource
 		nb, err = a.fetchCached(ctx, "names.json", o.NamesURL, filepath.Join(o.CacheDir, "names.json"), o.MaxAge, validateNames)
 	}
 	if err == nil {
-		makeScenes, keyToAuthor, err = parseNames(nb)
+		makesScenes, keyToAuthor, err = parseNames(nb)
 	}
 	if err != nil {
-		log.Printf("warning: names.json unavailable (%v): makeScenes will be false and downloads unmatched", err)
+		log.Printf("warning: names.json unavailable (%v): makesScenes will be false and downloads unmatched", err)
 	}
 
 	var rb []byte
@@ -287,8 +287,8 @@ func (a *App) loadAuthorSources(ctx context.Context, o sourceOpts) *authorSource
 		links = parseSceneArchive(string(rb))
 	}
 
-	src := buildSources(links, makeScenes, keyToAuthor)
-	log.Printf("author sources: %d archive links, %d linked via names.json, %d makeScenes names", len(links), len(src.byAuthor), len(src.makeScenes))
+	src := buildSources(links, makesScenes, keyToAuthor)
+	log.Printf("author sources: %d archive links, %d linked via names.json, %d makesScenes names", len(links), len(src.byAuthor), len(src.makesScenes))
 	return src
 }
 
@@ -574,8 +574,8 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		}
 		row.Links.Pixiv = m.primaryPixiv(au, postCounts)
 
-		makeScenes, dl, ok := src.find(lookupNames...)
-		row.MakeScenes = makeScenes
+		makesScenes, dl, ok := src.find(lookupNames...)
+		row.MakesScenes = makesScenes
 		if ok {
 			row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
 		}
@@ -667,8 +667,8 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			}
 		}
 		row.Alias = aliases.list
-		makeScenes, dl, ok := src.find(names...)
-		row.MakeScenes = makeScenes
+		makesScenes, dl, ok := src.find(names...)
+		row.MakesScenes = makesScenes
 		if ok {
 			row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
 		}
@@ -732,8 +732,8 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 				row.Icon = icon(primary)
 			}
 			lookup := append([]string{e.Name}, e.Alias...)
-			makeScenes, dl, ok := src.find(lookup...)
-			row.MakeScenes = makeScenes
+			makesScenes, dl, ok := src.find(lookup...)
+			row.MakesScenes = makesScenes
 			if ok {
 				row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
 			}

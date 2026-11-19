@@ -81,7 +81,7 @@ func TestParseNamesAndSources(t *testing.T) {
 	}
 	// "Aomi" makes scenes but has no link on this page
 	if m, _, ok := src.find("Aomi"); !m || ok {
-		t.Fatalf("makeScenes=%v ok=%v", m, ok)
+		t.Fatalf("makesScenes=%v ok=%v", m, ok)
 	}
 }
 
@@ -164,8 +164,8 @@ func TestBuildAuthorRows(t *testing.T) {
 	if strings.Join(anna.Alias, ",") != "Anna Anon,TheSafeAnnaAnon,anna-anon" { // the koikatsucards name and bepis case variants equal the name and are dropped
 		t.Fatalf("alias %v", anna.Alias)
 	}
-	if strings.Join(anna.Series, ",") != "Uma Musume,Blue Archive" || !anna.MakeScenes {
-		t.Fatalf("series %v makeScenes=%v", anna.Series, anna.MakeScenes)
+	if strings.Join(anna.Series, ",") != "Uma Musume,Blue Archive" || !anna.MakesScenes {
+		t.Fatalf("series %v makesScenes=%v", anna.Series, anna.MakesScenes)
 	}
 
 	plain := by["Plain"]
@@ -183,7 +183,7 @@ func TestBuildAuthorRows(t *testing.T) {
 
 	// JSON shape: every key present, empty values are "" / [] and never null
 	b, _ := json.Marshal(nobody)
-	for _, want := range []string{`"links":{"pixiv":"","download":"","pawchive":"","bepis":"","koikatsucards":`, `"alias":[]`, `"series":[]`, `"isRecommended":false`, `"makeScenes":false`} {
+	for _, want := range []string{`"links":{"pixiv":"","download":"","pawchive":"","bepis":"","koikatsucards":`, `"alias":[]`, `"series":[]`, `"isRecommended":false`, `"makesScenes":false`} {
 		if !strings.Contains(string(b), want) {
 			t.Errorf("missing %s in %s", want, b)
 		}

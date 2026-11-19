@@ -927,7 +927,7 @@ pages:
 			if r.IsRecommended {
 				rec++
 			}
-			if r.MakeScenes {
+			if r.MakesScenes {
 				ms++
 			}
 		}
