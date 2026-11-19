@@ -1,6 +1,6 @@
 {
   "newest_post": "145000175",
-  "updated_at": "2026-11-19T10:59:53Z",
+  "updated_at": "2026-11-19T21:28:56Z",
   "posts": {
     "100103318": {
       "pixiv_id": "100103318",
@@ -47457,10 +47457,12 @@
       "slug": "author-unknown-32",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-32",
       "pixiv_user_ids": [
+        "13323056",
         "23903858",
         "91638739"
       ],
       "pixiv_user_urls": [
+        "https://www.pixiv.net/users/13323056",
         "https://www.pixiv.net/users/23903858",
         "https://www.pixiv.net/users/91638739"
       ],
@@ -47838,10 +47840,12 @@
       "slug": "author-unknown-47",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-47",
       "pixiv_user_ids": [
+        "13323056",
         "15904441",
         "23903858"
       ],
       "pixiv_user_urls": [
+        "https://www.pixiv.net/users/13323056",
         "https://www.pixiv.net/users/15904441",
         "https://www.pixiv.net/users/23903858"
       ]
@@ -47986,9 +47990,11 @@
       "slug": "author-unknown-59",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-59",
       "pixiv_user_ids": [
+        "13323056",
         "23903858"
       ],
       "pixiv_user_urls": [
+        "https://www.pixiv.net/users/13323056",
         "https://www.pixiv.net/users/23903858"
       ]
     },
@@ -48167,10 +48173,12 @@
       "slug": "author-unknown-7",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-7",
       "pixiv_user_ids": [
+        "13323056",
         "23903858",
         "75678896"
       ],
       "pixiv_user_urls": [
+        "https://www.pixiv.net/users/13323056",
         "https://www.pixiv.net/users/23903858",
         "https://www.pixiv.net/users/75678896"
       ]
@@ -48329,10 +48337,12 @@
       "slug": "author-unknown-81",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-81",
       "pixiv_user_ids": [
+        "13323056",
         "23903858",
         "939092"
       ],
       "pixiv_user_urls": [
+        "https://www.pixiv.net/users/13323056",
         "https://www.pixiv.net/users/23903858",
         "https://www.pixiv.net/users/939092"
       ]
@@ -51069,12 +51079,23 @@
       "url": "https://www.pixiv.net/users/13323056",
       "name": "◽",
       "author_slugs": [
-        "author-unknown-38"
+        "author-unknown-32",
+        "author-unknown-38",
+        "author-unknown-47",
+        "author-unknown-59",
+        "author-unknown-7",
+        "author-unknown-81"
       ],
       "koikatsu_author_urls": [
-        "https://koikatsucards.com/search?author=author-unknown-38"
+        "https://koikatsucards.com/search?author=author-unknown-32",
+        "https://koikatsucards.com/search?author=author-unknown-38",
+        "https://koikatsucards.com/search?author=author-unknown-47",
+        "https://koikatsucards.com/search?author=author-unknown-59",
+        "https://koikatsucards.com/search?author=author-unknown-7",
+        "https://koikatsucards.com/search?author=author-unknown-81"
       ],
       "sources": [
+        "authors.json",
         "pixiv_api"
       ]
     },
