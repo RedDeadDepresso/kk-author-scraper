@@ -3,13 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"net/url"
 	"os"
 	"regexp"
 	"strings"
 )
-
-const telegramHashtagURL = "tg://search_hashtag?hashtag="
 
 var hashtagRe = regexp.MustCompile(`#([^\s#]+)`)
 
@@ -63,9 +60,7 @@ func loadTelegramTags(tagsPath, overridesPath string) (*telegramTags, error) {
 	return t, nil
 }
 
-func telegramLink(tag string) string { return telegramHashtagURL + url.QueryEscape(tag) }
-
-// apply sets Links.Telegram on the rows and returns how many got one.
+// apply sets Telegram (the hashtag, with its "#") on the rows and returns how many got one.
 // Order: manual override by exact name, then a hashtag equal to the normalized name,
 // then (only for rows still without one) a hashtag equal to exactly one row's alias.
 func (t *telegramTags) apply(rows []AuthorRow) int {
@@ -75,18 +70,18 @@ func (t *telegramTags) apply(rows []AuthorRow) int {
 	nameTaken := map[string]bool{} // normalized hashtags used by a name match or override
 	done := make([]bool, len(rows))
 	for i := range rows {
-		rows[i].Links.Telegram = ""
+		rows[i].Telegram = ""
 		if tag, ok := t.overrides[rows[i].Name]; ok {
 			done[i] = true
 			if tag != "" {
-				rows[i].Links.Telegram = telegramLink(tag)
+				rows[i].Telegram = "#" + tag
 				nameTaken[normName(tag)] = true
 			}
 			continue
 		}
 		if k := normName(rows[i].Name); k != "" {
 			if tag, ok := t.byNorm[k]; ok {
-				rows[i].Links.Telegram = telegramLink(tag)
+				rows[i].Telegram = "#" + tag
 				nameTaken[k] = true
 				done[i] = true
 			}
@@ -113,13 +108,13 @@ func (t *telegramTags) apply(rows []AuthorRow) int {
 		if len(idx) != 1 {
 			continue // ambiguous: several authors share this alias
 		}
-		if rows[idx[0]].Links.Telegram == "" {
-			rows[idx[0]].Links.Telegram = telegramLink(t.byNorm[k])
+		if rows[idx[0]].Telegram == "" {
+			rows[idx[0]].Telegram = "#" + t.byNorm[k]
 		}
 	}
 	n := 0
 	for i := range rows {
-		if rows[i].Links.Telegram != "" {
+		if rows[i].Telegram != "" {
 			n++
 		}
 	}

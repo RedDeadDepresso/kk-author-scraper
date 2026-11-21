@@ -31,13 +31,12 @@ type AuthorLinks struct {
 	Pawchive      string `json:"pawchive"`
 	Bepis         string `json:"bepis"`
 	Koikatsucards string `json:"koikatsucards"`
-	Telegram      string `json:"telegram"`
 }
 
 // count returns how many of the links are not empty.
 func (l AuthorLinks) count() int {
 	n := 0
-	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards, l.Telegram} {
+	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards} {
 		if v != "" {
 			n++
 		}
@@ -45,13 +44,23 @@ func (l AuthorLinks) count() int {
 	return n
 }
 
+// linkCount counts the row's links plus its Telegram tag (used as a sort tie-breaker).
+func (r AuthorRow) linkCount() int {
+	n := r.Links.count()
+	if r.Telegram != "" {
+		n++
+	}
+	return n
+}
+
 // AuthorRow is one entry of authors.json. Missing values are "" / false / [].
 type AuthorRow struct {
 	Name          string      `json:"name"`
+	Telegram      string      `json:"telegram"` // channel hashtag including the "#", "" when none
 	Alias         []string    `json:"alias"`
 	Series        []string    `json:"series"`
 	IsRecommended bool        `json:"isRecommended"`
-	MakesScenes    bool        `json:"makesScenes"`
+	MakesScenes   bool        `json:"makesScenes"`
 	Favorited     int         `json:"favorited"`
 	Icon          string      `json:"icon"`
 	Banner        string      `json:"banner"`
@@ -178,15 +187,15 @@ func parseNames(b []byte) (makesScenes map[string]bool, keyToAuthor map[string]s
 // authorSources holds what the rentry page and names.json tell us.
 type authorSources struct {
 	makesScenes map[string]bool         // normalized authors.json names that make scenes
-	byAuthor   map[string]DownloadLink // normalized authors.json name -> link (via names.json)
-	byText     map[string]DownloadLink // normalized rentry link text -> link
+	byAuthor    map[string]DownloadLink // normalized authors.json name -> link (via names.json)
+	byText      map[string]DownloadLink // normalized rentry link text -> link
 }
 
 func newSources() *authorSources {
 	return &authorSources{
 		makesScenes: map[string]bool{},
-		byAuthor:   map[string]DownloadLink{},
-		byText:     map[string]DownloadLink{},
+		byAuthor:    map[string]DownloadLink{},
+		byText:      map[string]DownloadLink{},
 	}
 }
 
@@ -750,7 +759,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		if rows[i].Favorited != rows[j].Favorited {
 			return rows[i].Favorited > rows[j].Favorited
 		}
-		if li, lj := rows[i].Links.count(), rows[j].Links.count(); li != lj {
+		if li, lj := rows[i].linkCount(), rows[j].linkCount(); li != lj {
 			return li > lj
 		}
 		return strings.ToLower(rows[i].Name) < strings.ToLower(rows[j].Name)
