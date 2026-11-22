@@ -808,8 +808,8 @@ func run() (err error) {
 		pixivCache:    map[string]PixivEntry{},
 		mappingPath:   filepath.Join(*dataDir, "mapping.json"),
 		authorPath:    filepath.Join(*cacheDir, "authors.json"),
-		pixivPath:     filepath.Join(*cacheDir, "pixiv_posts.json"),
-		profilePath:   filepath.Join(*cacheDir, "pixiv_profiles.json"),
+		pixivPath:     filepath.Join(*cacheDir, "pixiv", "posts.json"),
+		profilePath:   filepath.Join(*cacheDir, "pixiv", "profiles.json"),
 	}
 	if a.session == "" {
 		log.Println("warning: PIXIV_PHPSESSID not set; restricted works will be unavailable")
