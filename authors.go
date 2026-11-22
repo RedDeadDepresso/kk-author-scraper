@@ -44,10 +44,10 @@ func (l AuthorLinks) count() int {
 	return n
 }
 
-// linkCount counts the row's links plus its Telegram tag (used as a sort tie-breaker).
+// linkCount counts the row's links plus one for its Telegram tags (used as a sort tie-breaker).
 func (r AuthorRow) linkCount() int {
 	n := r.Links.count()
-	if r.Telegram != "" {
+	if len(r.Telegram) > 0 {
 		n++
 	}
 	return n
@@ -56,7 +56,7 @@ func (r AuthorRow) linkCount() int {
 // AuthorRow is one entry of authors.json. Missing values are "" / false / [].
 type AuthorRow struct {
 	Name          string      `json:"name"`
-	Telegram      string      `json:"telegram"` // channel hashtag including the "#", "" when none
+	Telegram      TagList     `json:"telegram"` // channel hashtags, each including the "#"; [] when none
 	Alias         []string    `json:"alias"`
 	Series        []string    `json:"series"`
 	IsRecommended bool        `json:"isRecommended"`
@@ -636,6 +636,14 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 				continue
 			}
 			k = name
+		} else if a.fileIdx != nil {
+			// a bepis name that is an alias of an authors.json entry belongs to that
+			// entry's author, so it joins the group of the entry's own name
+			if e, _ := a.fileIdx.find(name); e != nil {
+				if ek := normName(e.Name); ek != "" {
+					k = ek
+				}
+			}
 		}
 		groups[k] = append(groups[k], name)
 	}
@@ -649,14 +657,41 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		for _, n := range names {
 			markUsed(n)
 		}
+		// a single matching authors.json entry that only knows the bepis name as an alias
+		// (the author was renamed) decides the name; a bepis name that matches the entry's own
+		// name keeps its bepis spelling. The bepis names become aliases.
+		rowName := names[0]
+		if a.fileIdx != nil {
+			var entries []*fileAuthor
+			for _, n := range names {
+				for _, e := range a.fileIdx.findAll(n) {
+					dup := false
+					for _, x := range entries {
+						dup = dup || x == e
+					}
+					if !dup {
+						entries = append(entries, e)
+					}
+				}
+			}
+			if len(entries) == 1 && strings.TrimSpace(entries[0].Name) != "" {
+				sameName := false
+				for _, n := range names {
+					sameName = sameName || normName(n) == normName(entries[0].Name)
+				}
+				if !sameName {
+					rowName = strings.TrimSpace(entries[0].Name)
+				}
+			}
+		}
 		row := AuthorRow{
-			Name:   names[0],
+			Name:   rowName,
 			Alias:  []string{},
 			Series: []string{},
 			Links:  AuthorLinks{Bepis: m.bepisURL(names[0])},
 		}
-		aliases := newAliasSet(names[0])
-		for _, n := range names[1:] {
+		aliases := newAliasSet(rowName)
+		for _, n := range names {
 			aliases.add(n)
 		}
 		if a.fileIdx != nil { // keep what the file already has for this author: names, aliases, pixiv account
