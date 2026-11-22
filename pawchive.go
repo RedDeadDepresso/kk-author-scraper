@@ -40,7 +40,7 @@ type PawchiveCandidate struct {
 	URL       string `json:"url"`
 	Name      string `json:"name"`
 	Favorited int    `json:"favorited"`
-	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json) or "name"
+	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json or on the pixiv profile) or "name"
 }
 
 // PawchiveMatch is the chosen creator (highest favorited) plus every candidate considered.
@@ -323,7 +323,8 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 				names = append(names, pu.Name)
 			}
 		}
-		au.Pawchive = ix.resolve(au.PixivUserIDs, names, creatorHandles(au.CreatorLinks))
+		links := append(append([]string{}, au.CreatorLinks...), m.profileLinkURLs(au.PixivUserIDs)...)
+		au.Pawchive = ix.resolve(au.PixivUserIDs, names, creatorHandles(links))
 		if au.Pawchive == nil {
 			continue
 		}
@@ -342,6 +343,7 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 				links = append(links, au.CreatorLinks...)
 			}
 		}
+		links = append(links, m.profileLinkURLs([]string{id})...)
 		pu.Pawchive = ix.resolve([]string{id}, names, creatorHandles(links))
 		if pu.Pawchive == nil {
 			continue

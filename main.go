@@ -69,6 +69,15 @@ type PixivUser struct {
 	Pawchive           *PawchiveMatch `json:"pawchive,omitempty"`
 }
 
+// PixivProfile holds every link of a pixiv profile (description, homepage, social links).
+// It exists for every pixiv account of the mapping and of the authors file, whether or not
+// the account has a pawchive match.
+type PixivProfile struct {
+	Links     []ProfileLink `json:"links"`
+	CheckedAt string        `json:"checked_at"`
+	Error     string        `json:"error,omitempty"` // e.g. "not found" for a deleted account
+}
+
 // Mapping is the lookup structure. Every top-level map is keyed for O(1) access:
 //
 //	posts[pixivPostID]                -> Post (pixiv post  -> koikatsu post)
@@ -84,6 +93,7 @@ type Mapping struct {
 	Authors          map[string]*Author       `json:"authors"`
 	AuthorURLToSlug  map[string]string        `json:"author_url_to_slug"`
 	PixivUsers       map[string]*PixivUser    `json:"pixiv_users"`
+	PixivProfiles    map[string]*PixivProfile `json:"pixiv_profiles"`
 	PixivUserURLToID map[string]string        `json:"pixiv_user_url_to_id"`
 	PawchiveUsers    map[string]*PawchiveUser `json:"pawchive_users"`
 	BepisAuthors     map[string]*BepisAuthor  `json:"bepis_authors"`
@@ -104,6 +114,9 @@ func (m *Mapping) init() {
 	}
 	if m.PixivUsers == nil {
 		m.PixivUsers = map[string]*PixivUser{}
+	}
+	if m.PixivProfiles == nil {
+		m.PixivProfiles = map[string]*PixivProfile{}
 	}
 	if m.BepisAuthors == nil {
 		m.BepisAuthors = map[string]*BepisAuthor{}
@@ -740,6 +753,9 @@ func run() (err error) {
 	pawFile := flag.String("pawchive-file", "", "use this local creators.json instead of downloading")
 	pawCache := flag.String("pawchive-cache", "", "pawchive creators cache path (default <cache>/pawchive_creators.json)")
 	pawMaxAge := flag.Duration("pawchive-max-age", 24*time.Hour, "re-download the pawchive creators list when the cache is older than this")
+	pixivLinks := flag.Bool("pixiv-links", true, "read every pixiv profile and keep its links; fanbox/patreon links then decide the pawchive match")
+	pixivLinksMax := flag.Int("pixiv-links-max", 0, "read at most this many profiles per run (0 = no limit)")
+	pixivLinksAge := flag.Duration("pixiv-links-max-age", 30*24*time.Hour, "read a profile again when it was read longer ago than this (0 = never)")
 	noPawchive := flag.Bool("no-pawchive", false, "skip the pawchive matching step")
 	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
 	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
@@ -909,6 +925,9 @@ pages:
 	// run is resumed from the top next time (caches make that cheap).
 	if completed && newest != "" {
 		a.mapping.NewestPost = newest
+	}
+	if *pixivLinks && ctx.Err() == nil {
+		a.runPixivLinks(ctx, *pixivLinksAge, *pixivLinksMax)
 	}
 	// Pawchive matching is recomputed over the whole mapping every run
 	// (favorited counts change), so it also covers posts from earlier runs.

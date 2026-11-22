@@ -314,6 +314,12 @@ type ProfileEntry struct {
 	Error       string `json:"error,omitempty"`
 	WithSession bool   `json:"with_session"`
 	CheckedAt   string `json:"checked_at"`
+	// Profile is set once the description, homepage and social links were read (entries
+	// from before that only have the name and the icon).
+	Profile bool          `json:"profile,omitempty"`
+	Comment string        `json:"comment,omitempty"` // the description as plain text
+	Webpage string        `json:"webpage,omitempty"`
+	Links   []ProfileLink `json:"links,omitempty"`
 }
 
 func (a *App) pixivProfile(ctx context.Context, id string) (ProfileEntry, error) {
@@ -322,6 +328,14 @@ func (a *App) pixivProfile(ctx context.Context, id string) (ProfileEntry, error)
 	}
 	if e, ok := a.profileCache[id]; ok && (e.Available || e.WithSession || a.session == "") {
 		return e, nil
+	}
+	return a.fetchPixivProfile(ctx, id)
+}
+
+// fetchPixivProfile always asks pixiv and stores the answer in the profile cache.
+func (a *App) fetchPixivProfile(ctx context.Context, id string) (ProfileEntry, error) {
+	if a.profileCache == nil {
+		a.profileCache = map[string]ProfileEntry{}
 	}
 	if err := a.pThrottle.wait(ctx); err != nil {
 		return ProfileEntry{}, err
@@ -348,34 +362,19 @@ func (a *App) pixivProfile(ctx context.Context, id string) (ProfileEntry, error)
 	jsonErr := json.Unmarshal(body, &r)
 	switch {
 	case status == http.StatusNotFound:
-		e.Error = "not found"
+		e.Error, e.Profile = "not found", true
 	case status != http.StatusOK:
 		return ProfileEntry{}, fmt.Errorf("pixiv user %s: HTTP %d (check PIXIV_PHPSESSID)", id, status)
 	case jsonErr != nil:
 		return ProfileEntry{}, fmt.Errorf("pixiv user %s: bad JSON: %w", id, jsonErr)
 	case r.Error:
+		e.Profile = true // nothing to read, and no reason to ask again before maxAge
 		e.Error = r.Message
 		if e.Error == "" {
 			e.Error = "pixiv API returned an error"
 		}
 	default:
-		var b struct {
-			Name       string `json:"name"`
-			ImageBig   string `json:"imageBig"`
-			ImageSmall string `json:"image"`
-		}
-		img := ""
-		if err := json.Unmarshal(r.Body, &b); err == nil {
-			img = b.ImageBig
-			if img == "" {
-				img = b.ImageSmall
-			}
-		}
-		if img == "" {
-			e.Error = "no profile image"
-		} else {
-			e.Available, e.Name, e.Image = true, b.Name, img
-		}
+		e = profileFromBody(r.Body, e)
 	}
 	a.profileCache[id] = e
 	return e, nil
@@ -745,7 +744,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 
 			var paw *PawchiveMatch
 			if a.pawIdx != nil {
-				paw = a.pawIdx.resolve(ids, []string{e.Name}, creatorHandles(e.Links))
+				paw = a.pawIdx.resolve(ids, []string{e.Name}, creatorHandles(append(append([]string{}, e.Links...), a.mapping.profileLinkURLs(ids)...)))
 			}
 			pawID := ""
 			if paw != nil && paw.Service == "fanbox" {
