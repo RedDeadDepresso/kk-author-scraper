@@ -757,9 +757,12 @@ func run() (err error) {
 	pixivLinksMax := flag.Int("pixiv-links-max", 0, "read at most this many profiles per run (0 = no limit)")
 	pixivLinksAge := flag.Duration("pixiv-links-max-age", 30*24*time.Hour, "read a profile again when it was read longer ago than this (0 = never)")
 	noPawchive := flag.Bool("no-pawchive", false, "skip the pawchive matching step")
-	bepisURL := flag.String("bepis-url", bepisCardsURL, "bepis cards.json (needs an \"authors\" array per card)")
-	bepisCache := flag.String("bepis-cache", "", "bepis authors cache path (default <cache>/bepis_authors.json)")
-	bepisMaxAge := flag.Duration("bepis-max-age", 24*time.Hour, "re-check the bepis cards.json when the cache is older than this")
+	bepisCards := flag.String("bepis-cards", "", "bepis cards cache, fetched from db.bepis.moe and read by kk-mod-scraper (default <cache>/bepis/cards.json)")
+	bepisRetry := flag.Bool("bepis-retry-failed", false, "fetch again the bepis cards the site refused earlier")
+	bepisRPS := flag.Float64("bepis-rps", 5, "most requests per second to db.bepis.moe (shared by all workers)")
+	bepisWorkers := flag.Int("bepis-workers", 4, "parallel requests to db.bepis.moe")
+	bepisSaveEvery := flag.Int("bepis-save-every", 500, "write the bepis cards cache to disk every N cards")
+	bepisMaxCards := flag.Int("bepis-max-cards", 30000, "most bepis cards fetched per run (0 = no limit); the rest follows next run")
 	lookupPath := flag.String("lookup", "", "write the lookup file for the browser extension to this path (not written when empty)")
 	lookupOnly := flag.Bool("lookup-only", false, "only build the lookup file from the saved <data>/mapping.json (no network) and exit; needs -lookup")
 	noAuthorsWrite := flag.Bool("no-authors-write", false, "do not update the authors file at the end of the run")
@@ -771,7 +774,7 @@ func run() (err error) {
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
 	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <data>/telegram_tags.txt)")
 	tgOverrides := flag.String("telegram-overrides", "", `JSON {"author name": "hashtag"} (default <data>/telegram_overrides.json)`)
-	noBepis := flag.Bool("no-bepis", false, "skip the bepis matching step")
+	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	flag.Parse()
 	if *lookupOnly {
@@ -785,8 +788,8 @@ func run() (err error) {
 		m.init()
 		return writeLookup(m, *lookupPath)
 	}
-	if *bepisCache == "" {
-		*bepisCache = filepath.Join(*cacheDir, "bepis_authors.json")
+	if *bepisCards == "" {
+		*bepisCards = filepath.Join(*cacheDir, "bepis", "cards.json")
 	}
 	if *pawCache == "" {
 		*pawCache = filepath.Join(*cacheDir, "pawchive_creators.json")
@@ -936,10 +939,18 @@ pages:
 			return err
 		}
 	}
-	// Bepis matching is recomputed over the whole mapping every run, after the
-	// pixiv accounts are final. A failed download only warns: the rest is already done.
+	// Bepis: first bring cache/bepis/cards.json up to date (kk-mod-scraper downloads that file),
+	// then recompute the matching over the whole mapping, after the pixiv accounts are final.
+	// A failure only warns: the rest is already done.
 	if !*noBepis && ctx.Err() == nil {
-		if err := a.runBepis(ctx, *bepisURL, *bepisCache, *bepisMaxAge); err != nil {
+		if err := a.runBepis(ctx, bepisOptions{
+			CardsPath:   *bepisCards,
+			RetryFailed: *bepisRetry,
+			MaxCards:    *bepisMaxCards,
+			Workers:     *bepisWorkers,
+			SaveEvery:   *bepisSaveEvery,
+			RPS:         *bepisRPS,
+		}); err != nil {
 			log.Printf("warning: bepis step failed: %v", err)
 		}
 	}
