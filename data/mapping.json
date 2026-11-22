@@ -47508,15 +47508,9 @@
       "slug": "author-unknown-32",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-32",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
         "91638739"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
         "https://www.pixiv.net/users/91638739"
       ],
       "creator_links": [
@@ -47687,19 +47681,10 @@
       "slug": "author-unknown-38",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-38",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
-        "91638739"
+        "13323056"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
-        "https://www.pixiv.net/users/91638739"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/91638739"
+        "https://www.pixiv.net/users/13323056"
       ],
       "bepis": [
         {
@@ -47712,33 +47697,7 @@
           "url": "https://db.bepis.moe/koikatsu?cardAuthor=pakapaka",
           "match": "alias"
         }
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "id",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "id"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "author-unknown-39": {
       "name": "岡崎悠一",
@@ -47929,46 +47888,11 @@
       "slug": "author-unknown-47",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-47",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
-        "91638739"
+        "15904441"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
-        "https://www.pixiv.net/users/91638739"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/91638739"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "id",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "id"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+        "https://www.pixiv.net/users/15904441"
+      ]
     },
     "author-unknown-48": {
       "name": "イカ魚",
@@ -48110,46 +48034,11 @@
       "slug": "author-unknown-59",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-59",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
-        "91638739"
+        "23903858"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
-        "https://www.pixiv.net/users/91638739"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/91638739"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "id",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "id"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+        "https://www.pixiv.net/users/23903858"
+      ]
     },
     "author-unknown-6": {
       "name": "はとこ",
@@ -48326,48 +48215,11 @@
       "slug": "author-unknown-7",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-7",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
-        "75678896",
-        "91638739"
+        "75678896"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
-        "https://www.pixiv.net/users/75678896",
-        "https://www.pixiv.net/users/91638739"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/91638739"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "id",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "id"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+        "https://www.pixiv.net/users/75678896"
+      ]
     },
     "author-unknown-71": {
       "name": "なるべくがんばります",
@@ -48523,48 +48375,11 @@
       "slug": "author-unknown-81",
       "koikatsu_url": "https://koikatsucards.com/search?author=author-unknown-81",
       "pixiv_user_ids": [
-        "13323056",
-        "15904441",
-        "23903858",
-        "91638739",
         "939092"
       ],
       "pixiv_user_urls": [
-        "https://www.pixiv.net/users/13323056",
-        "https://www.pixiv.net/users/15904441",
-        "https://www.pixiv.net/users/23903858",
-        "https://www.pixiv.net/users/91638739",
         "https://www.pixiv.net/users/939092"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/91638739"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "id",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "id"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "author-unknown-82": {
       "name": "ボボティー",
@@ -51298,51 +51113,14 @@
       "url": "https://www.pixiv.net/users/13323056",
       "name": "◽",
       "author_slugs": [
-        "author-unknown-32",
-        "author-unknown-38",
-        "author-unknown-47",
-        "author-unknown-59",
-        "author-unknown-7",
-        "author-unknown-81"
+        "author-unknown-38"
       ],
       "koikatsu_author_urls": [
-        "https://koikatsucards.com/search?author=author-unknown-32",
-        "https://koikatsucards.com/search?author=author-unknown-38",
-        "https://koikatsucards.com/search?author=author-unknown-47",
-        "https://koikatsucards.com/search?author=author-unknown-59",
-        "https://koikatsucards.com/search?author=author-unknown-7",
-        "https://koikatsucards.com/search?author=author-unknown-81"
+        "https://koikatsucards.com/search?author=author-unknown-38"
       ],
       "sources": [
-        "authors.json",
         "pixiv_api"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "link",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "link"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "13390609": {
       "id": "13390609",
@@ -51758,51 +51536,14 @@
       "url": "https://www.pixiv.net/users/15904441",
       "name": "⊙▽⊙",
       "author_slugs": [
-        "author-unknown-32",
-        "author-unknown-38",
-        "author-unknown-47",
-        "author-unknown-59",
-        "author-unknown-7",
-        "author-unknown-81"
+        "author-unknown-47"
       ],
       "koikatsu_author_urls": [
-        "https://koikatsucards.com/search?author=author-unknown-32",
-        "https://koikatsucards.com/search?author=author-unknown-38",
-        "https://koikatsucards.com/search?author=author-unknown-47",
-        "https://koikatsucards.com/search?author=author-unknown-59",
-        "https://koikatsucards.com/search?author=author-unknown-7",
-        "https://koikatsucards.com/search?author=author-unknown-81"
+        "https://koikatsucards.com/search?author=author-unknown-47"
       ],
       "sources": [
-        "authors.json",
         "pixiv_api"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "link",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "link"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "15909120": {
       "id": "15909120",
@@ -52966,51 +52707,14 @@
       "url": "https://www.pixiv.net/users/23903858",
       "name": "。",
       "author_slugs": [
-        "author-unknown-32",
-        "author-unknown-38",
-        "author-unknown-47",
-        "author-unknown-59",
-        "author-unknown-7",
-        "author-unknown-81"
+        "author-unknown-59"
       ],
       "koikatsu_author_urls": [
-        "https://koikatsucards.com/search?author=author-unknown-32",
-        "https://koikatsucards.com/search?author=author-unknown-38",
-        "https://koikatsucards.com/search?author=author-unknown-47",
-        "https://koikatsucards.com/search?author=author-unknown-59",
-        "https://koikatsucards.com/search?author=author-unknown-7",
-        "https://koikatsucards.com/search?author=author-unknown-81"
+        "https://koikatsucards.com/search?author=author-unknown-59"
       ],
       "sources": [
-        "authors.json",
         "pixiv_api"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "link",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "link"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "23961929": {
       "id": "23961929",
@@ -57502,33 +57206,7 @@
       ],
       "sources": [
         "pixiv_api"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "link",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "link"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "76102": {
       "id": "76102",
@@ -58401,20 +58079,10 @@
       "url": "https://www.pixiv.net/users/91638739",
       "name": "●•●o",
       "author_slugs": [
-        "author-unknown-32",
-        "author-unknown-38",
-        "author-unknown-47",
-        "author-unknown-59",
-        "author-unknown-7",
-        "author-unknown-81"
+        "author-unknown-32"
       ],
       "koikatsu_author_urls": [
-        "https://koikatsucards.com/search?author=author-unknown-32",
-        "https://koikatsucards.com/search?author=author-unknown-38",
-        "https://koikatsucards.com/search?author=author-unknown-47",
-        "https://koikatsucards.com/search?author=author-unknown-59",
-        "https://koikatsucards.com/search?author=author-unknown-7",
-        "https://koikatsucards.com/search?author=author-unknown-81"
+        "https://koikatsucards.com/search?author=author-unknown-32"
       ],
       "sources": [
         "authors.json",
@@ -58579,33 +58247,7 @@
       ],
       "sources": [
         "pixiv_api"
-      ],
-      "pawchive": {
-        "service": "fanbox",
-        "id": "91638739",
-        "url": "https://pawchive.pw/fanbox/user/91638739",
-        "name": "Lo",
-        "favorited": 594,
-        "match": "link",
-        "candidates": [
-          {
-            "service": "fanbox",
-            "id": "91638739",
-            "url": "https://pawchive.pw/fanbox/user/91638739",
-            "name": "Lo",
-            "favorited": 594,
-            "match": "link"
-          },
-          {
-            "service": "patreon",
-            "id": "2541112",
-            "url": "https://pawchive.pw/patreon/user/2541112",
-            "name": "Lo",
-            "favorited": 114,
-            "match": "name"
-          }
-        ]
-      }
+      ]
     },
     "94093138": {
       "id": "94093138",

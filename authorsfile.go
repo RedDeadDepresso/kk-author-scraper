@@ -78,7 +78,14 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 		seen := map[string]bool{nameKey: true}
 		for _, al := range e.Alias {
 			k := normName(al)
-			if k == "" || seen[k] {
+			if k == "" {
+				// an alias without letters or digits (":)") can only be found by its exact text
+				if t := strings.TrimSpace(al); t != "" && t != strings.TrimSpace(e.Name) {
+					ix.byExact[t] = append(ix.byExact[t], e)
+				}
+				continue
+			}
+			if seen[k] {
 				continue
 			}
 			seen[k] = true

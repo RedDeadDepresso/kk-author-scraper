@@ -559,6 +559,11 @@ func (a *App) fileAccounts(ctx context.Context, name string) (fileResult, error)
 		return fileResult{}, nil
 	}
 	key := normName(name)
+	if key == "" {
+		// names without letters or digits (".", ":)") all normalize to "": key them by the
+		// exact name, or they would share one memo entry and inherit each other's accounts
+		key = "\x00" + strings.TrimSpace(name)
+	}
 	if r, ok := a.fileMemo[key]; ok {
 		return r, nil
 	}
