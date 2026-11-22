@@ -1166,13 +1166,13 @@
     }
   },
   {
-    "name": "(3)",
+    "name": "Cue Que",
     "telegram": "",
     "alias": [
-      "Cue Que",
       "gue",
       "cue",
-      "ponponPaine"
+      "ponponPaine",
+      "(3)"
     ],
     "series": [
       "Honkai Impact 3rd"
@@ -2165,10 +2165,10 @@
     }
   },
   {
-    "name": "はとこ",
+    "name": "HATOKO",
     "telegram": "#hatoko",
     "alias": [
-      "HATOKO"
+      "はとこ"
     ],
     "series": [
       "Hololive Production",
@@ -2528,12 +2528,10 @@
     }
   },
   {
-    "name": "●•●•⚉",
+    "name": "●•●oO",
     "telegram": "",
     "alias": [
-      "●•●oO",
-      "wssb",
-      "oo"
+      "wssb"
     ],
     "series": [
       "Wuthering Waves",
@@ -3809,8 +3807,7 @@
     "alias": [
       "Abigail",
       "Seth o Night",
-      "SethoNight",
-      "Seth_o_Night"
+      "SethoNight"
     ],
     "series": [
       "Frieren: Beyond Journey's End",
@@ -4600,9 +4597,7 @@
   {
     "name": "timemachinesama",
     "telegram": "",
-    "alias": [
-      "timemachine-sama"
-    ],
+    "alias": [],
     "series": [
       "Frieren: Beyond Journey's End",
       "NieR",
@@ -4622,13 +4617,13 @@
     }
   },
   {
-    "name": "BeastKingXN",
+    "name": "Xion",
     "telegram": "#BeastKingXN",
     "alias": [
-      "Xion",
       "XION75714241",
       "BeastKingXion",
-      "xionsgirls"
+      "xionsgirls",
+      "BeastKingXN"
     ],
     "series": [
       "Zenless Zone Zero",
@@ -5530,8 +5525,7 @@
     "telegram": "",
     "alias": [
       "SillyCat653",
-      "饲主的笨喵",
-      "Silly_Cat"
+      "饲主的笨喵"
     ],
     "series": [
       "Heaven's Memo Pad",
@@ -5613,11 +5607,11 @@
     }
   },
   {
-    "name": "Rat",
+    "name": "黒ラット",
     "telegram": "#RAT",
     "alias": [
-      "黒ラット",
-      "RatFlat"
+      "RatFlat",
+      "Rat"
     ],
     "series": [
       "Wuthering Waves",
@@ -5648,8 +5642,7 @@
     "telegram": "",
     "alias": [
       "Thatduude",
-      "ThatDude758",
-      "_that_dude_"
+      "ThatDude758"
     ],
     "series": [
       "Solo Leveling",
@@ -6222,10 +6215,10 @@
     }
   },
   {
-    "name": "Asahi",
+    "name": "As@hi",
     "telegram": "#As@hi",
     "alias": [
-      "As@hi"
+      "asahi"
     ],
     "series": [],
     "isRecommended": false,
@@ -6360,10 +6353,10 @@
     }
   },
   {
-    "name": "CoolV",
+    "name": "COOL_V",
     "telegram": "",
     "alias": [
-      "Cool_V",
+      "CoolV",
       "CoolVibesDude",
       "Cool_Vibes_Dude",
       "COOL VIBRATIONS"
@@ -6447,10 +6440,9 @@
     }
   },
   {
-    "name": "Eat waffles",
+    "name": "EatWaffles",
     "telegram": "",
     "alias": [
-      "Eatwaffles",
       "DoujinWaffles"
     ],
     "series": [],
@@ -6468,7 +6460,7 @@
     }
   },
   {
-    "name": "elline",
+    "name": "eLLine",
     "telegram": "#greenskin",
     "alias": [
       "greenskin"
@@ -6527,10 +6519,10 @@
     }
   },
   {
-    "name": "feathermapleleaf",
+    "name": "羽楓",
     "telegram": "",
     "alias": [
-      "羽楓"
+      "feathermapleleaf"
     ],
     "series": [],
     "isRecommended": false,
@@ -7077,10 +7069,10 @@
     }
   },
   {
-    "name": "Rurri",
+    "name": "Rurri00",
     "telegram": "",
     "alias": [
-      "Rurri00"
+      "Rurri"
     ],
     "series": [
       "Zenless Zone Zero",
@@ -7476,11 +7468,11 @@
     }
   },
   {
-    "name": "蒼茶(Aoicha)",
+    "name": "蒼茶",
     "telegram": "",
     "alias": [
-      "蒼茶",
-      "Aoicha"
+      "Aoicha",
+      "蒼茶(Aoicha)"
     ],
     "series": [
       "Punishing: Gray Raven"
@@ -7602,10 +7594,9 @@
     }
   },
   {
-    "name": "[RV]-N",
+    "name": "[RV]-Nobunaga",
     "telegram": "",
     "alias": [
-      "[RV]-Nobunaga",
       "RVN"
     ],
     "series": [],
@@ -7677,10 +7668,10 @@
     }
   },
   {
-    "name": "ao",
+    "name": "アオ",
     "telegram": "",
     "alias": [
-      "アオ"
+      "ao"
     ],
     "series": [],
     "isRecommended": false,
@@ -7928,10 +7919,9 @@
     }
   },
   {
-    "name": "bun",
+    "name": "bu==n",
     "telegram": "",
     "alias": [
-      "bu==n",
       "ぶ＝＝ん"
     ],
     "series": [],
@@ -8085,11 +8075,11 @@
     }
   },
   {
-    "name": "DeliriumBear",
+    "name": "Deliriumベア",
     "telegram": "",
     "alias": [
-      "Deliriumベア",
       "DeliriumベアNTR",
+      "Deliriumbear",
       "Delirium_Bear"
     ],
     "series": [],
@@ -8146,7 +8136,7 @@
     }
   },
   {
-    "name": "dorime",
+    "name": "Dorime",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -8164,10 +8154,9 @@
     }
   },
   {
-    "name": "DR.GM",
+    "name": "Dr.GM",
     "telegram": "#DrGM",
     "alias": [
-      "Dr_GM",
       "Mr.GD",
       "doctor gm",
       "Dr GM",
@@ -8479,10 +8468,10 @@
     }
   },
   {
-    "name": "heluodo",
+    "name": "ヘルオド",
     "telegram": "",
     "alias": [
-      "ヘルオド"
+      "heluodo"
     ],
     "series": [],
     "isRecommended": false,
@@ -8577,7 +8566,7 @@
     }
   },
   {
-    "name": "ICHIMISO",
+    "name": "Ichimiso",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -8772,10 +8761,9 @@
     }
   },
   {
-    "name": "KID",
+    "name": "K.I.D",
     "telegram": "",
     "alias": [
-      "K.I.D",
       "Kozlov",
       "kogrebnev"
     ],
@@ -9081,10 +9069,10 @@
     }
   },
   {
-    "name": "Marega",
+    "name": "Marega S.A.",
     "telegram": "",
     "alias": [
-      "Marega S.A."
+      "Marega"
     ],
     "series": [],
     "isRecommended": false,
@@ -9160,11 +9148,10 @@
     }
   },
   {
-    "name": "MG_Sago",
+    "name": "MG-Sago",
     "telegram": "",
     "alias": [
-      "MG Sago",
-      "MG-Sago"
+      "MG_Sago"
     ],
     "series": [],
     "isRecommended": false,
@@ -9258,10 +9245,10 @@
     }
   },
   {
-    "name": "Naier",
+    "name": "Naier Serpfire",
     "telegram": "",
     "alias": [
-      "Naier Serpfire"
+      "Naier"
     ],
     "series": [],
     "isRecommended": false,
@@ -9318,10 +9305,10 @@
     }
   },
   {
-    "name": "Naru",
+    "name": "Naru6",
     "telegram": "",
     "alias": [
-      "Naru6"
+      "Naru"
     ],
     "series": [],
     "isRecommended": false,
@@ -9392,10 +9379,10 @@
     }
   },
   {
-    "name": "NetoGermano",
+    "name": "Neto",
     "telegram": "",
     "alias": [
-      "Neto"
+      "NetoGermano"
     ],
     "series": [],
     "isRecommended": false,
@@ -9412,7 +9399,7 @@
     }
   },
   {
-    "name": "NHM-CARDS",
+    "name": "NHM-Cards",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -9489,10 +9476,10 @@
     }
   },
   {
-    "name": "Otsukira",
+    "name": "Otsukira Koi",
     "telegram": "",
     "alias": [
-      "Otsukira Koi"
+      "Otsukira"
     ],
     "series": [],
     "isRecommended": false,
@@ -9547,7 +9534,7 @@
     }
   },
   {
-    "name": "Panda",
+    "name": "panda",
     "telegram": "",
     "alias": [
       "panda123"
@@ -9741,7 +9728,7 @@
     }
   },
   {
-    "name": "Riceman",
+    "name": "RiceMan",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -9843,7 +9830,7 @@
     }
   },
   {
-    "name": "SHAWN_SOMETHING",
+    "name": "Shawn_Something",
     "telegram": "",
     "alias": [
       "Shawn Something",
@@ -10017,11 +10004,11 @@
     }
   },
   {
-    "name": "Sweet",
+    "name": "SweetGPT",
     "telegram": "",
     "alias": [
-      "SweetGPT",
-      "Sweet GPT"
+      "Sweet GPT",
+      "Sweet"
     ],
     "series": [],
     "isRecommended": false,
@@ -10058,10 +10045,10 @@
     }
   },
   {
-    "name": "tanayu",
+    "name": "たなゆう",
     "telegram": "",
     "alias": [
-      "たなゆう"
+      "tanayu"
     ],
     "series": [],
     "isRecommended": false,
@@ -10290,10 +10277,10 @@
     }
   },
   {
-    "name": "wamekukyouzin",
+    "name": "喚く狂人",
     "telegram": "",
     "alias": [
-      "喚く狂人"
+      "wamekukyouzin"
     ],
     "series": [],
     "isRecommended": false,
@@ -10332,7 +10319,7 @@
     }
   },
   {
-    "name": "Wegoing2hell",
+    "name": "wegoing2hell",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -10442,10 +10429,9 @@
     }
   },
   {
-    "name": "Yata'Ryhna",
+    "name": "Yata’Ryhna",
     "telegram": "",
     "alias": [
-      "Yata’Ryhna",
       "Yata69335476",
       "Yata_Durian",
       "yatadurian"
@@ -10549,8 +10535,7 @@
     "name": "ᴺᵃᶤᵐᵘ-Micco",
     "telegram": "",
     "alias": [
-      "naimu-micco",
-      "ᴺᵃᶤᵐᵘ-Micco."
+      "naimu-micco"
     ],
     "series": [],
     "isRecommended": false,
@@ -22246,7 +22231,7 @@
     }
   },
   {
-    "name": "atnilla",
+    "name": "atNilla",
     "telegram": "",
     "alias": [],
     "series": [],
@@ -42957,10 +42942,10 @@
     }
   },
   {
-    "name": "DrCharlie",
+    "name": "Dr.Charlie",
     "telegram": "",
     "alias": [
-      "Dr.Charlie"
+      "DrCharlie"
     ],
     "series": [],
     "isRecommended": false,
@@ -114511,7 +114496,7 @@
     }
   },
   {
-    "name": "skull Prince",
+    "name": "Skull Prince",
     "telegram": "",
     "alias": [
       "SkullPrince",
@@ -147566,24 +147551,6 @@
   },
   {
     "name": "PAKAPAKA",
-    "telegram": "",
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "",
-    "banner": "",
-    "links": {
-      "pixiv": "",
-      "download": "",
-      "pawchive": "",
-      "bepis": "",
-      "koikatsucards": ""
-    }
-  },
-  {
-    "name": "rurri00",
     "telegram": "",
     "alias": [],
     "series": [],
