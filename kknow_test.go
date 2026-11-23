@@ -22,7 +22,7 @@ func kknowRow(href string, ts int64, snippet string) string {
 </div></div></li>`, href, snippet, ts)
 }
 
-func kknowPost(id int, body string) string {
+func kknowTestPost(id int, body string) string {
 	return fmt.Sprintf(`<article class="message message--post" data-author="x" data-content="post-%d" id="js-post-%d"><div class="message-body"><div class="bbWrapper">%s</div></div></article>`, id, id, body)
 }
 
@@ -46,7 +46,7 @@ func TestKknowHelpers(t *testing.T) {
 		t.Errorf("next = %q", n)
 	}
 
-	thread := kknowPost(11, "no link") + kknowPost(12, `<a href="https://www.pixiv.net/en/users/123">me</a> and pixiv.net/users/456`)
+	thread := kknowTestPost(11, "no link") + kknowTestPost(12, `<a href="https://www.pixiv.net/en/users/123">me</a> and pixiv.net/users/456`)
 	posts := splitKknowPosts(thread)
 	if len(posts) != 2 || posts[0].Key != "post-11" || posts[1].Key != "post-12" {
 		t.Fatalf("posts = %+v", posts)
@@ -94,9 +94,9 @@ func newKknowTestServer(t *testing.T, posted *[]url.Values, opened *[]string) *h
 		case strings.HasPrefix(r.URL.Path, "/threads/t.1/"):
 			*opened = append(*opened, r.URL.Path)
 			fmt.Fprint(w, `<html><body>`+
-				kknowPost(500, `<a href="https://www.pixiv.net/users/500500">a</a>`)+
-				kknowPost(400, `check https://www.pixiv.net/en/users/400400 please`)+
-				kknowPost(300, `https://www.pixiv.net/users/300300`)+
+				kknowTestPost(500, `<a href="https://www.pixiv.net/users/500500">a</a>`)+
+				kknowTestPost(400, `check https://www.pixiv.net/en/users/400400 please`)+
+				kknowTestPost(300, `https://www.pixiv.net/users/300300`)+
 				`</body></html>`)
 		default:
 			http.NotFound(w, r)

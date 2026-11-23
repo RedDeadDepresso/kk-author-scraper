@@ -805,6 +805,10 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		}
 	}
 
+	if n := a.applyPawchiveOverrides(rows, icon); n > 0 {
+		log.Printf("pawchive: %d rows set by a manual override", n)
+	}
+
 	if n := a.telegram.apply(rows); a.telegram != nil {
 		log.Printf("telegram: %d authors linked to a hashtag", n)
 	}

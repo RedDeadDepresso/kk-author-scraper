@@ -40,7 +40,7 @@ type PawchiveCandidate struct {
 	URL       string `json:"url"`
 	Name      string `json:"name"`
 	Favorited int    `json:"favorited"`
-	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json or on the pixiv profile) or "name"
+	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json or on the pixiv profile), "name" or "override" (pawchive_overrides.json)
 }
 
 // PawchiveMatch is the chosen creator (highest favorited) plus every candidate considered.
@@ -300,8 +300,32 @@ func (ix *creatorIndex) resolve(ids, names []string, handles []Handle) *Pawchive
 // ---------------------------------------------------------------------------
 
 func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
+	return m.applyPawchiveWith(creators, nil, nil)
+}
+
+// applyPawchiveWith is applyPawchive with the manual overrides of pawchive_overrides.json (by
+// authors.json row name; fileIdx tells the row name of an author and the accounts of an
+// entry). An override replaces the automatic match of the authors and pixiv accounts of its
+// row, or removes it, so mapping.json, the posts and the lookup file agree with authors.json.
+func (m *Mapping) applyPawchiveWith(creators []Creator, overrides pawchiveOverrides, fileIdx *authorIndex) (authors, users int) {
 	ix := buildIndex(creators)
 	m.PawchiveUsers = map[string]*PawchiveUser{}
+	bySlug, byID := m.pawchiveOverrideTargets(overrides, fileIdx)
+	warned := map[string]bool{}
+	override := func(ov pawchiveOverride, auto *PawchiveMatch) *PawchiveMatch {
+		if ov.None {
+			return nil
+		}
+		match, ok := ix.overrideMatch(ov)
+		if !ok {
+			if k := ov.Service + "/" + ov.ID; !warned[k] {
+				warned[k] = true
+				log.Printf("warning: pawchive override: no creator %s in the pawchive list; keeping the automatic match", k)
+			}
+			return auto
+		}
+		return match
+	}
 
 	reverse := func(match *PawchiveMatch) []*PawchiveUser {
 		var out []*PawchiveUser
@@ -316,7 +340,7 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 		return out
 	}
 
-	for _, au := range m.Authors {
+	for slug, au := range m.Authors {
 		names := []string{au.Name}
 		for _, id := range au.PixivUserIDs {
 			if pu := m.PixivUsers[id]; pu != nil && pu.Name != "" {
@@ -325,6 +349,9 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 		}
 		links := append(append([]string{}, au.CreatorLinks...), m.profileLinkURLs(au.PixivUserIDs)...)
 		au.Pawchive = ix.resolve(au.PixivUserIDs, names, creatorHandles(links))
+		if ov, ok := bySlug[slug]; ok {
+			au.Pawchive = override(ov, au.Pawchive)
+		}
 		if au.Pawchive == nil {
 			continue
 		}
@@ -345,6 +372,9 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 		}
 		links = append(links, m.profileLinkURLs([]string{id})...)
 		pu.Pawchive = ix.resolve([]string{id}, names, creatorHandles(links))
+		if ov, ok := byID[id]; ok {
+			pu.Pawchive = override(ov, pu.Pawchive)
+		}
 		if pu.Pawchive == nil {
 			continue
 		}
@@ -375,7 +405,7 @@ func (a *App) runPawchive(ctx context.Context, file, cachePath string, maxAge ti
 		return errors.New("pawchive creators list is empty")
 	}
 	a.pawIdx = buildIndex(creators) // also used for authors.json-only rows of the authors list
-	authors, users := a.mapping.applyPawchive(creators)
+	authors, users := a.mapping.applyPawchiveWith(creators, a.pawOverrides, a.fileIdx)
 	log.Printf("pawchive: %d creators indexed; matched %d/%d authors, %d/%d pixiv accounts",
 		len(creators), authors, len(a.mapping.Authors), users, len(a.mapping.PixivUsers))
 	return nil

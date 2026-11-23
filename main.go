@@ -260,6 +260,8 @@ type App struct {
 	kknowPath   string
 	kknow       *KknowCache // pixiv accounts found on kknow.cc
 
+	pawOverrides pawchiveOverrides // manual pawchive matches by authors.json row name
+
 	rateLimitHits int
 	oncePerAuthor bool
 	lastHeader    http.Header // headers of the last successful response
@@ -780,6 +782,7 @@ func run() (err error) {
 	kknowURL := flag.String("kknow-search", kknowSearchURL, "kknow.cc search whose posts are read for pixiv user links (only its query and ordering are used)")
 	kknowPages := flag.Int("kknow-max-pages", 30, "most result pages read per kknow.cc search")
 	kknowDelay := flag.Duration("kknow-delay", 1500*time.Millisecond, "pause between requests to kknow.cc")
+	pawOverridesPath := flag.String("pawchive-overrides", "", `JSON {"author name": "pawchive creator URL, or \"\" for none"} replacing the automatic pawchive match of an authors.json row (default <data>/pawchive_overrides.json)`)
 	noKknow := flag.Bool("no-kknow", false, "skip searching kknow.cc for pixiv accounts")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
@@ -839,6 +842,17 @@ func run() (err error) {
 	}
 	if *tgTags == "" {
 		*tgTags = filepath.Join(*dataDir, "telegram_tags.txt")
+	}
+	if *pawOverridesPath == "" {
+		*pawOverridesPath = filepath.Join(*dataDir, "pawchive_overrides.json")
+	}
+	if po, err := loadPawchiveOverrides(*pawOverridesPath); err != nil {
+		return fmt.Errorf("loading pawchive overrides: %w", err)
+	} else {
+		a.pawOverrides = po
+		if len(po) > 0 {
+			log.Printf("pawchive: %d manual overrides from %s", len(po), *pawOverridesPath)
+		}
 	}
 	if *tgOverrides == "" {
 		*tgOverrides = filepath.Join(*dataDir, "telegram_overrides.json")
