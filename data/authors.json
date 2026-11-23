@@ -25,23 +25,43 @@
     }
   },
   {
-    "name": "Eros",
+    "name": "ErosEnro",
     "telegram": [],
-    "alias": [],
+    "alias": [
+      "Eros"
+    ],
     "series": [
       "Honkai: Star Rail"
     ],
+    "isRecommended": true,
+    "makesScenes": true,
+    "favorited": 23023,
+    "icon": "https://pawchive.pw/icons/fanbox/28009976",
+    "banner": "https://pawchive.pw/banners/fanbox/28009976",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/28009976",
+      "download": "https://buzzheavier.com/58by93o53s8u",
+      "pawchive": "https://pawchive.pw/fanbox/user/28009976",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Eros",
+      "koikatsucards": "https://koikatsucards.com/search?author=author-eros"
+    }
+  },
+  {
+    "name": "Eros",
+    "telegram": [],
+    "alias": [],
+    "series": [],
     "isRecommended": false,
     "makesScenes": false,
     "favorited": 23023,
     "icon": "https://pawchive.pw/icons/fanbox/28009976",
     "banner": "https://pawchive.pw/banners/fanbox/28009976",
     "links": {
-      "pixiv": "https://www.pixiv.net/users/28009976",
+      "pixiv": "https://www.pixiv.net/users/85020547",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/28009976",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Eros",
-      "koikatsucards": "https://koikatsucards.com/search?author=author-eros"
+      "bepis": "",
+      "koikatsucards": ""
     }
   },
   {
@@ -618,10 +638,28 @@
     "icon": "https://pawchive.pw/icons/fanbox/35768952",
     "banner": "https://pawchive.pw/banners/fanbox/35768952",
     "links": {
-      "pixiv": "https://www.pixiv.net/users/35768952",
+      "pixiv": "https://www.pixiv.net/users/4589444",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/35768952",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Chris",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Chris",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": true,
+    "favorited": 2670,
+    "icon": "https://pawchive.pw/icons/fanbox/35768952",
+    "banner": "https://pawchive.pw/banners/fanbox/35768952",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/35768952",
+      "download": "",
+      "pawchive": "https://pawchive.pw/fanbox/user/35768952",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -2937,7 +2975,7 @@
       "pixiv": "https://www.pixiv.net/users/18534401",
       "download": "",
       "pawchive": "https://pawchive.pw/patreon/user/196089655",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=TheAxelra",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -3139,8 +3177,12 @@
   },
   {
     "name": "Ldki",
-    "telegram": [],
-    "alias": [],
+    "telegram": [
+      "#ldki1018"
+    ],
+    "alias": [
+      "Ldki1018"
+    ],
     "series": [
       "Hololive Production"
     ],
@@ -3155,6 +3197,24 @@
       "pawchive": "https://pawchive.pw/patreon/user/50498371",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ldki",
       "koikatsucards": "https://koikatsucards.com/search?author=author-ldki"
+    }
+  },
+  {
+    "name": "Ldki",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 650,
+    "icon": "https://pawchive.pw/icons/patreon/50498371",
+    "banner": "https://pawchive.pw/banners/patreon/50498371",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/70878790",
+      "download": "",
+      "pawchive": "https://pawchive.pw/patreon/user/50498371",
+      "bepis": "",
+      "koikatsucards": ""
     }
   },
   {
@@ -4141,7 +4201,7 @@
       "pixiv": "https://www.pixiv.net/users/29839443",
       "download": "",
       "pawchive": "https://pawchive.pw/patreon/user/139619717",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Jinsung",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -5258,7 +5318,7 @@
       "pixiv": "https://www.pixiv.net/users/89834969",
       "download": "",
       "pawchive": "https://pawchive.pw/patreon/user/85679511",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=YoshihiroMori",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -5372,7 +5432,7 @@
     }
   },
   {
-    "name": "Shine",
+    "name": "shine",
     "telegram": [],
     "alias": [],
     "series": [],
@@ -5385,7 +5445,7 @@
       "pixiv": "https://www.pixiv.net/users/27799063",
       "download": "",
       "pawchive": "https://pawchive.pw/patreon/user/34390313",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Shine",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -5578,17 +5638,11 @@
     }
   },
   {
-    "name": "DR.GM",
+    "name": "Dr.GM",
     "telegram": [
       "#DrGM"
     ],
-    "alias": [
-      "Dr_GM",
-      "Mr.GD",
-      "doctor gm",
-      "Dr GM",
-      "Mr. GD"
-    ],
+    "alias": [],
     "series": [],
     "isRecommended": false,
     "makesScenes": true,
@@ -5599,7 +5653,7 @@
       "pixiv": "https://www.pixiv.net/users/27942884",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/27942884",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=DR.GM",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -6399,7 +6453,7 @@
       "pixiv": "https://www.pixiv.net/users/106239484",
       "download": "",
       "pawchive": "https://pawchive.pw/patreon/user/129099973",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Luminea",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -6912,7 +6966,7 @@
     }
   },
   {
-    "name": "Beefy",
+    "name": "beefy",
     "telegram": [],
     "alias": [],
     "series": [],
@@ -6925,7 +6979,7 @@
       "pixiv": "https://www.pixiv.net/users/35353211",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/35353211",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Beefy",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -7055,7 +7109,7 @@
       "pixiv": "https://www.pixiv.net/users/98968909",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/98968909",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Nova",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -7734,13 +7788,31 @@
     "isRecommended": false,
     "makesScenes": false,
     "favorited": 25,
+    "icon": "https://pawchive.pw/icons/fanbox/79750575",
+    "banner": "https://pawchive.pw/banners/fanbox/79750575",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/79750575",
+      "download": "",
+      "pawchive": "https://pawchive.pw/fanbox/user/79750575",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Panda",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "PanDa",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 25,
     "icon": "https://pawchive.pw/icons/fanbox/118750980",
     "banner": "https://pawchive.pw/banners/fanbox/118750980",
     "links": {
       "pixiv": "https://www.pixiv.net/users/118750980",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/118750980",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Panda",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -7941,27 +8013,6 @@
     }
   },
   {
-    "name": "K K",
-    "telegram": [],
-    "alias": [
-      "(KK)",
-      "KK"
-    ],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 14,
-    "icon": "https://pawchive.pw/icons/fanbox/75531203",
-    "banner": "https://pawchive.pw/banners/fanbox/75531203",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/89854664",
-      "download": "",
-      "pawchive": "https://pawchive.pw/fanbox/user/75531203",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=K%20K",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "decoco-Eight",
     "telegram": [],
     "alias": [],
@@ -7975,6 +8026,24 @@
       "pixiv": "https://www.pixiv.net/users/103794942",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/103794942",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "KK",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 14,
+    "icon": "https://pawchive.pw/icons/fanbox/75531203",
+    "banner": "https://pawchive.pw/banners/fanbox/75531203",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/89854664",
+      "download": "",
+      "pawchive": "https://pawchive.pw/fanbox/user/75531203",
       "bepis": "",
       "koikatsucards": ""
     }
@@ -9948,24 +10017,6 @@
     }
   },
   {
-    "name": "bgzr1983",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2021/07/10/16/23/33/21013296_4246fe1b401c25741dfdfc981a8da34b_170.jpg",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/3563747",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=bgzr1983",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "BILI",
     "telegram": [],
     "alias": [],
@@ -10160,6 +10211,32 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=dorime",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "DR.GM",
+    "telegram": [
+      "#DrGM"
+    ],
+    "alias": [
+      "Dr_GM",
+      "Mr.GD",
+      "doctor gm",
+      "Dr GM",
+      "Mr. GD"
+    ],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": true,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=DR.GM",
       "koikatsucards": ""
     }
   },
@@ -10443,26 +10520,6 @@
     }
   },
   {
-    "name": "Hhkloo",
-    "telegram": [],
-    "alias": [
-      "Hhklo_O"
-    ],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/11/11/17/28/21/26589303_1030dfa2c99ddb4538d667f9afc94b22_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/90443033",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Hhkloo",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "HIPHOP6",
     "telegram": [],
     "alias": [],
@@ -10703,24 +10760,6 @@
     }
   },
   {
-    "name": "Koto",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2020/11/01/13/30/47/19598317_5b126a2d234b77286769006c85567039_170.jpg",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/53534690",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Koto",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "KsJimmy",
     "telegram": [],
     "alias": [],
@@ -10796,24 +10835,6 @@
       "pawchive": "",
       "bepis": "",
       "koikatsucards": "https://koikatsucards.com/search?author=author-la-un-ty"
-    }
-  },
-  {
-    "name": "Laggen",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2022/08/31/14/15/45/23267838_5c76e4fcd5a3b8246fdd39bd4d4c8e44_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/7159108",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Laggen",
-      "koikatsucards": ""
     }
   },
   {
@@ -11079,24 +11100,6 @@
     }
   },
   {
-    "name": "nafu",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": true,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/01/16/18/33/16/25400624_8941a81d1a85ef2ac0524eeef29b8561_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/93479558",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=nafu",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "Narain",
     "telegram": [],
     "alias": [],
@@ -11251,24 +11254,6 @@
       "pawchive": "",
       "bepis": "",
       "koikatsucards": "https://koikatsucards.com/search?author=author-ntryabe"
-    }
-  },
-  {
-    "name": "Ouroboros",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2026/04/26/03/50/07/28797230_39cdb5e6a6b61c7c447ae8f0bda29a38_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/77748988",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ouroboros",
-      "koikatsucards": ""
     }
   },
   {
@@ -11469,24 +11454,6 @@
     }
   },
   {
-    "name": "Raime",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/05/18/08/51/37/25892717_a4a8c6b02a15255d7aa3ea9dda2d7e34_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/53752380",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Raime",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "Riceman",
     "telegram": [],
     "alias": [],
@@ -11501,24 +11468,6 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Riceman",
-      "koikatsucards": ""
-    }
-  },
-  {
-    "name": "Ruine02",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://s.pximg.net/common/images/no_profile.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/13377256",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ruine02",
       "koikatsucards": ""
     }
   },
@@ -11643,24 +11592,6 @@
       "pawchive": "",
       "bepis": "",
       "koikatsucards": "https://koikatsucards.com/search?author=author-sodas"
-    }
-  },
-  {
-    "name": "SOLAS",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/05/19/09/47/36/25896921_f99369e68d311e4ee1380a98dbb0181e_170.png",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/16438770",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=SOLAS",
-      "koikatsucards": ""
     }
   },
   {
@@ -26924,6 +26855,24 @@
     }
   },
   {
+    "name": "Beefy",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Beefy",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "Beekeeper",
     "telegram": [],
     "alias": [],
@@ -27280,6 +27229,42 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=BGuy",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "bgzr1983",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=bgzr1983",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "BGZR1983",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2021/07/10/16/23/33/21013296_4246fe1b401c25741dfdfc981a8da34b_170.jpg",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/3563747",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -60058,6 +60043,44 @@
     }
   },
   {
+    "name": "Hhklo_O",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/11/11/17/28/21/26589303_1030dfa2c99ddb4538d667f9afc94b22_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/90443033",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Hhkloo",
+    "telegram": [],
+    "alias": [
+      "Hhklo_O"
+    ],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Hhkloo",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "hh審判",
     "telegram": [],
     "alias": [],
@@ -66528,6 +66551,24 @@
     }
   },
   {
+    "name": "Jinsung",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Jinsung",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "Jinzo Nitz",
     "telegram": [],
     "alias": [],
@@ -68450,6 +68491,26 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=K",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "K K",
+    "telegram": [],
+    "alias": [
+      "(KK)"
+    ],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=K%20K",
       "koikatsucards": ""
     }
   },
@@ -74238,6 +74299,42 @@
     }
   },
   {
+    "name": "Koto",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Koto",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Koto",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2020/11/01/13/30/47/19598317_5b126a2d234b77286769006c85567039_170.jpg",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/53534690",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "kotonomi",
     "telegram": [],
     "alias": [],
@@ -76160,6 +76257,42 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Laeva",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Laggen",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Laggen",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Laggen",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2022/08/31/14/15/45/23267838_5c76e4fcd5a3b8246fdd39bd4d4c8e44_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/7159108",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -80701,6 +80834,24 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=lumi",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Luminea",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Luminea",
       "koikatsucards": ""
     }
   },
@@ -91075,6 +91226,42 @@
     }
   },
   {
+    "name": "nafu",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": true,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=nafu",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "nafu",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": true,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/01/16/18/33/16/25400624_8941a81d1a85ef2ac0524eeef29b8561_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/93479558",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "Nagisa the Love",
     "telegram": [],
     "alias": [],
@@ -95605,6 +95792,24 @@
     }
   },
   {
+    "name": "Nova",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Nova",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "NOVAe",
     "telegram": [],
     "alias": [],
@@ -98638,6 +98843,42 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Oup-kun",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Ouroboros",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ouroboros",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "ouroboros",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2026/04/26/03/50/07/28797230_39cdb5e6a6b61c7c447ae8f0bda29a38_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/77748988",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -104968,6 +105209,42 @@
     }
   },
   {
+    "name": "Raime",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Raime",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Raime",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/05/18/08/51/37/25892717_a4a8c6b02a15255d7aa3ea9dda2d7e34_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/53752380",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "Rainbooty",
     "telegram": [],
     "alias": [],
@@ -109457,6 +109734,42 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=rufnew",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Ruine02",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ruine02",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Ruine02",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://s.pximg.net/common/images/no_profile.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/13377256",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -114507,6 +114820,24 @@
     }
   },
   {
+    "name": "Shine",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Shine",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "ShinGetter",
     "telegram": [],
     "alias": [
@@ -117717,6 +118048,42 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=SolarGazer",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "SOLAS",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=SOLAS",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "SOLAS",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/05/19/09/47/36/25896921_f99369e68d311e4ee1380a98dbb0181e_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/16438770",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
@@ -125074,6 +125441,24 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=TheArcadean",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "TheAxelra",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=TheAxelra",
       "koikatsucards": ""
     }
   },
@@ -137442,6 +137827,24 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yoruichi",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "YoshihiroMori",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=YoshihiroMori",
       "koikatsucards": ""
     }
   },

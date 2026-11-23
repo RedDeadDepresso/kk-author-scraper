@@ -1,6 +1,6 @@
 {
   "newest_post": "145000175",
-  "updated_at": "2026-11-23T06:20:24Z",
+  "updated_at": "2026-11-23T15:08:48Z",
   "posts": {
     "100103318": {
       "pixiv_id": "100103318",
@@ -102328,7 +102328,7 @@
     "R[OH]ss": {
       "name": "R[OH]ss",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=R%5BOH%5Dss",
-      "card_count": 2601,
+      "card_count": 2602,
       "koikatsu_author_urls": [
         "https://koikatsucards.com/search?author=author-rohss"
       ],
@@ -108781,7 +108781,7 @@
     "Tag Fixer": {
       "name": "Tag Fixer",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Tag%20Fixer",
-      "card_count": 43,
+      "card_count": 44,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
