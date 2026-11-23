@@ -25,6 +25,26 @@
     }
   },
   {
+    "name": "ErosEnro",
+    "telegram": [],
+    "alias": [
+      "Eros"
+    ],
+    "series": [],
+    "isRecommended": true,
+    "makesScenes": true,
+    "favorited": 23023,
+    "icon": "https://pawchive.pw/icons/fanbox/28009976",
+    "banner": "https://pawchive.pw/banners/fanbox/28009976",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/28009976",
+      "download": "https://buzzheavier.com/58by93o53s8u",
+      "pawchive": "https://pawchive.pw/fanbox/user/28009976",
+      "bepis": "",
+      "koikatsucards": ""
+    }
+  },
+  {
     "name": "PastaPaprika",
     "telegram": [],
     "alias": [],
@@ -4698,7 +4718,7 @@
     "icon": "https://pawchive.pw/icons/patreon/69610822",
     "banner": "https://pawchive.pw/banners/patreon/69610822",
     "links": {
-      "pixiv": "",
+      "pixiv": "https://www.pixiv.net/users/66376499",
       "download": "https://buzzheavier.com/m82ccz208kkx",
       "pawchive": "https://pawchive.pw/patreon/user/69610822",
       "bepis": "",
@@ -4758,24 +4778,6 @@
       "pawchive": "https://pawchive.pw/fanbox/user/35521200",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=%E7%90%B4%E8%A7%9E",
       "koikatsucards": "https://koikatsucards.com/search?author=author-unknown-24"
-    }
-  },
-  {
-    "name": "BT1",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": true,
-    "makesScenes": true,
-    "favorited": 273,
-    "icon": "https://pawchive.pw/icons/fanbox/66376499",
-    "banner": "https://pawchive.pw/banners/fanbox/66376499",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/66376499",
-      "download": "https://buzzheavier.com/m82ccz208kkx",
-      "pawchive": "https://pawchive.pw/fanbox/user/66376499",
-      "bepis": "",
-      "koikatsucards": ""
     }
   },
   {
@@ -7693,28 +7695,6 @@
     }
   },
   {
-    "name": "Eros",
-    "telegram": [],
-    "alias": [
-      "ErosEnro"
-    ],
-    "series": [
-      "Honkai: Star Rail"
-    ],
-    "isRecommended": true,
-    "makesScenes": true,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/04/25/04/06/39/25805264_c37fcdb46c143aa228f05e6a5bf7440e_170.jpg",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/28009976",
-      "download": "https://buzzheavier.com/58by93o53s8u",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Eros",
-      "koikatsucards": "https://koikatsucards.com/search?author=author-eros"
-    }
-  },
-  {
     "name": "Hitori",
     "telegram": [
       "#hitori"
@@ -8341,6 +8321,26 @@
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Envenenad0",
       "koikatsucards": "https://koikatsucards.com/search?author=author-envenenad0"
+    }
+  },
+  {
+    "name": "Eros",
+    "telegram": [],
+    "alias": [],
+    "series": [
+      "Honkai: Star Rail"
+    ],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/04/25/04/06/39/25805264_c37fcdb46c143aa228f05e6a5bf7440e_170.jpg",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/28009976",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Eros",
+      "koikatsucards": "https://koikatsucards.com/search?author=author-eros"
     }
   },
   {

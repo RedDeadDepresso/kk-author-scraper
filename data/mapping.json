@@ -1,6 +1,6 @@
 {
   "newest_post": "145000175",
-  "updated_at": "2026-11-23T16:38:08Z",
+  "updated_at": "2026-11-23T21:01:54Z",
   "posts": {
     "100103318": {
       "pixiv_id": "100103318",
@@ -41086,9 +41086,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/16740531"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=66560602"
       ]
     },
     "author-buns": {
@@ -41310,9 +41307,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/624667"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/52890492"
       ]
     },
     "author-darklord": {
@@ -41767,7 +41761,7 @@
         "https://www.pixiv.net/users/37160603"
       ],
       "creator_links": [
-        "https://www.patreon.com/user?u=69662171"
+        "https://www.fanbox.cc/creator/37160603"
       ],
       "pawchive": {
         "service": "fanbox",
@@ -41817,9 +41811,6 @@
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/28009976",
         "https://www.pixiv.net/users/85020547"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/28009976"
       ],
       "bepis": [
         {
@@ -42337,9 +42328,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/47110833"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/42872938"
       ],
       "bepis": [
         {
@@ -43195,9 +43183,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/31580621"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=24763536"
       ]
     },
     "author-kazu": {
@@ -43252,9 +43237,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/8368294"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=103275"
       ],
       "bepis": [
         {
@@ -43664,9 +43646,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/96671052"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/16488"
       ]
     },
     "author-lee2": {
@@ -44123,9 +44102,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/15909120"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/936084"
       ]
     },
     "author-mochi": {
@@ -44137,9 +44113,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/61928759"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=170514034"
       ]
     },
     "author-momo": {
@@ -45195,9 +45168,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/2438259"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=192889199"
       ]
     },
     "author-ravenant": {
@@ -45259,9 +45229,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/53790264"
-      ],
-      "creator_links": [
-        "https://www.patreon.com/user?u=52134179"
       ],
       "bepis": [
         {
@@ -45780,9 +45747,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/101488034"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/13119448"
       ]
     },
     "author-sckbst": {
@@ -46674,9 +46638,6 @@
       ],
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/124394"
-      ],
-      "creator_links": [
-        "https://www.fanbox.cc/creator/334624"
       ],
       "bepis": [
         {
@@ -85491,7 +85452,7 @@
     "Henime": {
       "name": "Henime",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Henime",
-      "card_count": 6,
+      "card_count": 8,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
@@ -100889,7 +100850,7 @@
     "Pugman": {
       "name": "Pugman",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Pugman",
-      "card_count": 20,
+      "card_count": 21,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
@@ -122714,7 +122675,7 @@
     "vega": {
       "name": "vega",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=vega",
-      "card_count": 583,
+      "card_count": 584,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
