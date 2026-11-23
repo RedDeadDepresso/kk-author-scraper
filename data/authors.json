@@ -3022,8 +3022,12 @@
   },
   {
     "name": "Ldki",
-    "telegram": [],
-    "alias": [],
+    "telegram": [
+      "#ldki1018"
+    ],
+    "alias": [
+      "Ldki1018"
+    ],
     "series": [
       "Hololive Production"
     ],
@@ -3041,9 +3045,11 @@
     }
   },
   {
-    "name": "Ldki",
+    "name": "Ldki2",
     "telegram": [],
-    "alias": [],
+    "alias": [
+      "Ldki"
+    ],
     "series": [],
     "isRecommended": false,
     "makesScenes": false,
@@ -3674,7 +3680,7 @@
     "icon": "https://pawchive.pw/icons/fanbox/74044231",
     "banner": "https://pawchive.pw/banners/fanbox/74044231",
     "links": {
-      "pixiv": "",
+      "pixiv": "https://www.pixiv.net/users/118416835",
       "download": "",
       "pawchive": "https://pawchive.pw/fanbox/user/74044231",
       "bepis": "",
@@ -57674,24 +57680,6 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Hanajung",
-      "koikatsucards": ""
-    }
-  },
-  {
-    "name": "Hanami",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": true,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2026/01/07/04/27/04/28361507_5f5a300ad383f3e0b606df8e16f6edc7_170.jpg",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/118416835",
-      "download": "",
-      "pawchive": "",
-      "bepis": "",
       "koikatsucards": ""
     }
   },
