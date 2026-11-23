@@ -16,9 +16,6 @@ package main
 //
 // If the forum wants a login for searching, put the Cookie header value of a logged in browser
 // session in the KKNOW_COOKIE environment variable (it is only sent to kknow.cc).
-//
-// There is no HTML parser in the standard library, so the pages are read with regular
-// expressions that only need the stable XenForo 2 class names and attributes.
 
 import (
 	"context"
@@ -36,6 +33,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 const (
@@ -77,19 +76,8 @@ type kknowHit struct {
 }
 
 var (
-	kknowPostRe     = regexp.MustCompile(`/post-(\d+)|/posts/(\d+)`)
-	kknowThreadRe   = regexp.MustCompile(`/threads/[^/?#]*?\.?(\d+)(?:[/?#]|$)`)
-	kknowRowRe      = regexp.MustCompile(`<li[^>]*class="[^"]*\bblock-row\b[^"]*"[^>]*>`)
-	kknowTitleRe    = regexp.MustCompile(`(?s)contentRow-title">(.*?)</h3>`)
-	kknowHrefRe     = regexp.MustCompile(`<a[^>]+href="([^"]+)"`)
-	kknowTimeRe     = regexp.MustCompile(`data-time="(\d+)"`)
-	kknowSnippetRe  = regexp.MustCompile(`(?s)contentRow-snippet">(.*?)</div>`)
-	kknowTagRe      = regexp.MustCompile(`<[^>]*>`)
-	kknowNextRe     = regexp.MustCompile(`<link[^>]+rel="next"[^>]*href="([^"]+)"`)
-	kknowNextRe2    = regexp.MustCompile(`<link[^>]+href="([^"]+)"[^>]*rel="next"`)
-	kknowArticleRe  = regexp.MustCompile(`<article[^>]*data-content="(post-\d+)"`)
-	kknowCSRFHtmlRe = regexp.MustCompile(`<html[^>]*data-csrf="([^"]+)"`)
-	kknowCSRFFormRe = regexp.MustCompile(`name="_xfToken"[^>]*value="([^"]+)"`)
+	kknowPostRe   = regexp.MustCompile(`/post-(\d+)|/posts/(\d+)`)
+	kknowThreadRe = regexp.MustCompile(`/threads/[^/?#]*?\.?(\d+)(?:[/?#]|$)`)
 )
 
 func kknowHitKey(href string) string {
@@ -103,83 +91,76 @@ func kknowHitKey(href string) string {
 }
 
 // parseKknowHits reads the rows of a XenForo 2 search result page.
-func parseKknowHits(page string, base *url.URL) []kknowHit {
-	idx := kknowRowRe.FindAllStringIndex(page, -1)
+func parseKknowHits(doc *goquery.Document, base *url.URL) []kknowHit {
 	var hits []kknowHit
-	for i, loc := range idx {
-		end := len(page)
-		if i+1 < len(idx) {
-			end = idx[i+1][0]
+	doc.Find("li.block-row").Each(func(_ int, row *goquery.Selection) {
+		a := row.Find(".contentRow-title a[href]").Last()
+		href, ok := a.Attr("href")
+		if !ok {
+			return
 		}
-		row := page[loc[0]:end]
-		title := kknowTitleRe.FindStringSubmatch(row)
-		if title == nil {
-			continue
-		}
-		links := kknowHrefRe.FindAllStringSubmatch(title[1], -1)
-		if len(links) == 0 {
-			continue
-		}
-		href := strings.TrimSpace(html.UnescapeString(links[len(links)-1][1]))
+		href = strings.TrimSpace(href)
 		key := kknowHitKey(href)
 		if key == "" {
 			log.Printf("kknow: skipping a search result with an unrecognised link %q", href)
-			continue
+			return
 		}
 		ref, err := url.Parse(href)
 		if err != nil {
-			continue
+			return
 		}
-		hit := kknowHit{Key: key, URL: base.ResolveReference(ref).String()}
-		if m := kknowSnippetRe.FindStringSubmatch(row); m != nil {
-			hit.Snippet = html.UnescapeString(kknowTagRe.ReplaceAllString(m[1], " "))
-		}
-		if m := kknowTimeRe.FindStringSubmatch(row); m != nil {
-			if secs, err := strconv.ParseInt(m[1], 10, 64); err == nil {
+		hit := kknowHit{Key: key, URL: base.ResolveReference(ref).String(), Snippet: row.Find(".contentRow-snippet").Text()}
+		if t := row.Find("time[data-time]").First(); t.Length() > 0 {
+			if secs, err := strconv.ParseInt(t.AttrOr("data-time", ""), 10, 64); err == nil {
 				hit.Time = time.Unix(secs, 0).UTC()
 			}
 		}
 		hits = append(hits, hit)
-	}
+	})
 	return hits
 }
 
-func nextKknowPage(page string, base *url.URL) string {
-	m := kknowNextRe.FindStringSubmatch(page)
-	if m == nil {
-		m = kknowNextRe2.FindStringSubmatch(page)
-	}
-	if m == nil {
+func nextKknowPage(doc *goquery.Document, base *url.URL) string {
+	href, ok := doc.Find(`link[rel="next"]`).First().Attr("href")
+	if !ok {
 		return ""
 	}
-	ref, err := url.Parse(strings.TrimSpace(html.UnescapeString(m[1])))
+	ref, err := url.Parse(strings.TrimSpace(href))
 	if err != nil {
 		return ""
 	}
 	return base.ResolveReference(ref).String()
 }
 
-// kknowPost is the HTML of one post of a thread page.
+// kknowPost is one post of a thread page: the strings in which to look for pixiv links.
 type kknowPost struct {
-	Key  string // "post-93807"
-	HTML string
+	Key   string // "post-93807"
+	Cands []string
 }
 
-// splitKknowPosts cuts a thread page into its posts, in page order.
-func splitKknowPosts(page string) []kknowPost {
-	idx := kknowArticleRe.FindAllStringSubmatchIndex(page, -1)
-	posts := make([]kknowPost, 0, len(idx))
-	for i, loc := range idx {
-		end := len(page)
-		if i+1 < len(idx) {
-			end = idx[i+1][0]
+// parseKknowPosts reads the posts of a XenForo 2 thread page, in page order: the link targets
+// and the text of each post. Quotes are left out: they are somebody else's words.
+func parseKknowPosts(doc *goquery.Document) []kknowPost {
+	var posts []kknowPost
+	doc.Find(`article[data-content^="post-"]`).Each(func(_ int, art *goquery.Selection) {
+		body := art.Find(".message-body .bbWrapper").First()
+		if body.Length() == 0 {
+			return
 		}
-		posts = append(posts, kknowPost{Key: page[loc[2]:loc[3]], HTML: page[loc[0]:end]})
-	}
+		clone := body.Clone()
+		clone.Find("blockquote, .bbCodeBlock--quote").Remove()
+		clone.Find("br").ReplaceWithHtml("\n")
+		p := kknowPost{Key: art.AttrOr("data-content", "")}
+		clone.Find("a[href]").Each(func(_ int, a *goquery.Selection) {
+			p.Cands = append(p.Cands, strings.TrimSpace(a.AttrOr("href", "")))
+		})
+		p.Cands = append(p.Cands, clone.Text())
+		posts = append(posts, p)
+	})
 	return posts
 }
 
-// kknowPixivUsers lists the pixiv account ids in a piece of HTML (links and text). It also
+// kknowPixivUsers lists the pixiv account ids in a piece of text (links and text). It also
 // looks at the text with HTML entities and percent-escapes decoded, which covers links in a
 // redirect/proxy URL.
 func kknowPixivUsers(src string) []string {
@@ -246,18 +227,18 @@ func (c *kknowClient) wait(ctx context.Context) error {
 
 // do sends a request (GET, or a form POST) with a few retries on rate limits and outages and
 // returns the page and its final URL (after redirects).
-func (c *kknowClient) do(ctx context.Context, method, rawURL string, form url.Values) (string, *url.URL, error) {
+func (c *kknowClient) do(ctx context.Context, method, rawURL string, form url.Values) (*goquery.Document, *url.URL, error) {
 	var lastErr error
 	for attempt := 0; attempt < 3; attempt++ {
 		if attempt > 0 {
 			select {
 			case <-time.After(time.Duration(attempt*attempt) * 2 * time.Second):
 			case <-ctx.Done():
-				return "", nil, ctx.Err()
+				return nil, nil, ctx.Err()
 			}
 		}
 		if err := c.wait(ctx); err != nil {
-			return "", nil, err
+			return nil, nil, err
 		}
 		var body io.Reader
 		if form != nil {
@@ -265,7 +246,7 @@ func (c *kknowClient) do(ctx context.Context, method, rawURL string, form url.Va
 		}
 		req, err := http.NewRequestWithContext(ctx, method, rawURL, body)
 		if err != nil {
-			return "", nil, err
+			return nil, nil, err
 		}
 		req.Header.Set("User-Agent", kknowUserAgent)
 		req.Header.Set("Accept", "text/html,application/xhtml+xml")
@@ -279,7 +260,7 @@ func (c *kknowClient) do(ctx context.Context, method, rawURL string, form url.Va
 		res, err := c.http.Do(req)
 		if err != nil {
 			if ctx.Err() != nil {
-				return "", nil, ctx.Err()
+				return nil, nil, ctx.Err()
 			}
 			lastErr = err
 			continue
@@ -299,11 +280,15 @@ func (c *kknowClient) do(ctx context.Context, method, rawURL string, form url.Va
 			if res.StatusCode == http.StatusForbidden {
 				hint = " (blocked, or a login is needed: see " + kknowCookieEnv + ")"
 			}
-			return "", nil, fmt.Errorf("HTTP %d for %s%s", res.StatusCode, req.URL.Redacted(), hint)
+			return nil, nil, fmt.Errorf("HTTP %d for %s%s", res.StatusCode, req.URL.Redacted(), hint)
 		}
-		return string(data), res.Request.URL, nil
+		doc, err := goquery.NewDocumentFromReader(strings.NewReader(string(data)))
+		if err != nil {
+			return nil, nil, err
+		}
+		return doc, res.Request.URL, nil
 	}
-	return "", nil, fmt.Errorf("giving up on %s: %w", rawURL, lastErr)
+	return nil, nil, fmt.Errorf("giving up on %s: %w", rawURL, lastErr)
 }
 
 // parseKknowSearchURL takes the site, the query and the ordering out of a search URL as the
@@ -327,26 +312,24 @@ func parseKknowSearchURL(raw string) (site *url.URL, query, order string, err er
 // search runs a new forum search and returns its first result page. The "/search/<id>/" page
 // of the URL isn't reused: it belongs to the session that made it and expires. This is what the
 // forum's own search form does: fetch a CSRF token, POST the keywords, follow the redirect.
-func (c *kknowClient) search(ctx context.Context, site *url.URL, query, order string) (string, *url.URL, error) {
-	formPage, _, err := c.do(ctx, http.MethodGet, site.String()+"/search/", nil)
+func (c *kknowClient) search(ctx context.Context, site *url.URL, query, order string) (*goquery.Document, *url.URL, error) {
+	formDoc, _, err := c.do(ctx, http.MethodGet, site.String()+"/search/", nil)
 	if err != nil {
-		return "", nil, fmt.Errorf("could not open the search form: %w", err)
+		return nil, nil, fmt.Errorf("could not open the search form: %w", err)
 	}
-	token := ""
-	if m := kknowCSRFHtmlRe.FindStringSubmatch(formPage); m != nil {
-		token = m[1]
-	} else if m := kknowCSRFFormRe.FindStringSubmatch(formPage); m != nil {
-		token = m[1]
+	token := strings.TrimSpace(formDoc.Find("html").AttrOr("data-csrf", ""))
+	if token == "" {
+		token = strings.TrimSpace(formDoc.Find(`input[name="_xfToken"]`).First().AttrOr("value", ""))
 	}
 	form := url.Values{"keywords": {query}, "order": {order}}
 	if token != "" {
-		form.Set("_xfToken", html.UnescapeString(token))
+		form.Set("_xfToken", token)
 	}
-	page, final, err := c.do(ctx, http.MethodPost, site.String()+"/search/search", form)
+	doc, final, err := c.do(ctx, http.MethodPost, site.String()+"/search/search", form)
 	if err != nil {
-		return "", nil, fmt.Errorf("the search failed: %w", err)
+		return nil, nil, fmt.Errorf("the search failed: %w", err)
 	}
-	return page, final, nil
+	return doc, final, nil
 }
 
 // ---------------------------------------------------------------------------
@@ -440,28 +423,28 @@ func (a *App) runKknow(ctx context.Context, o kknowOptions) error {
 	}
 	log.Printf("kknow: %d new posts to read (reached the previous run's post: %v)", len(fresh), reached)
 
-	posts := map[string]string{} // post key -> HTML, for every post of every page opened
-	postHTML := func(h kknowHit) (string, error) {
+	posts := map[string][]string{} // post key -> strings to search, for every post of every page opened
+	postCands := func(h kknowHit) ([]string, error) {
 		if s, ok := posts[h.Key]; ok {
 			return s, nil
 		}
-		body, _, err := c.do(ctx, http.MethodGet, h.URL, nil)
+		doc, _, err := c.do(ctx, http.MethodGet, h.URL, nil)
 		if err != nil {
-			return "", err
+			return nil, err
 		}
-		list := splitKknowPosts(body)
+		list := parseKknowPosts(doc)
 		for _, p := range list { // the page holds more posts; later hits may need them
-			posts[p.Key] = p.HTML
+			posts[p.Key] = p.Cands
 		}
 		if s, ok := posts[h.Key]; ok {
 			return s, nil
 		}
 		if strings.HasPrefix(h.Key, "thread-") && len(list) > 0 {
-			posts[h.Key] = list[0].HTML // a thread result stands for its first post
-			return list[0].HTML, nil
+			posts[h.Key] = list[0].Cands // a thread result stands for its first post
+			return list[0].Cands, nil
 		}
 		log.Printf("kknow: post %s not found on its page; using the search snippet", h.Key)
-		return h.Snippet, nil
+		return []string{h.Snippet}, nil
 	}
 
 	added, failed := 0, 0
@@ -470,13 +453,13 @@ func (a *App) runKknow(ctx context.Context, o kknowOptions) error {
 			return ctx.Err()
 		}
 		h := fresh[i]
-		src, err := postHTML(h)
+		cands, err := postCands(h)
 		if err != nil {
 			log.Printf("kknow: could not read %s (%s): %v", h.Key, h.URL, err)
 			failed++
 			continue
 		}
-		for _, id := range kknowPixivUsers(src) {
+		for _, id := range kknowPixivUsers(strings.Join(cands, "\n")) {
 			if _, ok := a.kknow.Users[id]; ok {
 				continue
 			}

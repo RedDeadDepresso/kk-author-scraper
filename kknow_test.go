@@ -10,7 +10,18 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
+
+func kknowDoc(t *testing.T, page string) *goquery.Document {
+	t.Helper()
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(page))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return doc
+}
 
 // A search result row the way XenForo 2 writes it.
 func kknowRow(href string, ts int64, snippet string) string {
@@ -32,7 +43,7 @@ func TestKknowHelpers(t *testing.T) {
 		kknowRow("/threads/some-thread.77/post-901", 1700000100, "see <b>pixiv</b> &amp; more") +
 		kknowRow("/threads/other-thread.5/", 1700000000, "") +
 		`</ul></body></html>`
-	hits := parseKknowHits(page, base)
+	hits := parseKknowHits(kknowDoc(t, page), base)
 	if len(hits) != 2 || hits[0].Key != "post-901" || hits[1].Key != "thread-5" {
 		t.Fatalf("hits = %+v", hits)
 	}
@@ -42,20 +53,25 @@ func TestKknowHelpers(t *testing.T) {
 	if !strings.Contains(hits[0].Snippet, "pixiv") || strings.Contains(hits[0].Snippet, "<b>") || !strings.Contains(hits[0].Snippet, "&") {
 		t.Errorf("snippet = %q", hits[0].Snippet)
 	}
-	if n := nextKknowPage(page, base); n != "https://kknow.cc/search/1/?page=2&q=x&o=date" {
+	if n := nextKknowPage(kknowDoc(t, page), base); n != "https://kknow.cc/search/1/?page=2&q=x&o=date" {
 		t.Errorf("next = %q", n)
 	}
 
-	thread := kknowTestPost(11, "no link") + kknowTestPost(12, `<a href="https://www.pixiv.net/en/users/123">me</a> and pixiv.net/users/456`)
-	posts := splitKknowPosts(thread)
-	if len(posts) != 2 || posts[0].Key != "post-11" || posts[1].Key != "post-12" {
+	thread := kknowTestPost(11, "no link") + kknowTestPost(12, `<a href="https://www.pixiv.net/en/users/123">me</a> and pixiv.net/users/456`) +
+		kknowTestPost(13, `<blockquote class="bbCodeBlock bbCodeBlock--quote">quoting https://www.pixiv.net/users/999</blockquote>mine: https://www.pixiv.net/users/321`)
+	posts := parseKknowPosts(kknowDoc(t, thread))
+	if len(posts) != 3 || posts[0].Key != "post-11" || posts[1].Key != "post-12" || posts[2].Key != "post-13" {
 		t.Fatalf("posts = %+v", posts)
 	}
-	if ids := kknowPixivUsers(posts[0].HTML); len(ids) != 0 {
-		t.Errorf("post 11 ids = %v", ids)
+	ids := func(p kknowPost) []string { return kknowPixivUsers(strings.Join(p.Cands, "\n")) }
+	if got := ids(posts[0]); len(got) != 0 {
+		t.Errorf("post 11 ids = %v", got)
 	}
-	if ids := kknowPixivUsers(posts[1].HTML); len(ids) != 2 || ids[0] != "123" || ids[1] != "456" {
-		t.Errorf("post 12 ids = %v", ids)
+	if got := ids(posts[1]); len(got) != 2 || got[0] != "123" || got[1] != "456" {
+		t.Errorf("post 12 ids = %v", got)
+	}
+	if got := ids(posts[2]); len(got) != 1 || got[0] != "321" {
+		t.Errorf("a link in a quote must be ignored, post 13 ids = %v", got)
 	}
 	// a link in a redirect URL, and an old-style member link
 	if ids := kknowPixivUsers(`href="https://x.com/?u=https%3A%2F%2Fwww.pixiv.net%2Fusers%2F789" https://www.pixiv.net/member.php?id=55`); len(ids) != 2 {
