@@ -1,6 +1,6 @@
 {
   "newest_post": "145000175",
-  "updated_at": "2026-11-23T21:01:54Z",
+  "updated_at": "2026-11-23T21:43:02Z",
   "posts": {
     "100103318": {
       "pixiv_id": "100103318",
@@ -43603,6 +43603,9 @@
       "pixiv_user_urls": [
         "https://www.pixiv.net/users/27248085"
       ],
+      "creator_links": [
+        "https://www.patreon.com/user?u=50498371"
+      ],
       "bepis": [
         {
           "name": "Ldki",
@@ -43616,7 +43619,7 @@
         "url": "https://pawchive.pw/patreon/user/50498371",
         "name": "Ldki",
         "favorited": 650,
-        "match": "name",
+        "match": "link",
         "candidates": [
           {
             "service": "patreon",
@@ -43624,7 +43627,7 @@
             "url": "https://pawchive.pw/patreon/user/50498371",
             "name": "Ldki",
             "favorited": 650,
-            "match": "name"
+            "match": "link"
           },
           {
             "service": "fanbox",
@@ -52929,7 +52932,7 @@
         "url": "https://pawchive.pw/patreon/user/50498371",
         "name": "Ldki",
         "favorited": 650,
-        "match": "name",
+        "match": "link",
         "candidates": [
           {
             "service": "patreon",
@@ -52937,7 +52940,7 @@
             "url": "https://pawchive.pw/patreon/user/50498371",
             "name": "Ldki",
             "favorited": 650,
-            "match": "name"
+            "match": "link"
           },
           {
             "service": "fanbox",

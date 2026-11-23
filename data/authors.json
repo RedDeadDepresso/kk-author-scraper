@@ -773,24 +773,6 @@
     }
   },
   {
-    "name": "nama",
-    "telegram": [],
-    "alias": [],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": true,
-    "favorited": 2371,
-    "icon": "https://pawchive.pw/icons/patreon/82639381",
-    "banner": "https://pawchive.pw/banners/patreon/82639381",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/351010",
-      "download": "",
-      "pawchive": "https://pawchive.pw/patreon/user/82639381",
-      "bepis": "",
-      "koikatsucards": ""
-    }
-  },
-  {
     "name": "ABCEEFG",
     "telegram": [
       "#ABCEEFG"
@@ -3056,6 +3038,24 @@
       "pawchive": "https://pawchive.pw/patreon/user/50498371",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Ldki",
       "koikatsucards": "https://koikatsucards.com/search?author=author-ldki"
+    }
+  },
+  {
+    "name": "Ldki",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 650,
+    "icon": "https://pawchive.pw/icons/patreon/50498371",
+    "banner": "https://pawchive.pw/banners/patreon/50498371",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/70878790",
+      "download": "",
+      "pawchive": "https://pawchive.pw/patreon/user/50498371",
+      "bepis": "",
+      "koikatsucards": ""
     }
   },
   {
@@ -8333,10 +8333,10 @@
     "isRecommended": false,
     "makesScenes": false,
     "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2024/04/25/04/06/39/25805264_c37fcdb46c143aa228f05e6a5bf7440e_170.jpg",
+    "icon": "https://i.pximg.net/user-profile/img/2025/10/25/09/45/24/28057135_59d7da23a2adc1a46c49073794d8808c_170.jpg",
     "banner": "",
     "links": {
-      "pixiv": "https://www.pixiv.net/users/28009976",
+      "pixiv": "https://www.pixiv.net/users/85020547",
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Eros",
@@ -91289,6 +91289,24 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Nam",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "nama",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": true,
+    "favorited": 0,
+    "icon": "https://i.pximg.net/user-profile/img/2024/08/18/22/09/54/26255932_173262f769d9e8f8e3fd4975de7c32dc_170.png",
+    "banner": "",
+    "links": {
+      "pixiv": "https://www.pixiv.net/users/351010",
+      "download": "",
+      "pawchive": "",
+      "bepis": "",
       "koikatsucards": ""
     }
   },
