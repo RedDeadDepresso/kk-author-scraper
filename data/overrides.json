@@ -39,10 +39,12 @@
     "telegram": "よーぐると"
   },
   "Emi": {
-    "telegram": "Emilia"
+    "telegram": "Emilia",
+    "pawchive": "https://pawchive.pw/fanbox/user/37160603"
   },
   "Yata": {
-    "telegram": "Kapitalismus"
+    "telegram": "Kapitalismus",
+    "pawchive": ""
   },
   "Newbie": {
     "telegram": "mmmmm"
@@ -69,14 +71,84 @@
     "telegram": "HMB"
   },
   "eLLine": {
-    "telegram": [
-      "greenskin",
-      "U"
-    ]
+    "telegram": ["greenskin", "U"]
   },
   "Hotline Istalo": {
-    "telegram": [
-      "kard"
-    ]
+    "telegram": ["kard"]
+  },
+  "Eros": {
+    "pawchive": ""
+  },
+  "Hotaru": {
+    "pawchive": "https://pawchive.pw/fanbox/user/66707615"
+  },
+  "Light": {
+    "pawchive": ""
+  },
+  "dabada": {
+    "pawchive": ""
+  },
+  "Saul Goodman": {
+    "pawchive": ""
+  },
+  "Mochi~": {
+    "pawchive": ""
+  },
+  "kok": {
+    "pawchive": ""
+  },
+  "Regulus": {
+    "pawchive": ""
+  },
+  "KEI": {
+    "pawchive": ""
+  },
+  "shine": {
+    "pawchive": ""
+  },
+  "KID": {
+    "pawchive": ""
+  },
+  "nanasi": {
+    "pawchive": ""
+  },
+  "egg": {
+    "pawchive": ""
+  },
+  "Mr. K": {
+    "pawchive": ""
+  },
+  "LEE": {
+    "pawchive": ""
+  },
+  "Riri": {
+    "pawchive": ""
+  },
+  "nyo": {
+    "pawchive": ""
+  },
+  "Misaki": {
+    "pawchive": ""
+  },
+  "Kar": {
+    "pawchive": ""
+  },
+  "Ham": {
+    "pawchive": ""
+  },
+  "TOSHI": {
+    "pawchive": ""
+  },
+  "黒ラット": {
+    "pawchive": ""
+  },
+  "BONO": {
+    "pawchive": ""
+  },
+  "ええ": {
+    "pawchive": ""
+  },
+  "Bimo": {
+    "pawchive": ""
   }
 }
