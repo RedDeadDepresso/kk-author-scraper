@@ -16,6 +16,21 @@ type fileAuthor struct {
 	Alias []string
 	Links []string
 	prev  *AuthorRow // the row as stored in the file
+	// synthetic marks an entry made up from a kknow.cc pixiv profile (not a line of the file).
+	// A real entry always wins over a synthetic one with the same name or alias, so that a
+	// stranger's pixiv profile called "Eros" cannot take over the entry of "ErosEnro".
+	synthetic bool
+}
+
+// pick keeps the entries of a match list that are synthetic (or real).
+func pick(list []*fileAuthor, synthetic bool) []*fileAuthor {
+	var out []*fileAuthor
+	for _, e := range list {
+		if e.synthetic == synthetic {
+			out = append(out, e)
+		}
+	}
+	return out
 }
 
 // accountLinks turns a stored row into the pixiv / fanbox / patreon links the matching code
@@ -108,24 +123,23 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 // ambiguous and entry is nil, so callers fall back to the pixiv API.
 func (ix *authorIndex) find(name string) (entry *fileAuthor, ambiguous bool) {
 	key := normName(name)
-	if key == "" {
-		switch matches := ix.byExact[strings.TrimSpace(name)]; len(matches) {
-		case 1:
-			return matches[0], false
-		case 0:
-			return nil, false
-		default:
-			return nil, true
+	// real entries (both tiers) are tried before the synthetic ones made from kknow profiles
+	for _, synthetic := range []bool{false, true} {
+		var tiers []map[string][]*fileAuthor
+		if key == "" {
+			tiers = []map[string][]*fileAuthor{{"": ix.byExact[strings.TrimSpace(name)]}}
+		} else {
+			tiers = []map[string][]*fileAuthor{ix.byName, ix.byAlias}
 		}
-	}
-	for _, tier := range []map[string][]*fileAuthor{ix.byName, ix.byAlias} {
-		switch matches := tier[key]; len(matches) {
-		case 0:
-			continue
-		case 1:
-			return matches[0], false
-		default:
-			return nil, true
+		for _, tier := range tiers {
+			switch matches := pick(tier[key], synthetic); len(matches) {
+			case 0:
+				continue
+			case 1:
+				return matches[0], false
+			default:
+				return nil, true
+			}
 		}
 	}
 	return nil, false
@@ -135,12 +149,17 @@ func (ix *authorIndex) find(name string) (entry *fileAuthor, ambiguous bool) {
 // can tell which entries a name touches even when the match is ambiguous.
 func (ix *authorIndex) findAll(name string) []*fileAuthor {
 	key := normName(name)
-	if key == "" {
-		return ix.byExact[strings.TrimSpace(name)]
-	}
-	for _, tier := range []map[string][]*fileAuthor{ix.byName, ix.byAlias} {
-		if matches := tier[key]; len(matches) > 0 {
-			return matches
+	for _, synthetic := range []bool{false, true} {
+		var tiers []map[string][]*fileAuthor
+		if key == "" {
+			tiers = []map[string][]*fileAuthor{{"": ix.byExact[strings.TrimSpace(name)]}}
+		} else {
+			tiers = []map[string][]*fileAuthor{ix.byName, ix.byAlias}
+		}
+		for _, tier := range tiers {
+			if matches := pick(tier[key], synthetic); len(matches) > 0 {
+				return matches
+			}
 		}
 	}
 	return nil

@@ -249,3 +249,63 @@ func TestBuildAuthorRowsKeepsFileAliasesAndMergesPlaceholderNames(t *testing.T) 
 		t.Fatalf("placeholder-name duplicates must merge into one row: %+v", dot)
 	}
 }
+
+// Regression: a kknow.cc pixiv profile that is merely called "Eros" must not take over the
+// authors.json entry "ErosEnro" (alias "Eros") of the koikatsucards author "Eros".
+func TestKknowEntryDoesNotTakeOverRealEntry(t *testing.T) {
+	a := authorsApp(t)
+	m := a.mapping
+
+	a.fileIdx = newAuthorIndex()
+	real := &fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/28009976"}}
+	a.fileIdx.add(real)
+	a.fileIdx.add(&fileAuthor{Name: "Eros", Links: []string{pixivBase + "/users/85020547"}, synthetic: true})
+
+	if e, amb := a.fileIdx.find("Eros"); e != real || amb {
+		t.Fatalf("find(Eros) = %+v ambiguous=%v, want the real ErosEnro entry", e, amb)
+	}
+	if got := a.fileIdx.findAll("Eros"); len(got) != 1 || got[0] != real {
+		t.Fatalf("findAll(Eros) = %+v", got)
+	}
+	// a name only the synthetic entry has is still found
+	a.fileIdx.add(&fileAuthor{Name: "OnlyKknow", synthetic: true})
+	if e, _ := a.fileIdx.find("onlykknow"); e == nil || !e.synthetic {
+		t.Fatalf("synthetic entry not found: %+v", e)
+	}
+
+	m.Authors["author-eros"] = &Author{
+		Name: "Eros", Slug: "author-eros", KoikatsuURL: authorURL("author-eros"),
+		PixivUserIDs: []string{"28009976"},
+		Pawchive:     &PawchiveMatch{Service: "fanbox", ID: "28009976", URL: "https://pawchive.pw/fanbox/user/28009976", Favorited: 23023},
+	}
+	m.PixivUsers["28009976"] = &PixivUser{ID: "28009976", URL: pixivBase + "/users/28009976"}
+
+	ms, keys, err := parseNames([]byte(`{"Eros--ErosEnro_2026": "ErosEnro"}`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	src := buildSources([]DownloadLink{{Text: "Eros--ErosEnro", URL: "https://buzzheavier.com/58by93o53s8u", Crown: true}}, ms, keys)
+
+	rows := a.buildAuthorRows(context.Background(), src, false)
+	var kc, other *AuthorRow
+	for i := range rows {
+		switch {
+		case rows[i].Links.Koikatsucards == authorURL("author-eros"):
+			kc = &rows[i]
+		case rows[i].Links.Pixiv == pixivBase+"/users/85020547":
+			other = &rows[i]
+		}
+	}
+	if kc == nil {
+		t.Fatalf("no koikatsucards row for Eros: %+v", rows)
+	}
+	if kc.Name != "ErosEnro" || strings.Join(kc.Alias, ",") != "Eros" {
+		t.Errorf("name=%q alias=%v, want ErosEnro / [Eros]", kc.Name, kc.Alias)
+	}
+	if !kc.IsRecommended || !kc.MakesScenes || kc.Links.Download != "https://buzzheavier.com/58by93o53s8u" {
+		t.Errorf("scene data lost: %+v", kc)
+	}
+	if other == nil || other.Name != "Eros" || other.Links.Koikatsucards != "" {
+		t.Errorf("the unrelated kknow account should be its own row: %+v", other)
+	}
+}

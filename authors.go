@@ -528,6 +528,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 	// authors.json entries that already have a row (matched by name/alias or by pixiv account)
 	usedEntries := map[*fileAuthor]bool{}
 	knownPixiv := map[string]bool{}
+	pixivRow := map[string]int{} // pixiv account -> index of the koikatsucards row that has it
 	markUsed := func(name string) {
 		if a.fileIdx != nil {
 			for _, e := range a.fileIdx.findAll(name) {
@@ -547,6 +548,9 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		markUsed(au.Name)
 		for _, id := range au.PixivUserIDs {
 			knownPixiv[id] = true
+			if _, dup := pixivRow[id]; !dup {
+				pixivRow[id] = len(rows) // the row built below
+			}
 		}
 		var entry *fileAuthor
 		if a.fileIdx != nil {
@@ -746,13 +750,37 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 				continue
 			}
 			ids, _ := pixivRefs(e.Links) // artwork links would need a pixiv API call per entry: skipped
-			shared := false
+			sharedRow := -1
 			for _, id := range ids {
 				if knownPixiv[id] {
-					shared = true
+					if i, ok := pixivRow[id]; ok {
+						sharedRow = i
+					} else if sharedRow < 0 {
+						sharedRow = len(rows) // known account without a row of its own: skip below
+					}
 				}
 			}
-			if shared {
+			if sharedRow >= 0 {
+				// same pixiv account as a koikatsucards row: nothing is added as a row, but the
+				// entry's name and aliases are kept as aliases of that row, and its scene data
+				// (names.json / archive) is used when the row has none
+				if sharedRow < len(rows) {
+					r := &rows[sharedRow]
+					as := newAliasSet(r.Name)
+					for _, al := range r.Alias {
+						as.add(al)
+					}
+					as.add(e.Name)
+					for _, al := range e.Alias {
+						as.add(al)
+					}
+					r.Alias = as.list
+					ms, dl, ok := src.find(append([]string{e.Name}, e.Alias...)...)
+					r.MakesScenes = r.MakesScenes || ms
+					if ok && r.Links.Download == "" {
+						r.Links.Download, r.IsRecommended = dl.URL, dl.Crown
+					}
+				}
 				continue
 			}
 			row := AuthorRow{Name: e.Name, Alias: []string{}, Series: []string{}}

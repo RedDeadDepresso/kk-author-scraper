@@ -527,7 +527,7 @@ func (a *App) addKknowAuthors() int {
 		if a.fileIdx == nil {
 			a.fileIdx = newAuthorIndex()
 		}
-		a.fileIdx.add(&fileAuthor{Name: name, Links: []string{pixivBase + "/users/" + id}})
+		a.fileIdx.add(&fileAuthor{Name: name, Links: []string{pixivBase + "/users/" + id}, synthetic: true})
 		a.fileIdx.count++
 		have[id] = true
 		added++
