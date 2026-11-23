@@ -477,6 +477,26 @@ func (m *Mapping) bepisURL(name string) string {
 	return bepisAuthorURL(name)
 }
 
+// rowHasName reports whether name is the name or one of the aliases of the row, compared by
+// normalized name (exact text for names without letters or digits).
+func rowHasName(r *AuthorRow, name string) bool {
+	same := func(a, b string) bool {
+		if k := normName(a); k != "" {
+			return k == normName(b)
+		}
+		return strings.TrimSpace(a) != "" && strings.TrimSpace(a) == strings.TrimSpace(b)
+	}
+	if same(name, r.Name) {
+		return true
+	}
+	for _, al := range r.Alias {
+		if same(name, al) {
+			return true
+		}
+	}
+	return false
+}
+
 // buildAuthorRows creates one row per koikatsucards author, one per bepis author that
 // is not linked to a koikatsucards author (case variants are merged), and one per
 // authors.json entry that matched neither.
@@ -754,7 +774,12 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			for _, id := range ids {
 				if knownPixiv[id] {
 					if i, ok := pixivRow[id]; ok {
-						sharedRow = i
+						// a shared pixiv account alone is not enough: the entry's own name must
+						// also be the name or an alias of that row, otherwise it is a different
+						// author who happens to use the same account and keeps its own row
+						if rowHasName(&rows[i], e.Name) {
+							sharedRow = i
+						}
 					} else if sharedRow < 0 {
 						sharedRow = len(rows) // known account without a row of its own: skip below
 					}
