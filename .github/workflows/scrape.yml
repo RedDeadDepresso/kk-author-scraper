@@ -2,8 +2,8 @@ name: Scrape authors
 
 on:
   schedule:
-    # Runs at 03:00 UTC every day. Adjust to taste.
-    - cron: "0 3 * * *"
+    # Runs at 01:00 UTC every day. Adjust to taste.
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 permissions:
