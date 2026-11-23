@@ -423,10 +423,20 @@ func (s *aliasSet) add(v string) {
 	s.list = append(s.list, v)
 }
 
-// primaryPixiv picks the account to show for an author: the one matching its
+// primaryPixiv picks the account to show for an author (claimed: accounts of other authors.json
+// entries, which are passed over unless every account is claimed): the one matching its
 // pawchive fanbox id, else the one with the most koikatsucards posts.
-func (m *Mapping) primaryPixiv(au *Author, postCounts map[string]int) string {
-	ids := append([]string(nil), au.PixivUserIDs...)
+func (m *Mapping) primaryPixiv(au *Author, postCounts map[string]int, claimed map[string]bool) string {
+	// accounts that another authors.json entry claims are only shown when nothing else is left
+	ids := make([]string, 0, len(au.PixivUserIDs))
+	for _, id := range au.PixivUserIDs {
+		if !claimed[id] {
+			ids = append(ids, id)
+		}
+	}
+	if len(ids) == 0 {
+		ids = append(ids, au.PixivUserIDs...)
+	}
 	if len(ids) == 0 {
 		return ""
 	}
@@ -605,7 +615,19 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		if names := m.bepisByCards(bepisNames); len(names) > 0 {
 			row.Links.Bepis = m.bepisURL(names[0])
 		}
-		row.Links.Pixiv = m.primaryPixiv(au, postCounts)
+		claimed := map[string]bool{}
+		if a.fileIdx != nil {
+			for _, o := range a.fileIdx.entries {
+				if o == entry || o.synthetic {
+					continue
+				}
+				ids, _ := pixivRefs(o.Links)
+				for _, id := range ids {
+					claimed[id] = true
+				}
+			}
+		}
+		row.Links.Pixiv = m.primaryPixiv(au, postCounts, claimed)
 
 		makesScenes, dl, ok := src.find(lookupNames...)
 		row.MakesScenes = makesScenes

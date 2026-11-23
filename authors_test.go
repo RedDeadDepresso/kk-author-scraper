@@ -353,3 +353,38 @@ func TestSharedPixivAccountNeedsNameMatch(t *testing.T) {
 		t.Errorf("Eros row must not take ErosEnro as an alias: %v", by["Eros"].Alias)
 	}
 }
+
+// The pixiv account shown for a koikatsucards author is not one that another authors.json
+// entry claims: Eros owns 28009976 and 85020547, but 28009976 belongs to ErosEnro.
+func TestPrimaryPixivSkipsAccountOfOtherEntry(t *testing.T) {
+	a := authorsApp(t)
+	m := a.mapping
+	a.fileIdx = newAuthorIndex()
+	a.fileIdx.add(&fileAuthor{Name: "Eros", Links: []string{pixivBase + "/users/85020547"}})
+	a.fileIdx.add(&fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/28009976"}})
+	m.Authors["author-eros"] = &Author{
+		Name: "Eros", Slug: "author-eros", KoikatsuURL: authorURL("author-eros"),
+		PixivUserIDs: []string{"28009976", "85020547"},
+	}
+	m.Posts["p"] = &Post{PixivID: "p", AuthorSlug: "author-eros", PixivUserID: "28009976"} // more posts, still skipped
+	m.PixivUsers["28009976"] = &PixivUser{ID: "28009976", URL: pixivBase + "/users/28009976"}
+	m.PixivUsers["85020547"] = &PixivUser{ID: "85020547", URL: pixivBase + "/users/85020547"}
+
+	for _, r := range a.buildAuthorRows(context.Background(), newSources(), false) {
+		if r.Links.Koikatsucards == authorURL("author-eros") && r.Links.Pixiv != pixivBase+"/users/85020547" {
+			t.Errorf("Eros row shows %s, want 85020547", r.Links.Pixiv)
+		}
+	}
+
+	// when every account is claimed by another entry the author still shows one
+	b := authorsApp(t)
+	b.fileIdx = newAuthorIndex()
+	b.fileIdx.add(&fileAuthor{Name: "Other", Links: []string{pixivBase + "/users/1"}})
+	b.mapping.Authors["author-solo"] = &Author{Name: "Solo", Slug: "author-solo", KoikatsuURL: authorURL("author-solo"), PixivUserIDs: []string{"1"}}
+	b.mapping.PixivUsers["1"] = &PixivUser{ID: "1", URL: pixivBase + "/users/1"}
+	for _, r := range b.buildAuthorRows(context.Background(), newSources(), false) {
+		if r.Links.Koikatsucards == authorURL("author-solo") && r.Links.Pixiv != pixivBase+"/users/1" {
+			t.Errorf("fallback: row shows %q", r.Links.Pixiv)
+		}
+	}
+}
