@@ -47,6 +47,41 @@ type authorIndex struct {
 	count   int
 }
 
+func newAuthorIndex() *authorIndex {
+	return &authorIndex{
+		byName:  map[string][]*fileAuthor{},
+		byAlias: map[string][]*fileAuthor{},
+		byExact: map[string][]*fileAuthor{},
+	}
+}
+
+// add puts an entry in the index: by normalized name, and by normalized alias.
+func (ix *authorIndex) add(e *fileAuthor) {
+	ix.entries = append(ix.entries, e)
+	nameKey := normName(e.Name)
+	if nameKey != "" {
+		ix.byName[nameKey] = append(ix.byName[nameKey], e)
+	} else if n := strings.TrimSpace(e.Name); n != "" {
+		ix.byExact[n] = append(ix.byExact[n], e)
+	}
+	seen := map[string]bool{nameKey: true}
+	for _, al := range e.Alias {
+		k := normName(al)
+		if k == "" {
+			// an alias without letters or digits (":)") can only be found by its exact text
+			if t := strings.TrimSpace(al); t != "" && t != strings.TrimSpace(e.Name) {
+				ix.byExact[t] = append(ix.byExact[t], e)
+			}
+			continue
+		}
+		if seen[k] {
+			continue
+		}
+		seen[k] = true
+		ix.byAlias[k] = append(ix.byAlias[k], e)
+	}
+}
+
 func loadAuthorsFile(path string) (*authorIndex, error) {
 	b, err := os.ReadFile(path)
 	if err != nil {
@@ -59,38 +94,11 @@ func loadAuthorsFile(path string) (*authorIndex, error) {
 	if len(rows) == 0 {
 		return nil, errors.New("no authors in file")
 	}
-	ix := &authorIndex{
-		byName:  map[string][]*fileAuthor{},
-		byAlias: map[string][]*fileAuthor{},
-		byExact: map[string][]*fileAuthor{},
-		count:   len(rows),
-	}
+	ix := newAuthorIndex()
+	ix.count = len(rows)
 	for i := range rows {
 		r := &rows[i]
-		e := &fileAuthor{Name: r.Name, Alias: r.Alias, Links: r.accountLinks(), prev: r}
-		ix.entries = append(ix.entries, e)
-		nameKey := normName(e.Name)
-		if nameKey != "" {
-			ix.byName[nameKey] = append(ix.byName[nameKey], e)
-		} else if n := strings.TrimSpace(e.Name); n != "" {
-			ix.byExact[n] = append(ix.byExact[n], e)
-		}
-		seen := map[string]bool{nameKey: true}
-		for _, al := range e.Alias {
-			k := normName(al)
-			if k == "" {
-				// an alias without letters or digits (":)") can only be found by its exact text
-				if t := strings.TrimSpace(al); t != "" && t != strings.TrimSpace(e.Name) {
-					ix.byExact[t] = append(ix.byExact[t], e)
-				}
-				continue
-			}
-			if seen[k] {
-				continue
-			}
-			seen[k] = true
-			ix.byAlias[k] = append(ix.byAlias[k], e)
-		}
+		ix.add(&fileAuthor{Name: r.Name, Alias: r.Alias, Links: r.accountLinks(), prev: r})
 	}
 	return ix, nil
 }

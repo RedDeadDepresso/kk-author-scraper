@@ -257,6 +257,8 @@ type App struct {
 	mappingPath string
 	authorPath  string
 	pixivPath   string
+	kknowPath   string
+	kknow       *KknowCache // pixiv accounts found on kknow.cc
 
 	rateLimitHits int
 	oncePerAuthor bool
@@ -344,6 +346,7 @@ func (a *App) saveAll() error {
 		saveJSON(a.authorPath, a.authorCache),
 		saveJSON(a.pixivPath, a.pixivCache),
 		saveJSON(a.profilePath, a.profileCache),
+		a.saveKknow(),
 	)
 }
 
@@ -774,6 +777,10 @@ func run() (err error) {
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
 	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <data>/telegram_tags.txt)")
 	tgOverrides := flag.String("telegram-overrides", "", `JSON {"author name": "hashtag"} (default <data>/telegram_overrides.json)`)
+	kknowURL := flag.String("kknow-search", kknowSearchURL, "kknow.cc search whose posts are read for pixiv user links (only its query and ordering are used)")
+	kknowPages := flag.Int("kknow-max-pages", 30, "most result pages read per kknow.cc search")
+	kknowDelay := flag.Duration("kknow-delay", 1500*time.Millisecond, "pause between requests to kknow.cc")
+	noKknow := flag.Bool("no-kknow", false, "skip searching kknow.cc for pixiv accounts")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	flag.Parse()
@@ -810,6 +817,8 @@ func run() (err error) {
 		authorPath:    filepath.Join(*cacheDir, "authors.json"),
 		pixivPath:     filepath.Join(*cacheDir, "pixiv", "posts.json"),
 		profilePath:   filepath.Join(*cacheDir, "pixiv", "profiles.json"),
+		kknowPath:     filepath.Join(*cacheDir, "pixiv", "kknow.json"),
+		kknow:         &KknowCache{},
 	}
 	if a.session == "" {
 		log.Println("warning: PIXIV_PHPSESSID not set; restricted works will be unavailable")
@@ -819,6 +828,7 @@ func run() (err error) {
 		loadJSON(a.authorPath, &a.authorCache),
 		loadJSON(a.pixivPath, &a.pixivCache),
 		loadJSON(a.profilePath, &a.profileCache),
+		loadJSON(a.kknowPath, a.kknow),
 	); err != nil {
 		return fmt.Errorf("loading state: %w", err)
 	}
@@ -929,8 +939,22 @@ pages:
 	if completed && newest != "" {
 		a.mapping.NewestPost = newest
 	}
+	// Pixiv accounts mentioned on kknow.cc get their profile read too (they are found before
+	// the profiles are read). A failure only warns, and the accounts found so far are kept.
+	if !*noKknow && ctx.Err() == nil {
+		if err := a.runKknow(ctx, kknowOptions{SearchURL: *kknowURL, MaxPages: max(1, *kknowPages), Delay: *kknowDelay, Full: *full}); err != nil {
+			log.Printf("warning: kknow step failed: %v", err)
+		}
+	}
 	if *pixivLinks && ctx.Err() == nil {
 		a.runPixivLinks(ctx, *pixivLinksAge, *pixivLinksMax)
+	}
+	// The accounts found on kknow.cc, whose profile is known now, become authors.json entries
+	// before the pawchive and bepis matching, which use that list.
+	if !*noKknow {
+		if n := a.addKknowAuthors(); n > 0 {
+			log.Printf("kknow: %d pixiv accounts added to the authors list", n)
+		}
 	}
 	// Pawchive matching is recomputed over the whole mapping every run
 	// (favorited counts change), so it also covers posts from earlier runs.
@@ -995,4 +1019,15 @@ func main() {
 		}
 		log.Fatal(err)
 	}
+}
+
+// saveKknow writes cache/pixiv/kknow.json (nothing when the step never ran).
+func (a *App) saveKknow() error {
+	if a.kknow == nil || a.kknowPath == "" {
+		return nil
+	}
+	if a.kknow.Users == nil {
+		a.kknow.Users = map[string]kknowUser{}
+	}
+	return saveJSON(a.kknowPath, a.kknow)
 }

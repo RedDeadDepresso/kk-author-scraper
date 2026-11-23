@@ -152,9 +152,9 @@ func (m *Mapping) profileLinkURLs(ids []string) []string {
 	return out
 }
 
-// profileAccounts lists every pixiv account to read: those of the mapping and those of the
-// authors file, with or without a pawchive match.
-func (a *App) profileAccounts() []string {
+// corePixivAccounts lists the pixiv accounts of the mapping and of the authors file, with or
+// without a pawchive match.
+func (a *App) corePixivAccounts() map[string]bool {
 	set := map[string]bool{}
 	for id := range a.mapping.PixivUsers {
 		set[id] = true
@@ -166,6 +166,17 @@ func (a *App) profileAccounts() []string {
 				set[id] = true
 			}
 		}
+	}
+	return set
+}
+
+// profileAccounts lists every pixiv account to read: the core accounts plus those found on
+// kknow.cc (their profile goes to the profile cache, which kk-mod-scraper reads; the mapping only
+// gets it once the account has an entry in the authors list, see addKknowAuthors).
+func (a *App) profileAccounts() []string {
+	set := a.corePixivAccounts()
+	for _, id := range a.kknowAccounts() {
+		set[id] = true
 	}
 	ids := make([]string, 0, len(set))
 	for id := range set {
@@ -187,6 +198,7 @@ func (a *App) runPixivLinks(ctx context.Context, maxAge time.Duration, limit int
 		a.mapping.PixivProfiles = map[string]*PixivProfile{}
 	}
 	ids := a.profileAccounts()
+	core := a.corePixivAccounts()
 	fetched, withLinks, withCreator := 0, 0, 0
 	for _, id := range ids {
 		if ctx.Err() != nil {
@@ -224,7 +236,9 @@ func (a *App) runPixivLinks(ctx context.Context, maxAge time.Duration, limit int
 		if !e.Available && e.Error != "no profile image" {
 			pp.Error = e.Error
 		}
-		a.mapping.PixivProfiles[id] = pp
+		if core[id] {
+			a.mapping.PixivProfiles[id] = pp
+		}
 		if len(e.Links) > 0 {
 			withLinks++
 		}

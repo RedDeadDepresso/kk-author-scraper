@@ -694,7 +694,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			aliases.add(n)
 		}
 		if a.fileIdx != nil { // keep what the file already has for this author: names, aliases, pixiv account
-			var ids []string
+			var ids, entryLinks []string
 			for _, n := range names {
 				for _, e := range a.fileIdx.findAll(n) {
 					aliases.add(e.Name)
@@ -703,11 +703,31 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 					}
 					u, _ := pixivRefs(e.Links)
 					ids = append(ids, u...)
+					entryLinks = append(entryLinks, e.Links...)
 				}
 			}
 			if len(ids) > 0 {
 				row.Links.Pixiv = pixivBase + "/users/" + ids[0]
 				row.Icon = icon(ids[0])
+				// the pixiv account also finds the pawchive creator (fanbox id, or a fanbox /
+				// patreon link on the profile), as for the rows made of an authors.json entry
+				if a.pawIdx != nil {
+					paw := a.pawIdx.resolve(ids, append([]string{rowName}, names...),
+						creatorHandles(append(append([]string{}, entryLinks...), m.profileLinkURLs(ids)...)))
+					if paw != nil {
+						if paw.Service == "fanbox" {
+							for _, id := range ids {
+								if id == paw.ID {
+									row.Links.Pixiv = pixivBase + "/users/" + id
+								}
+							}
+						}
+						row.Links.Pawchive = paw.URL
+						row.Favorited = paw.Favorited
+						row.Icon = pawchiveIcon(paw.Service, paw.ID)
+						row.Banner = pawchiveBanner(paw.Service, paw.ID)
+					}
+				}
 			}
 		}
 		row.Alias = aliases.list
