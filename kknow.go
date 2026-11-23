@@ -496,7 +496,9 @@ func (a *App) kknowAccounts() []string {
 // pawchive, bepis and telegram matching treat it like the entries of the file. An account that
 // is already in the file (by pixiv id) or that belongs to a koikatsucards author is skipped, and
 // so is one whose profile is unavailable or has no name: it is tried again once its profile
-// is read. Returns how many entries were added.
+// is read. An account whose profile name is the name or alias of a real entry that has no pixiv
+// account yet is added to that entry instead of getting a second one. Returns how many accounts
+// were added (to a new or an existing entry).
 func (a *App) addKknowAuthors() int {
 	ids := a.kknowAccounts()
 	if len(ids) == 0 {
@@ -527,20 +529,40 @@ func (a *App) addKknowAuthors() int {
 		if a.fileIdx == nil {
 			a.fileIdx = newAuthorIndex()
 		}
+		// a real entry with this name or alias and no pixiv account of its own is the same
+		// author (its pixiv link was never written down): the account joins that entry instead
+		// of becoming a second, same-named one. An ambiguous name, or an entry that already has
+		// a pixiv account, may be another author, so those still get an entry of their own.
+		if e, amb := a.fileIdx.find(name); e != nil && !amb && !e.synthetic {
+			if users, _ := pixivRefs(e.Links); len(users) == 0 {
+				e.Links = append(e.Links, pixivBase+"/users/"+id)
+				have[id] = true
+				added++
+				a.storeKknowProfile(id, pe)
+				continue
+			}
+		}
 		a.fileIdx.add(&fileAuthor{Name: name, Links: []string{pixivBase + "/users/" + id}, synthetic: true})
 		a.fileIdx.count++
 		have[id] = true
 		added++
-		if pe.Profile { // the links of the profile find the pawchive creator
-			if a.mapping.PixivProfiles == nil {
-				a.mapping.PixivProfiles = map[string]*PixivProfile{}
-			}
-			pp := &PixivProfile{Links: pe.Links, CheckedAt: pe.CheckedAt}
-			if pp.Links == nil {
-				pp.Links = []ProfileLink{}
-			}
-			a.mapping.PixivProfiles[id] = pp
-		}
+		a.storeKknowProfile(id, pe)
 	}
 	return added
+}
+
+// storeKknowProfile keeps the links of a pixiv profile in the mapping, where they find the
+// pawchive creator of the account.
+func (a *App) storeKknowProfile(id string, pe ProfileEntry) {
+	if !pe.Profile {
+		return
+	}
+	if a.mapping.PixivProfiles == nil {
+		a.mapping.PixivProfiles = map[string]*PixivProfile{}
+	}
+	pp := &PixivProfile{Links: pe.Links, CheckedAt: pe.CheckedAt}
+	if pp.Links == nil {
+		pp.Links = []ProfileLink{}
+	}
+	a.mapping.PixivProfiles[id] = pp
 }

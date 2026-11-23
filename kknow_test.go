@@ -297,3 +297,53 @@ func TestKknowAccountsBecomeAuthorRows(t *testing.T) {
 		t.Errorf("telegram = %+v", r)
 	}
 }
+
+// A pixiv profile called like an existing authors.json entry that has no pixiv account (BT1,
+// known by its patreon) joins that entry; an entry that already has another account does not
+// take it, and an ambiguous name gets its own entry.
+func TestAddKknowAuthorsJoinsEntryWithoutPixiv(t *testing.T) {
+	a := &App{
+		mapping: &Mapping{},
+		kknow: &KknowCache{Users: map[string]kknowUser{
+			"1": {Post: "p1"}, // BT1: joins the entry without a pixiv account
+			"2": {Post: "p2"}, // Eros: the entry already has another account
+		}},
+		profileCache: map[string]ProfileEntry{
+			"1": {Available: true, Name: "BT1", Profile: true, Links: []ProfileLink{{URL: "https://linktr.ee/bt1z"}}},
+			"2": {Available: true, Name: "Eros", Profile: true},
+		},
+	}
+	a.mapping.init()
+	a.fileIdx = newAuthorIndex()
+	bt1 := &fileAuthor{Name: "BT1", Alias: []string{"bt1z"}}
+	a.fileIdx.add(bt1)
+	a.fileIdx.add(&fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/9"}})
+
+	if n := a.addKknowAuthors(); n != 2 {
+		t.Fatalf("added %d, want 2", n)
+	}
+	if len(bt1.Links) != 1 || bt1.Links[0] != pixivBase+"/users/1" {
+		t.Errorf("BT1 did not get its pixiv account: %+v", bt1.Links)
+	}
+	if a.mapping.PixivProfiles["1"] == nil {
+		t.Error("profile links of the joined account must be kept")
+	}
+	count := 0
+	for _, e := range a.fileIdx.entries {
+		if e.Name == "BT1" {
+			count++
+		}
+	}
+	if count != 1 {
+		t.Errorf("%d BT1 entries, want 1", count)
+	}
+	var eros *fileAuthor
+	for _, e := range a.fileIdx.entries {
+		if e.synthetic && e.Name == "Eros" {
+			eros = e
+		}
+	}
+	if eros == nil {
+		t.Error("Eros has another account, so the new account keeps its own entry")
+	}
+}
