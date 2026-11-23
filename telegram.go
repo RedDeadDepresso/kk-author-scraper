@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"regexp"
 	"strings"
@@ -60,10 +59,10 @@ func parseHashtags(text string) []string {
 	return out
 }
 
-// loadTelegramTags reads a text file containing #hashtags (anything else in it is ignored)
-// and a JSON object {"author name": "hashtag"} or {"author name": ["hashtag", ...]}.
-// A missing file is not an error.
-func loadTelegramTags(tagsPath, overridesPath string) (*telegramTags, error) {
+// loadTelegramTags reads a text file containing #hashtags (anything else in it is ignored).
+// overrides are the manual hashtags by exact author name (see overrides.go; an empty list means
+// the author gets none). A missing tags file is not an error.
+func loadTelegramTags(tagsPath string, overrides map[string][]string) (*telegramTags, error) {
 	t := &telegramTags{byNorm: map[string]string{}, overrides: map[string][]string{}}
 	if b, err := os.ReadFile(tagsPath); err == nil {
 		for _, tag := range parseHashtags(string(b)) {
@@ -77,22 +76,8 @@ func loadTelegramTags(tagsPath, overridesPath string) (*telegramTags, error) {
 	} else if !os.IsNotExist(err) {
 		return nil, err
 	}
-	if b, err := os.ReadFile(overridesPath); err == nil {
-		raw := map[string]TagList{}
-		if err := json.Unmarshal(b, &raw); err != nil {
-			return nil, fmt.Errorf("%s: %w", overridesPath, err)
-		}
-		for name, tags := range raw {
-			list := []string{}
-			for _, tag := range tags {
-				if c := cleanHashtag(tag); c != "" {
-					list = append(list, c)
-				}
-			}
-			t.overrides[name] = list
-		}
-	} else if !os.IsNotExist(err) {
-		return nil, err
+	for name, tags := range overrides {
+		t.overrides[name] = tags
 	}
 	return t, nil
 }

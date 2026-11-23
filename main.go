@@ -778,11 +778,10 @@ func run() (err error) {
 	sourceMaxAge := flag.Duration("source-max-age", 24*time.Hour, "re-download names.json and the rentry page when older than this")
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
 	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <data>/telegram_tags.txt)")
-	tgOverrides := flag.String("telegram-overrides", "", `JSON {"author name": "hashtag"} (default <data>/telegram_overrides.json)`)
+	overridesPath := flag.String("overrides", "", `manual corrections by authors.json row name: {"name": {"telegram": ..., "pawchive": ...}} (default <data>/overrides.json)`)
 	kknowURL := flag.String("kknow-search", kknowSearchURL, "kknow.cc search whose posts are read for pixiv user links (only its query and ordering are used)")
 	kknowPages := flag.Int("kknow-max-pages", 30, "most result pages read per kknow.cc search")
 	kknowDelay := flag.Duration("kknow-delay", 1500*time.Millisecond, "pause between requests to kknow.cc")
-	pawOverridesPath := flag.String("pawchive-overrides", "", `JSON {"author name": "pawchive creator URL, or \"\" for none"} replacing the automatic pawchive match of an authors.json row (default <data>/pawchive_overrides.json)`)
 	noKknow := flag.Bool("no-kknow", false, "skip searching kknow.cc for pixiv accounts")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
@@ -843,21 +842,18 @@ func run() (err error) {
 	if *tgTags == "" {
 		*tgTags = filepath.Join(*dataDir, "telegram_tags.txt")
 	}
-	if *pawOverridesPath == "" {
-		*pawOverridesPath = filepath.Join(*dataDir, "pawchive_overrides.json")
+	if *overridesPath == "" {
+		*overridesPath = filepath.Join(*dataDir, "overrides.json")
 	}
-	if po, err := loadPawchiveOverrides(*pawOverridesPath); err != nil {
-		return fmt.Errorf("loading pawchive overrides: %w", err)
-	} else {
-		a.pawOverrides = po
-		if len(po) > 0 {
-			log.Printf("pawchive: %d manual overrides from %s", len(po), *pawOverridesPath)
-		}
+	ov, err := loadOverrides(*overridesPath)
+	if err != nil {
+		return fmt.Errorf("loading overrides: %w", err)
 	}
-	if *tgOverrides == "" {
-		*tgOverrides = filepath.Join(*dataDir, "telegram_overrides.json")
+	a.pawOverrides = ov.Pawchive
+	if n := ov.count(); n > 0 {
+		log.Printf("overrides: %d telegram, %d pawchive from %s", len(ov.Telegram), len(ov.Pawchive), *overridesPath)
 	}
-	if tt, err := loadTelegramTags(*tgTags, *tgOverrides); err != nil {
+	if tt, err := loadTelegramTags(*tgTags, ov.Telegram); err != nil {
 		return fmt.Errorf("loading telegram tags: %w", err)
 	} else if len(tt.byNorm) > 0 || len(tt.overrides) > 0 {
 		a.telegram = tt

@@ -26,8 +26,12 @@ func TestTelegramApply(t *testing.T) {
 	tags := filepath.Join(dir, "tags.txt")
 	ov := filepath.Join(dir, "ov.json")
 	os.WriteFile(tags, []byte("#Haku #As@hi #shared #kard #wrong"), 0o644)
-	os.WriteFile(ov, []byte(`{"Kardia": "#kard", "Wrongly": "", "Both": ["#Haku", "kard"]}`), 0o644)
-	tt, err := loadTelegramTags(tags, ov)
+	os.WriteFile(ov, []byte(`{"Kardia": {"telegram": "#kard"}, "Wrongly": {"telegram": ""}, "Both": {"telegram": ["#Haku", "kard"]}}`), 0o644)
+	o, err := loadOverrides(ov)
+	if err != nil {
+		t.Fatal(err)
+	}
+	tt, err := loadTelegramTags(tags, o.Telegram)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -67,7 +71,7 @@ func TestTelegramApply(t *testing.T) {
 }
 
 func TestTelegramMissingFiles(t *testing.T) {
-	tt, err := loadTelegramTags("/nonexistent/a.txt", "/nonexistent/b.json")
+	tt, err := loadTelegramTags("/nonexistent/a.txt", nil)
 	if err != nil || len(tt.byNorm) != 0 || len(tt.overrides) != 0 {
 		t.Fatalf("%v %+v", err, tt)
 	}
@@ -77,7 +81,7 @@ func TestTelegramAliasesAddExtraTags(t *testing.T) {
 	dir := t.TempDir()
 	tags := filepath.Join(dir, "tags.txt")
 	os.WriteFile(tags, []byte("#hatoko #Horai #Third"), 0o644)
-	tt, err := loadTelegramTags(tags, filepath.Join(dir, "none.json"))
+	tt, err := loadTelegramTags(tags, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

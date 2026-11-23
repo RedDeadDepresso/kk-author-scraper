@@ -1,30 +1,26 @@
 package main
 
-// Manual pawchive matches, for the authors where the automatic one is wrong. Like the telegram
-// overrides, data/pawchive_overrides.json is a JSON object keyed by the exact name of a row of
-// authors.json:
+// Manual pawchive matches, for the authors where the automatic one is wrong. They are the
+// "pawchive" field of data/overrides.json (see overrides.go), keyed by the exact name of a row
+// of authors.json:
 //
-//	{
-//	  "Some Author":   "https://pawchive.pw/fanbox/user/123456",
-//	  "Other Author":  "patreon/987654",
-//	  "Wrong Match":   ""
-//	}
+//	"Some Author":  { "pawchive": "https://pawchive.pw/fanbox/user/123456" }
+//	"Other Author": { "pawchive": "patreon/987654" }
+//	"Wrong Match":  { "pawchive": "" }
 //
 // A creator (a pawchive URL, or "<service>/<id>") replaces the automatic match, an empty value
 // removes it: the row then has no pawchive link, no favorited count and no pawchive icon or
 // banner (its icon is the pixiv one again). An override that names a creator the pawchive list
-// does not have is ignored with a warning. A missing file is not an error.
+// does not have is ignored with a warning.
 //
 // The overrides apply to authors.json (the row with that exact name) and to mapping.json (the
 // koikatsucards authors of that row, the pixiv accounts of its authors and entry, and through
 // them the posts and the lookup file), where the match then says "match": "override".
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/url"
-	"os"
 	"sort"
 	"strings"
 )
@@ -57,34 +53,16 @@ func parsePawchiveRef(s string) (service, id string, ok bool) {
 	return service, id, service != "" && id != ""
 }
 
-func loadPawchiveOverrides(path string) (pawchiveOverrides, error) {
-	out := pawchiveOverrides{}
-	b, err := os.ReadFile(path)
-	if os.IsNotExist(err) {
-		return out, nil
+// parsePawchiveOverride reads the "pawchive" value of an override: a creator, or "" for none.
+func parsePawchiveOverride(ref string) (pawchiveOverride, error) {
+	if strings.TrimSpace(ref) == "" {
+		return pawchiveOverride{None: true}, nil
 	}
-	if err != nil {
-		return nil, err
+	service, id, ok := parsePawchiveRef(ref)
+	if !ok {
+		return pawchiveOverride{}, fmt.Errorf("%q is not a pawchive creator (use a pawchive URL or \"service/id\", or \"\" for none)", ref)
 	}
-	if len(strings.TrimSpace(string(b))) == 0 {
-		return out, nil
-	}
-	raw := map[string]string{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return nil, fmt.Errorf("%s: %w", path, err)
-	}
-	for name, ref := range raw {
-		if strings.TrimSpace(ref) == "" {
-			out[name] = pawchiveOverride{None: true}
-			continue
-		}
-		service, id, ok := parsePawchiveRef(ref)
-		if !ok {
-			return nil, fmt.Errorf("%s: %q is not a pawchive creator (use a pawchive URL or \"service/id\", or \"\" for none)", path, ref)
-		}
-		out[name] = pawchiveOverride{Service: service, ID: id}
-	}
-	return out, nil
+	return pawchiveOverride{Service: service, ID: id}, nil
 }
 
 // overrideMatch is the pawchive match an override stands for; ok is false when the creator is

@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"os"
-	"path/filepath"
 	"testing"
 )
 
@@ -23,23 +21,6 @@ func TestParsePawchiveRef(t *testing.T) {
 		if _, _, ok := parsePawchiveRef(in); ok {
 			t.Errorf("%q should not parse", in)
 		}
-	}
-}
-
-func TestLoadPawchiveOverrides(t *testing.T) {
-	dir := t.TempDir()
-	if m, err := loadPawchiveOverrides(filepath.Join(dir, "none.json")); err != nil || len(m) != 0 {
-		t.Fatalf("a missing file must be empty: %v %v", m, err)
-	}
-	p := filepath.Join(dir, "o.json")
-	_ = os.WriteFile(p, []byte(`{"A":"https://pawchive.pw/fanbox/user/1","B":"","C":"patreon/2"}`), 0o644)
-	m, err := loadPawchiveOverrides(p)
-	if err != nil || len(m) != 3 || !m["B"].None || m["A"].Service != "fanbox" || m["C"].ID != "2" {
-		t.Fatalf("%+v %v", m, err)
-	}
-	_ = os.WriteFile(p, []byte(`{"A":"nonsense"}`), 0o644)
-	if _, err := loadPawchiveOverrides(p); err == nil {
-		t.Error("an invalid creator must be an error")
 	}
 }
 

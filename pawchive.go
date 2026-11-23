@@ -40,7 +40,7 @@ type PawchiveCandidate struct {
 	URL       string `json:"url"`
 	Name      string `json:"name"`
 	Favorited int    `json:"favorited"`
-	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json or on the pixiv profile), "name" or "override" (pawchive_overrides.json)
+	Match     string `json:"match"` // "id" (fanbox id == pixiv user id), "link" (fanbox/patreon link in authors.json or on the pixiv profile), "name" or "override" (overrides.json)
 }
 
 // PawchiveMatch is the chosen creator (highest favorited) plus every candidate considered.
@@ -303,7 +303,7 @@ func (m *Mapping) applyPawchive(creators []Creator) (authors, users int) {
 	return m.applyPawchiveWith(creators, nil, nil)
 }
 
-// applyPawchiveWith is applyPawchive with the manual overrides of pawchive_overrides.json (by
+// applyPawchiveWith is applyPawchive with the manual overrides of overrides.json (by
 // authors.json row name; fileIdx tells the row name of an author and the accounts of an
 // entry). An override replaces the automatic match of the authors and pixiv accounts of its
 // row, or removes it, so mapping.json, the posts and the lookup file agree with authors.json.
