@@ -9043,11 +9043,15 @@
     }
   },
   {
-    "name": "Yata",
+    "name": "Yata'Ryhna",
     "telegram": [
       "#Kapitalismus"
     ],
     "alias": [
+      "Yata’Ryhna",
+      "Yata69335476",
+      "Yata_Durian",
+      "yatadurian",
       "Kapitalismus",
       "Durian Sky Land"
     ],
@@ -9061,7 +9065,7 @@
       "pixiv": "https://www.pixiv.net/users/15441282",
       "download": "",
       "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yata",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yata%27Ryhna",
       "koikatsucards": ""
     }
   },
@@ -11985,29 +11989,6 @@
       "pawchive": "",
       "bepis": "",
       "koikatsucards": "https://koikatsucards.com/search?author=author-yang-liu"
-    }
-  },
-  {
-    "name": "Yata'Ryhna",
-    "telegram": [],
-    "alias": [
-      "Yata’Ryhna",
-      "Yata69335476",
-      "Yata_Durian",
-      "yatadurian"
-    ],
-    "series": [],
-    "isRecommended": false,
-    "makesScenes": false,
-    "favorited": 0,
-    "icon": "https://i.pximg.net/user-profile/img/2022/08/17/18/38/51/23201680_3ed321494748f93c38fb7154b5894902_170.jpg",
-    "banner": "",
-    "links": {
-      "pixiv": "https://www.pixiv.net/users/15441282",
-      "download": "",
-      "pawchive": "",
-      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yata%27Ryhna",
-      "koikatsucards": ""
     }
   },
   {
@@ -136602,6 +136583,24 @@
       "download": "",
       "pawchive": "",
       "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yasume",
+      "koikatsucards": ""
+    }
+  },
+  {
+    "name": "Yata",
+    "telegram": [],
+    "alias": [],
+    "series": [],
+    "isRecommended": false,
+    "makesScenes": false,
+    "favorited": 0,
+    "icon": "",
+    "banner": "",
+    "links": {
+      "pixiv": "",
+      "download": "",
+      "pawchive": "",
+      "bepis": "https://db.bepis.moe/koikatsu?cardAuthor=Yata",
       "koikatsucards": ""
     }
   },
