@@ -42,17 +42,17 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Build indices/author.json (data/authors.json, no indentation)
+      - name: Build indices/author_detailed.json (data/authors.json, no indentation)
         run: |
           mkdir -p _site/indices
           # -e makes jq fail on an empty/invalid file; -c = compact output (no indentation).
-          jq -e -c 'if type == "array" and length > 0 then . else error("authors.json is empty") end' data/authors.json > _site/indices/author.json
-          echo "Generated $(jq 'length' _site/indices/author.json) authors"
+          jq -e -c 'if type == "array" and length > 0 then . else error("authors.json is empty") end' data/authors.json > _site/indices/author_detailed.json
+          echo "Generated $(jq 'length' _site/indices/author_detailed.json) authors"
 
-      - name: Build indices/author_slim.json (name and alias only)
+      - name: Build indices/author.json (name and alias only)
         run: |
-          jq -e -c 'if type == "array" and length > 0 then map({name, alias}) else error("authors.json is empty") end' data/authors.json > _site/indices/author_slim.json
-          echo "Generated $(jq 'length' _site/indices/author_slim.json) slim authors"
+          jq -e -c 'if type == "array" and length > 0 then map({name, alias}) else error("authors.json is empty") end' data/authors.json > _site/indices/author.json
+          echo "Generated $(jq 'length' _site/indices/author.json) slim authors"
 
       # Built from the saved data/mapping.json, no network needed.
       - name: Build indices/lookup.json
