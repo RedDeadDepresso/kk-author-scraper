@@ -150,12 +150,12 @@ func TestBuildAuthorRows(t *testing.T) {
 	anna := by["AnnaAnon"]
 	wantLinks := AuthorLinks{
 		Pixiv:         "https://www.pixiv.net/users/37736420", // matches the pawchive fanbox id, not the account with more posts
-		Download:      "https://buzzheavier.com/a92fqd1x2mho",
+		Download:      DownloadLinks{Buzzheavier: "https://buzzheavier.com/a92fqd1x2mho"},
 		Pawchive:      "https://pawchive.pw/fanbox/user/37736420",
 		Bepis:         "https://db.bepis.moe/koikatsu?cardAuthor=AnnaAnon", // most cards
 		Koikatsucards: "https://koikatsucards.com/search?author=author-annaanon",
 	}
-	if anna.Links != wantLinks || !anna.IsRecommended || anna.Favorited != 45595 {
+	if anna.Links != wantLinks || !anna.IsRecommended || !anna.InSceneArchive || anna.Favorited != 45595 {
 		t.Fatalf("%+v", anna)
 	}
 	if anna.Icon != "https://pawchive.pw/icons/fanbox/37736420" || anna.Banner != "https://pawchive.pw/banners/fanbox/37736420" {
@@ -183,7 +183,7 @@ func TestBuildAuthorRows(t *testing.T) {
 
 	// JSON shape: every key present, empty values are "" / [] and never null
 	b, _ := json.Marshal(nobody)
-	for _, want := range []string{`"links":{"pixiv":"","download":"","pawchive":"","bepis":"","koikatsucards":`, `"alias":[]`, `"series":[]`, `"isRecommended":false`, `"makesScenes":false`} {
+	for _, want := range []string{`"links":{"pixiv":"","download":{"mega":"","drive":"","buzzheavier":"","fileditch":""},"pawchive":"","bepis":"","koikatsucards":`, `"alias":[]`, `"series":[]`, `"isRecommended":false`, `"inSceneArchive":false`, `"makesScenes":false`} {
 		if !strings.Contains(string(b), want) {
 			t.Errorf("missing %s in %s", want, b)
 		}

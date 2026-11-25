@@ -253,3 +253,22 @@ func (a *App) runPixivLinks(ctx context.Context, maxAge time.Duration, limit int
 	log.Printf("pixiv profiles: %d read this run; %d/%d accounts have links, %d with a fanbox/patreon link",
 		fetched, withLinks, len(ids), withCreator)
 }
+
+// profileFileLinks returns the first mega.nz link and the first google drive link found on
+// the profiles of the given pixiv accounts ("" when there is none).
+func (m *Mapping) profileFileLinks(ids []string) (mega, drive string) {
+	for _, raw := range m.profileLinkURLs(ids) {
+		u, err := url.Parse(raw)
+		if err != nil {
+			continue
+		}
+		h := strings.TrimPrefix(strings.ToLower(u.Hostname()), "www.")
+		switch {
+		case mega == "" && (h == "mega.nz" || h == "mega.co.nz"):
+			mega = raw
+		case drive == "" && (h == "drive.google.com" || h == "drive.usercontent.google.com"):
+			drive = raw
+		}
+	}
+	return mega, drive
+}

@@ -27,16 +27,33 @@ const (
 
 type AuthorLinks struct {
 	Pixiv         string `json:"pixiv"`
-	Download      string `json:"download"`
+	Download      DownloadLinks `json:"download"`
 	Pawchive      string `json:"pawchive"`
 	Bepis         string `json:"bepis"` // the bepis author page with the most cards
 	Koikatsucards string `json:"koikatsucards"`
 }
 
+// DownloadLinks are the places an author's files can be downloaded from.
+type DownloadLinks struct {
+	Mega        string `json:"mega"`        // first mega.nz link on the author's pixiv profiles
+	Drive       string `json:"drive"`       // first google drive link on the author's pixiv profiles
+	Buzzheavier string `json:"buzzheavier"` // scene archive link on buzzheavier
+	Fileditch   string `json:"fileditch"`   // scene archive link on fileditch
+}
+
+// setScene stores a Scene Archive link under its host.
+func (d *DownloadLinks) setScene(raw string) {
+	if u, err := url.Parse(raw); err == nil && strings.HasPrefix(strings.ToLower(u.Hostname()), "fileditch") {
+		d.Fileditch = raw
+		return
+	}
+	d.Buzzheavier = raw
+}
+
 // count returns how many of the links are not empty.
 func (l AuthorLinks) count() int {
 	n := 0
-	for _, v := range []string{l.Pixiv, l.Download, l.Pawchive, l.Bepis, l.Koikatsucards} {
+	for _, v := range []string{l.Pixiv, l.Download.Mega, l.Download.Drive, l.Download.Buzzheavier, l.Download.Fileditch, l.Pawchive, l.Bepis, l.Koikatsucards} {
 		if v != "" {
 			n++
 		}
@@ -55,16 +72,17 @@ func (r AuthorRow) linkCount() int {
 
 // AuthorRow is one entry of authors.json. Missing values are "" / false / [].
 type AuthorRow struct {
-	Name          string      `json:"name"`
-	Telegram      TagList     `json:"telegram"` // channel hashtags, each including the "#"; [] when none
-	Alias         []string    `json:"alias"`
-	Series        []string    `json:"series"`
-	IsRecommended bool        `json:"isRecommended"`
-	MakesScenes   bool        `json:"makesScenes"`
-	Favorited     int         `json:"favorited"`
-	Icon          string      `json:"icon"`
-	Banner        string      `json:"banner"`
-	Links         AuthorLinks `json:"links"`
+	Name           string      `json:"name"`
+	Telegram       TagList     `json:"telegram"` // channel hashtags, each including the "#"; [] when none
+	Alias          []string    `json:"alias"`
+	Series         []string    `json:"series"`
+	IsRecommended  bool        `json:"isRecommended"`
+	InSceneArchive bool        `json:"inSceneArchive"` // on the Scene Archive page or in names.json
+	MakesScenes    bool        `json:"makesScenes"`
+	Favorited      int         `json:"favorited"`
+	Icon           string      `json:"icon"`
+	Banner         string      `json:"banner"`
+	Links          AuthorLinks `json:"links"`
 }
 
 // ---------------------------------------------------------------------------
@@ -588,11 +606,21 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		}
 		row.Links.Bepis = m.topBepisURL(bepisNames)
 		row.Links.Pixiv = m.primaryPixiv(au, postCounts)
+		profileIDs := append([]string(nil), au.PixivUserIDs...)
+		if entry != nil {
+			u, _ := pixivRefs(entry.Links)
+			for _, id := range u {
+				profileIDs = addUnique(profileIDs, id)
+			}
+		}
+		row.Links.Download.Mega, row.Links.Download.Drive = m.profileFileLinks(profileIDs)
 
 		makesScenes, dl, ok := src.find(lookupNames...)
 		row.MakesScenes = makesScenes
+		row.InSceneArchive = ok || makesScenes
 		if ok {
-			row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
+			row.Links.Download.setScene(dl.URL)
+			row.IsRecommended = dl.Crown
 		}
 
 		if au.Pawchive != nil {
@@ -750,6 +778,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			}
 			if len(ids) > 0 {
 				row.Links.Pixiv = pixivBase + "/users/" + ids[0]
+				row.Links.Download.Mega, row.Links.Download.Drive = m.profileFileLinks(ids)
 				row.Icon = icon(ids[0])
 				// the pixiv account also finds the pawchive creator (fanbox id, or a fanbox /
 				// patreon link on the profile), as for the rows made of an authors.json entry
@@ -775,8 +804,10 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		row.Alias = aliases.list
 		makesScenes, dl, ok := src.find(names...)
 		row.MakesScenes = makesScenes
+		row.InSceneArchive = ok || makesScenes
 		if ok {
-			row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
+			row.Links.Download.setScene(dl.URL)
+			row.IsRecommended = dl.Crown
 		}
 		rows = append(rows, row)
 	}
@@ -803,6 +834,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 				aliases.add(al)
 			}
 			row.Alias = aliases.list
+			row.Links.Download.Mega, row.Links.Download.Drive = a.mapping.profileFileLinks(ids)
 
 			var paw *PawchiveMatch
 			if a.pawIdx != nil {
@@ -840,8 +872,10 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			lookup := append([]string{e.Name}, e.Alias...)
 			makesScenes, dl, ok := src.find(lookup...)
 			row.MakesScenes = makesScenes
+			row.InSceneArchive = ok || makesScenes
 			if ok {
-				row.Links.Download, row.IsRecommended = dl.URL, dl.Crown
+				row.Links.Download.setScene(dl.URL)
+			row.IsRecommended = dl.Crown
 			}
 			rows = append(rows, row)
 		}

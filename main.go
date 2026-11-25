@@ -1005,7 +1005,7 @@ pages:
 		}
 		dl, rec, ms := 0, 0, 0
 		for _, r := range rows {
-			if r.Links.Download != "" {
+			if r.Links.Download != (DownloadLinks{}) {
 				dl++
 			}
 			if r.IsRecommended {
