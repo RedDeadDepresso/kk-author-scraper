@@ -52,7 +52,7 @@ func TestBepisPlaceholdersSkipped(t *testing.T) {
 	m := &Mapping{}
 	m.init()
 	m.Authors["author-anonymous"] = &Author{Name: "Anonymous", Slug: "author-anonymous", KoikatsuURL: authorURL("author-anonymous")}
-	n := m.applyBepis(map[string]int{"Anonymous": 189315, "[Unknown]": 105803, "Evaan": 6116}, nil)
+	n := m.applyBepis(map[string]int{"Anonymous": 189315, "[Unknown]": 105803, "Evaan": 6116}, nil, nil)
 	if n != 0 || len(m.BepisAuthors) != 1 || m.BepisAuthors["Evaan"] == nil {
 		t.Fatalf("matched=%d %v", n, m.BepisAuthors)
 	}
@@ -81,7 +81,7 @@ func TestApplyBepis(t *testing.T) {
 	e := &fileAuthor{Name: "Real", Alias: []string{"real_handle"}}
 	ix := &authorIndex{byName: map[string][]*fileAuthor{"real": {e}}, byAlias: map[string][]*fileAuthor{"realhandle": {e}}, count: 1}
 
-	n := m.applyBepis(map[string]int{"kenzei": 2, "Real Handle": 1, "other": 4}, ix)
+	n := m.applyBepis(map[string]int{"kenzei": 2, "Real Handle": 1, "other": 4}, ix, nil)
 	if n != 2 || len(m.BepisAuthors) != 3 {
 		t.Fatalf("matched=%d authors=%d", n, len(m.BepisAuthors))
 	}

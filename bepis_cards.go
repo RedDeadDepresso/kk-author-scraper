@@ -16,6 +16,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -398,4 +399,51 @@ func bepisCardAuthors(records map[int]bepisRecord) map[string]int {
 		}
 	}
 	return authors
+}
+
+// bepisMinSharedCards is how many cards names must share before they count as one author:
+// two names that only met on a single card could just be a collaboration.
+const bepisMinSharedCards = 2
+
+// bepisAuthorGroups finds the author names that always appear together: names that are on
+// exactly the same cards (at least bepisMinSharedCards of them) are aliases of one author.
+// Only groups of two or more names are returned, each sorted by name, the groups sorted by
+// their first name. Blank and placeholder names ("Anonymous") never join a group.
+func bepisAuthorGroups(records map[int]bepisRecord) [][]string {
+	cards := map[string][]int{}
+	for id, r := range records {
+		seen := map[string]bool{}
+		for _, n := range r.Authors {
+			n = strings.TrimSpace(n)
+			if n == "" || seen[n] || bepisPlaceholders[normName(n)] {
+				continue
+			}
+			seen[n] = true
+			cards[n] = append(cards[n], id)
+		}
+	}
+	bySig := map[[sha256.Size]byte][]string{}
+	for n, ids := range cards {
+		if len(ids) < bepisMinSharedCards {
+			continue
+		}
+		sort.Ints(ids)
+		h := sha256.New()
+		for _, id := range ids {
+			h.Write([]byte(strconv.Itoa(id) + ","))
+		}
+		var sig [sha256.Size]byte
+		copy(sig[:], h.Sum(nil))
+		bySig[sig] = append(bySig[sig], n)
+	}
+	var groups [][]string
+	for _, names := range bySig {
+		if len(names) < 2 {
+			continue
+		}
+		sort.Strings(names)
+		groups = append(groups, names)
+	}
+	sort.Slice(groups, func(i, j int) bool { return groups[i][0] < groups[j][0] })
+	return groups
 }

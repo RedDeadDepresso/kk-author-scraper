@@ -28,6 +28,7 @@ type BepisAuthor struct {
 	Name               string   `json:"name"`
 	URL                string   `json:"url"`
 	CardCount          int      `json:"card_count"`
+	Group              []string `json:"group,omitempty"` // every name that always appears together with this one (this name included), most cards first
 	KoikatsuAuthorURLs []string `json:"koikatsu_author_urls"`
 	PixivUserURLs      []string `json:"pixiv_user_urls"`
 }
@@ -36,12 +37,14 @@ type BepisAuthor struct {
 type BepisRef struct {
 	Name  string `json:"name"`
 	URL   string `json:"url"`
-	Match string `json:"match"` // "name" (author tag name) or "alias" (authors.json name/alias)
+	Match string `json:"match"` // "name" (author tag name), "alias" (authors.json name/alias) or "group" (always appears together with a matched name)
 }
 
 // applyBepis records every bepis author and links them to koikatsucards authors by
 // normalized name, also trying the name and aliases of the author's authors.json entry.
-func (m *Mapping) applyBepis(authors map[string]int, fileIdx *authorIndex) (matched int) {
+// groups are sets of bepis names that always appear together (see bepisAuthorGroups): they
+// are one author, so a match on one of the names links all of them.
+func (m *Mapping) applyBepis(authors map[string]int, fileIdx *authorIndex, groups [][]string) (matched int) {
 	m.BepisAuthors = make(map[string]*BepisAuthor, len(authors))
 	byNorm := map[string][]string{}
 	for name, n := range authors {
@@ -57,6 +60,30 @@ func (m *Mapping) applyBepis(authors map[string]int, fileIdx *authorIndex) (matc
 		sort.Strings(names)
 	}
 
+	groupOf := map[string][]string{}
+	for _, g := range groups {
+		var members []string
+		for _, n := range g {
+			if _, ok := m.BepisAuthors[n]; ok {
+				members = append(members, n)
+			}
+		}
+		if len(members) < 2 {
+			continue
+		}
+		sort.Slice(members, func(i, j int) bool {
+			ci, cj := m.BepisAuthors[members[i]].CardCount, m.BepisAuthors[members[j]].CardCount
+			if ci != cj {
+				return ci > cj
+			}
+			return members[i] < members[j]
+		})
+		for _, n := range members {
+			m.BepisAuthors[n].Group = members
+			groupOf[n] = members
+		}
+	}
+
 	type cand struct{ name, match string }
 	for _, au := range m.Authors {
 		au.Bepis = nil
@@ -70,18 +97,30 @@ func (m *Mapping) applyBepis(authors map[string]int, fileIdx *authorIndex) (matc
 			}
 		}
 		seen := map[string]bool{}
+		link := func(bn, match string) {
+			if seen[bn] {
+				return
+			}
+			seen[bn] = true
+			ba := m.BepisAuthors[bn]
+			au.Bepis = append(au.Bepis, BepisRef{Name: bn, URL: ba.URL, Match: match})
+			ba.KoikatsuAuthorURLs = addUnique(ba.KoikatsuAuthorURLs, au.KoikatsuURL)
+			for _, pu := range au.PixivUserURLs {
+				ba.PixivUserURLs = addUnique(ba.PixivUserURLs, pu)
+			}
+		}
+		var direct []string
 		for _, c := range cands {
 			for _, bn := range byNorm[normName(c.name)] {
-				if seen[bn] {
-					continue
+				if !seen[bn] {
+					link(bn, c.match)
+					direct = append(direct, bn)
 				}
-				seen[bn] = true
-				ba := m.BepisAuthors[bn]
-				au.Bepis = append(au.Bepis, BepisRef{Name: bn, URL: ba.URL, Match: c.match})
-				ba.KoikatsuAuthorURLs = addUnique(ba.KoikatsuAuthorURLs, au.KoikatsuURL)
-				for _, pu := range au.PixivUserURLs {
-					ba.PixivUserURLs = addUnique(ba.PixivUserURLs, pu)
-				}
+			}
+		}
+		for _, bn := range direct { // the names that always appear together with a matched name
+			for _, gm := range groupOf[bn] {
+				link(gm, "group")
 			}
 		}
 		if len(au.Bepis) > 0 {
@@ -138,8 +177,9 @@ func (a *App) runBepis(ctx context.Context, o bepisOptions) error {
 		a.mapping.BepisAuthors = map[string]*BepisAuthor{}
 		return nil
 	}
-	matched := a.mapping.applyBepis(authors, a.fileIdx)
-	log.Printf("bepis: %d authors from %d cards; matched %d/%d koikatsucards authors",
-		len(authors), len(records), matched, len(a.mapping.Authors))
+	groups := bepisAuthorGroups(records)
+	matched := a.mapping.applyBepis(authors, a.fileIdx, groups)
+	log.Printf("bepis: %d authors from %d cards (%d groups of names that always appear together); matched %d/%d koikatsucards authors",
+		len(authors), len(records), len(groups), matched, len(a.mapping.Authors))
 	return nil
 }

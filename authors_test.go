@@ -97,9 +97,8 @@ func TestBuildAuthorRows(t *testing.T) {
 	m := a.mapping
 	e := &fileAuthor{Name: "AnnaAnon", Alias: []string{"Anna Anon", "TheSafeAnnaAnon", "anna-anon"}}
 	onlyFile := &fileAuthor{Name: "FileOnly", Alias: []string{"file-only"}, Links: []string{"https://www.pixiv.net/users/999"}}
-	sharedPixiv := &fileAuthor{Name: "OtherName", Links: []string{"https://www.pixiv.net/users/555"}} // same account as Plain, and a bepis name of Plain
-	stranger := &fileAuthor{Name: "Stranger", Links: []string{"https://www.pixiv.net/users/555"}} // same account as Plain, but no name in common
-	a.fileIdx = &authorIndex{byName: map[string][]*fileAuthor{"annaanon": {e}, "fileonly": {onlyFile}, "othername": {sharedPixiv}, "stranger": {stranger}}, byAlias: map[string][]*fileAuthor{}, entries: []*fileAuthor{e, onlyFile, sharedPixiv, stranger}, count: 4}
+	sharedPixiv := &fileAuthor{Name: "OtherName", Links: []string{"https://www.pixiv.net/users/555"}} // same account as Plain
+	a.fileIdx = &authorIndex{byName: map[string][]*fileAuthor{"annaanon": {e}, "fileonly": {onlyFile}, "othername": {sharedPixiv}}, byAlias: map[string][]*fileAuthor{}, entries: []*fileAuthor{e, onlyFile, sharedPixiv}, count: 3}
 
 	// AnnaAnon: pawchive + download + recommended + series
 	m.Authors["author-annaanon"] = &Author{
@@ -118,7 +117,7 @@ func TestBuildAuthorRows(t *testing.T) {
 	}
 
 	// Plain: no pawchive -> pixiv icon from the profile cache, empty banner
-	m.Authors["author-plain"] = &Author{Name: "Plain", Slug: "author-plain", KoikatsuURL: authorURL("author-plain"), PixivUserIDs: []string{"555"}, Bepis: []BepisRef{{Name: "OtherName", Match: "name"}}}
+	m.Authors["author-plain"] = &Author{Name: "Plain", Slug: "author-plain", KoikatsuURL: authorURL("author-plain"), PixivUserIDs: []string{"555"}}
 	m.PixivUsers["555"] = &PixivUser{ID: "555", URL: pixivBase + "/users/555"}
 	a.profileCache["555"] = ProfileEntry{Available: true, Image: "https://i.pximg.net/user-profile/img/plain.png"}
 
@@ -142,12 +141,9 @@ func TestBuildAuthorRows(t *testing.T) {
 		t.Fatalf("authors.json-only row: %+v", fo)
 	}
 	if _, dup := by["OtherName"]; dup {
-		t.Fatal("entry sharing a pixiv account and a name with an existing author must not get its own row")
+		t.Fatal("entry sharing a pixiv account with an existing author must not get its own row")
 	}
-	if st, ok := by["Stranger"]; !ok || st.Links.Koikatsucards != "" {
-		t.Fatalf("entry sharing only a pixiv account must keep its own row: %+v", st)
-	}
-	if len(rows) != 6 || rows[0].Name != "AnnaAnon" {
+	if len(rows) != 5 || rows[0].Name != "AnnaAnon" {
 		t.Fatalf("rows=%d first=%q", len(rows), rows[0].Name)
 	}
 
@@ -251,140 +247,5 @@ func TestBuildAuthorRowsKeepsFileAliasesAndMergesPlaceholderNames(t *testing.T) 
 	dot := by["."]
 	if len(dot) != 1 || dot[0].Links.Koikatsucards == "" || dot[0].Links.Bepis != bepisAuthorURL(".") {
 		t.Fatalf("placeholder-name duplicates must merge into one row: %+v", dot)
-	}
-}
-
-// Regression: a kknow.cc pixiv profile that is merely called "Eros" must not take over the
-// authors.json entry "ErosEnro" (alias "Eros") of the koikatsucards author "Eros".
-func TestKknowEntryDoesNotTakeOverRealEntry(t *testing.T) {
-	a := authorsApp(t)
-	m := a.mapping
-
-	a.fileIdx = newAuthorIndex()
-	real := &fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/28009976"}}
-	a.fileIdx.add(real)
-	a.fileIdx.add(&fileAuthor{Name: "Eros", Links: []string{pixivBase + "/users/85020547"}, synthetic: true})
-
-	if e, amb := a.fileIdx.find("Eros"); e != real || amb {
-		t.Fatalf("find(Eros) = %+v ambiguous=%v, want the real ErosEnro entry", e, amb)
-	}
-	if got := a.fileIdx.findAll("Eros"); len(got) != 1 || got[0] != real {
-		t.Fatalf("findAll(Eros) = %+v", got)
-	}
-	// a name only the synthetic entry has is still found
-	a.fileIdx.add(&fileAuthor{Name: "OnlyKknow", synthetic: true})
-	if e, _ := a.fileIdx.find("onlykknow"); e == nil || !e.synthetic {
-		t.Fatalf("synthetic entry not found: %+v", e)
-	}
-
-	m.Authors["author-eros"] = &Author{
-		Name: "Eros", Slug: "author-eros", KoikatsuURL: authorURL("author-eros"),
-		PixivUserIDs: []string{"28009976"},
-		Pawchive:     &PawchiveMatch{Service: "fanbox", ID: "28009976", URL: "https://pawchive.pw/fanbox/user/28009976", Favorited: 23023},
-	}
-	m.PixivUsers["28009976"] = &PixivUser{ID: "28009976", URL: pixivBase + "/users/28009976"}
-
-	ms, keys, err := parseNames([]byte(`{"Eros--ErosEnro_2026": "ErosEnro"}`))
-	if err != nil {
-		t.Fatal(err)
-	}
-	src := buildSources([]DownloadLink{{Text: "Eros--ErosEnro", URL: "https://buzzheavier.com/58by93o53s8u", Crown: true}}, ms, keys)
-
-	rows := a.buildAuthorRows(context.Background(), src, false)
-	var kc, other *AuthorRow
-	for i := range rows {
-		switch {
-		case rows[i].Links.Koikatsucards == authorURL("author-eros"):
-			kc = &rows[i]
-		case rows[i].Links.Pixiv == pixivBase+"/users/85020547":
-			other = &rows[i]
-		}
-	}
-	if kc == nil {
-		t.Fatalf("no koikatsucards row for Eros: %+v", rows)
-	}
-	if kc.Name != "ErosEnro" || strings.Join(kc.Alias, ",") != "Eros" {
-		t.Errorf("name=%q alias=%v, want ErosEnro / [Eros]", kc.Name, kc.Alias)
-	}
-	if !kc.IsRecommended || !kc.MakesScenes || kc.Links.Download != "https://buzzheavier.com/58by93o53s8u" {
-		t.Errorf("scene data lost: %+v", kc)
-	}
-	if other == nil || other.Name != "Eros" || other.Links.Koikatsucards != "" {
-		t.Errorf("the unrelated kknow account should be its own row: %+v", other)
-	}
-}
-
-// Regression: two authors.json entries ("Eros" and "ErosEnro", which only knows "Eros" as an
-// alias) that use pixiv accounts of the same koikatsucards author "Eros" are two authors: the
-// shared pixiv account alone must not fold ErosEnro into the Eros row.
-func TestSharedPixivAccountNeedsNameMatch(t *testing.T) {
-	a := authorsApp(t)
-	m := a.mapping
-
-	a.fileIdx = newAuthorIndex()
-	eros := &fileAuthor{Name: "Eros", Links: []string{pixivBase + "/users/85020547"}}
-	enro := &fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/28009976"}}
-	a.fileIdx.add(enro)
-	a.fileIdx.add(eros)
-
-	m.Authors["author-eros"] = &Author{
-		Name: "Eros", Slug: "author-eros", KoikatsuURL: authorURL("author-eros"),
-		PixivUserIDs: []string{"28009976", "85020547"},
-	}
-	m.PixivUsers["28009976"] = &PixivUser{ID: "28009976", URL: pixivBase + "/users/28009976"}
-	m.PixivUsers["85020547"] = &PixivUser{ID: "85020547", URL: pixivBase + "/users/85020547"}
-
-	rows := a.buildAuthorRows(context.Background(), newSources(), false)
-	by := map[string]AuthorRow{}
-	for _, r := range rows {
-		by[r.Name] = r
-	}
-	if len(rows) != 2 {
-		t.Fatalf("want separate Eros and ErosEnro rows, got %d: %+v", len(rows), rows)
-	}
-	if _, ok := by["Eros"]; !ok {
-		t.Fatalf("no Eros row: %+v", rows)
-	}
-	en, ok := by["ErosEnro"]
-	if !ok || en.Links.Pixiv != pixivBase+"/users/28009976" {
-		t.Fatalf("ErosEnro row: %+v", en)
-	}
-	if strings.Contains(strings.Join(by["Eros"].Alias, ","), "ErosEnro") {
-		t.Errorf("Eros row must not take ErosEnro as an alias: %v", by["Eros"].Alias)
-	}
-}
-
-// The pixiv account shown for a koikatsucards author is not one that another authors.json
-// entry claims: Eros owns 28009976 and 85020547, but 28009976 belongs to ErosEnro.
-func TestPrimaryPixivSkipsAccountOfOtherEntry(t *testing.T) {
-	a := authorsApp(t)
-	m := a.mapping
-	a.fileIdx = newAuthorIndex()
-	a.fileIdx.add(&fileAuthor{Name: "Eros", Links: []string{pixivBase + "/users/85020547"}})
-	a.fileIdx.add(&fileAuthor{Name: "ErosEnro", Alias: []string{"Eros"}, Links: []string{pixivBase + "/users/28009976"}})
-	m.Authors["author-eros"] = &Author{
-		Name: "Eros", Slug: "author-eros", KoikatsuURL: authorURL("author-eros"),
-		PixivUserIDs: []string{"28009976", "85020547"},
-	}
-	m.Posts["p"] = &Post{PixivID: "p", AuthorSlug: "author-eros", PixivUserID: "28009976"} // more posts, still skipped
-	m.PixivUsers["28009976"] = &PixivUser{ID: "28009976", URL: pixivBase + "/users/28009976"}
-	m.PixivUsers["85020547"] = &PixivUser{ID: "85020547", URL: pixivBase + "/users/85020547"}
-
-	for _, r := range a.buildAuthorRows(context.Background(), newSources(), false) {
-		if r.Links.Koikatsucards == authorURL("author-eros") && r.Links.Pixiv != pixivBase+"/users/85020547" {
-			t.Errorf("Eros row shows %s, want 85020547", r.Links.Pixiv)
-		}
-	}
-
-	// when every account is claimed by another entry the author still shows one
-	b := authorsApp(t)
-	b.fileIdx = newAuthorIndex()
-	b.fileIdx.add(&fileAuthor{Name: "Other", Links: []string{pixivBase + "/users/1"}})
-	b.mapping.Authors["author-solo"] = &Author{Name: "Solo", Slug: "author-solo", KoikatsuURL: authorURL("author-solo"), PixivUserIDs: []string{"1"}}
-	b.mapping.PixivUsers["1"] = &PixivUser{ID: "1", URL: pixivBase + "/users/1"}
-	for _, r := range b.buildAuthorRows(context.Background(), newSources(), false) {
-		if r.Links.Koikatsucards == authorURL("author-solo") && r.Links.Pixiv != pixivBase+"/users/1" {
-			t.Errorf("fallback: row shows %q", r.Links.Pixiv)
-		}
 	}
 }

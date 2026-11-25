@@ -29,7 +29,7 @@ type AuthorLinks struct {
 	Pixiv         string `json:"pixiv"`
 	Download      string `json:"download"`
 	Pawchive      string `json:"pawchive"`
-	Bepis         string `json:"bepis"`
+	Bepis         string `json:"bepis"` // the bepis author page with the most cards
 	Koikatsucards string `json:"koikatsucards"`
 }
 
@@ -423,20 +423,10 @@ func (s *aliasSet) add(v string) {
 	s.list = append(s.list, v)
 }
 
-// primaryPixiv picks the account to show for an author (claimed: accounts of other authors.json
-// entries, which are passed over unless every account is claimed): the one matching its
+// primaryPixiv picks the account to show for an author: the one matching its
 // pawchive fanbox id, else the one with the most koikatsucards posts.
-func (m *Mapping) primaryPixiv(au *Author, postCounts map[string]int, claimed map[string]bool) string {
-	// accounts that another authors.json entry claims are only shown when nothing else is left
-	ids := make([]string, 0, len(au.PixivUserIDs))
-	for _, id := range au.PixivUserIDs {
-		if !claimed[id] {
-			ids = append(ids, id)
-		}
-	}
-	if len(ids) == 0 {
-		ids = append(ids, au.PixivUserIDs...)
-	}
+func (m *Mapping) primaryPixiv(au *Author, postCounts map[string]int) string {
+	ids := append([]string(nil), au.PixivUserIDs...)
 	if len(ids) == 0 {
 		return ""
 	}
@@ -480,31 +470,19 @@ func (m *Mapping) bepisByCards(names []string) []string {
 	return out
 }
 
+// topBepisURL returns the bepis author page of the name with the most cards ("" for none).
+func (m *Mapping) topBepisURL(names []string) string {
+	if sorted := m.bepisByCards(names); len(sorted) > 0 {
+		return m.bepisURL(sorted[0])
+	}
+	return ""
+}
+
 func (m *Mapping) bepisURL(name string) string {
 	if ba := m.BepisAuthors[name]; ba != nil && ba.URL != "" {
 		return ba.URL
 	}
 	return bepisAuthorURL(name)
-}
-
-// rowHasName reports whether name is the name or one of the aliases of the row, compared by
-// normalized name (exact text for names without letters or digits).
-func rowHasName(r *AuthorRow, name string) bool {
-	same := func(a, b string) bool {
-		if k := normName(a); k != "" {
-			return k == normName(b)
-		}
-		return strings.TrimSpace(a) != "" && strings.TrimSpace(a) == strings.TrimSpace(b)
-	}
-	if same(name, r.Name) {
-		return true
-	}
-	for _, al := range r.Alias {
-		if same(name, al) {
-			return true
-		}
-	}
-	return false
 }
 
 // buildAuthorRows creates one row per koikatsucards author, one per bepis author that
@@ -558,7 +536,6 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 	// authors.json entries that already have a row (matched by name/alias or by pixiv account)
 	usedEntries := map[*fileAuthor]bool{}
 	knownPixiv := map[string]bool{}
-	pixivRow := map[string]int{} // pixiv account -> index of the koikatsucards row that has it
 	markUsed := func(name string) {
 		if a.fileIdx != nil {
 			for _, e := range a.fileIdx.findAll(name) {
@@ -578,9 +555,6 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		markUsed(au.Name)
 		for _, id := range au.PixivUserIDs {
 			knownPixiv[id] = true
-			if _, dup := pixivRow[id]; !dup {
-				pixivRow[id] = len(rows) // the row built below
-			}
 		}
 		var entry *fileAuthor
 		if a.fileIdx != nil {
@@ -612,22 +586,8 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			Series: []string{},
 			Links:  AuthorLinks{Koikatsucards: authorURL(slug)},
 		}
-		if names := m.bepisByCards(bepisNames); len(names) > 0 {
-			row.Links.Bepis = m.bepisURL(names[0])
-		}
-		claimed := map[string]bool{}
-		if a.fileIdx != nil {
-			for _, o := range a.fileIdx.entries {
-				if o == entry || o.synthetic {
-					continue
-				}
-				ids, _ := pixivRefs(o.Links)
-				for _, id := range ids {
-					claimed[id] = true
-				}
-			}
-		}
-		row.Links.Pixiv = m.primaryPixiv(au, postCounts, claimed)
+		row.Links.Bepis = m.topBepisURL(bepisNames)
+		row.Links.Pixiv = m.primaryPixiv(au, postCounts)
 
 		makesScenes, dl, ok := src.find(lookupNames...)
 		row.MakesScenes = makesScenes
@@ -665,6 +625,7 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 		}
 	}
 	groups := map[string][]string{}
+	nameKey := map[string]string{} // bepis name -> its key in groups
 	for name, ba := range m.BepisAuthors {
 		if len(ba.KoikatsuAuthorURLs) > 0 {
 			continue
@@ -691,7 +652,42 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 			}
 		}
 		groups[k] = append(groups[k], name)
+		nameKey[name] = k
 	}
+
+	// bepis names that always appear together on the same cards are one author:
+	// merge their groups, whatever their spelling
+	parent := map[string]string{}
+	var root func(string) string
+	root = func(x string) string {
+		if p, ok := parent[x]; ok && p != x {
+			r := root(p)
+			parent[x] = r
+			return r
+		}
+		return x
+	}
+	for name, k := range nameKey {
+		for _, mem := range m.BepisAuthors[name].Group {
+			mk, ok := nameKey[mem]
+			if !ok {
+				continue
+			}
+			ra, rb := root(k), root(mk)
+			if ra < rb {
+				parent[rb] = ra
+			} else if rb < ra {
+				parent[ra] = rb
+			}
+		}
+	}
+	merged := map[string][]string{}
+	for k, names := range groups {
+		r := root(k)
+		merged[r] = append(merged[r], names...)
+	}
+	groups = merged
+
 	keys := make([]string, 0, len(groups))
 	for k := range groups {
 		keys = append(keys, k)
@@ -792,42 +788,13 @@ func (a *App) buildAuthorRows(ctx context.Context, src *authorSources, lookupIco
 				continue
 			}
 			ids, _ := pixivRefs(e.Links) // artwork links would need a pixiv API call per entry: skipped
-			sharedRow := -1
+			shared := false
 			for _, id := range ids {
 				if knownPixiv[id] {
-					if i, ok := pixivRow[id]; ok {
-						// a shared pixiv account alone is not enough: the entry's own name must
-						// also be the name or an alias of that row, otherwise it is a different
-						// author who happens to use the same account and keeps its own row
-						if rowHasName(&rows[i], e.Name) {
-							sharedRow = i
-						}
-					} else if sharedRow < 0 {
-						sharedRow = len(rows) // known account without a row of its own: skip below
-					}
+					shared = true
 				}
 			}
-			if sharedRow >= 0 {
-				// same pixiv account as a koikatsucards row: nothing is added as a row, but the
-				// entry's name and aliases are kept as aliases of that row, and its scene data
-				// (names.json / archive) is used when the row has none
-				if sharedRow < len(rows) {
-					r := &rows[sharedRow]
-					as := newAliasSet(r.Name)
-					for _, al := range r.Alias {
-						as.add(al)
-					}
-					as.add(e.Name)
-					for _, al := range e.Alias {
-						as.add(al)
-					}
-					r.Alias = as.list
-					ms, dl, ok := src.find(append([]string{e.Name}, e.Alias...)...)
-					r.MakesScenes = r.MakesScenes || ms
-					if ok && r.Links.Download == "" {
-						r.Links.Download, r.IsRecommended = dl.URL, dl.Crown
-					}
-				}
+			if shared {
 				continue
 			}
 			row := AuthorRow{Name: e.Name, Alias: []string{}, Series: []string{}}
