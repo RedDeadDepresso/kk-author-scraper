@@ -1,6 +1,6 @@
 {
   "newest_post": "145000175",
-  "updated_at": "2026-11-25T00:39:56Z",
+  "updated_at": "2026-11-25T02:57:42Z",
   "posts": {
     "100103318": {
       "pixiv_id": "100103318",
@@ -47177,7 +47177,7 @@
         {
           "name": "transferee_2353",
           "url": "https://db.bepis.moe/koikatsu?cardAuthor=transferee_2353",
-          "match": "group"
+          "match": "alias"
         }
       ],
       "pawchive": {
@@ -60223,6 +60223,23 @@
         }
       ],
       "checked_at": "2026-11-23T06:16:56Z"
+    },
+    "18180009": {
+      "links": [
+        {
+          "url": "https://www.pixiv.net/en/users/633564",
+          "source": "comment"
+        },
+        {
+          "url": "https://www.pixiv.net/users/633564",
+          "source": "comment"
+        },
+        {
+          "url": "https://twitter.com/EvilTyo",
+          "source": "social:twitter"
+        }
+      ],
+      "checked_at": "2026-11-25T02:57:38Z"
     },
     "1823555": {
       "links": [],
@@ -79678,7 +79695,7 @@
     "Deyvid": {
       "name": "Deyvid",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Deyvid",
-      "card_count": 67,
+      "card_count": 68,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
@@ -81876,7 +81893,7 @@
     "Evaan": {
       "name": "Evaan",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Evaan",
-      "card_count": 5964,
+      "card_count": 5965,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
@@ -88783,7 +88800,7 @@
     "KG Kurohitosagi": {
       "name": "KG Kurohitosagi",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=KG%20Kurohitosagi",
-      "card_count": 17,
+      "card_count": 21,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
@@ -102002,7 +102019,7 @@
     "Rae": {
       "name": "Rae",
       "url": "https://db.bepis.moe/koikatsu?cardAuthor=Rae",
-      "card_count": 44,
+      "card_count": 48,
       "koikatsu_author_urls": null,
       "pixiv_user_urls": null
     },
