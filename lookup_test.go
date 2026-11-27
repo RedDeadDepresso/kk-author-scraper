@@ -22,7 +22,7 @@ func TestBuildLookup(t *testing.T) {
 	m.Authors["author-b"].Pawchive = &PawchiveMatch{Service: "fanbox", ID: "8", Favorited: 500}
 	m.PixivUsers["1"].Pawchive = &PawchiveMatch{Service: "fanbox", ID: "1", Favorited: 1} // own match beats author's
 
-	s := m.buildLookup()
+	s := m.buildLookup(nil)
 	if len(s.Posts) != 2 || s.Posts[0] != 50 || s.Posts[1] != 200 {
 		t.Fatalf("posts %v", s.Posts)
 	}
@@ -44,6 +44,39 @@ func TestBuildLookup(t *testing.T) {
 	b, _ := json.Marshal(s)
 	var back Lookup
 	if err := json.Unmarshal(b, &back); err != nil || back.Version != 1 || back.URLs["bepis"] != "https://db.bepis.moe/koikatsu?cardAuthor={name}" || back.URLs["pawchive"] != "https://pawchive.pw/{service}/user/{id}" {
+		t.Fatalf("%v %s", err, b)
+	}
+}
+
+func TestLookupTelegram(t *testing.T) {
+	if (*tgExport)(nil).lookup() != nil || (&tgExport{}).lookup() != nil {
+		t.Fatal("no telegram data must give no telegram section")
+	}
+	e := &tgExport{}
+	e.init()
+	e.Chats["pub"] = &tgChatState{}
+	e.Chats["c/55"] = &tgChatState{NoLookup: true}
+	e.record("pub", tgMessage{ID: 7, Topic: 1, Texts: []string{"pixiv.net/artworks/10 pixiv.net/users/1"}}, 0)
+	e.record("pub", tgMessage{ID: 9, Topic: 42, Texts: []string{"pixiv.net/artworks/11 pixiv.net/users/2"}}, 0)
+	e.record("c/55", tgMessage{ID: 3, Topic: 1, Texts: []string{"pixiv.net/artworks/12 pixiv.net/users/3"}}, 0)
+	l := e.lookup()
+	if l == nil || len(l.Posts) != 2 || len(l.Users) != 2 {
+		t.Fatalf("%+v", l)
+	}
+	if l.Posts["10"] != "pub/7" || l.Posts["11"] != "pub/42/9" || l.Users["2"] != "pub/42/9" {
+		t.Errorf("paths: %+v", l)
+	}
+	if _, ok := l.Posts["12"]; ok {
+		t.Error("a no_lookup chat reached the lookup file")
+	}
+	if got := tgMessagePath("c/55", 5, 8); got != "c/55/5/8" {
+		t.Errorf("%s", got)
+	}
+	m := &Mapping{}
+	m.init()
+	b, _ := json.Marshal(m.buildLookup(e))
+	var back Lookup
+	if err := json.Unmarshal(b, &back); err != nil || back.Version != 1 || back.Telegram == nil || back.Telegram.Posts["10"] != "pub/7" {
 		t.Fatalf("%v %s", err, b)
 	}
 }

@@ -171,11 +171,12 @@ func (a *App) corePixivAccounts() map[string]bool {
 }
 
 // profileAccounts lists every pixiv account to read: the core accounts plus those found on
-// kknow.cc (their profile goes to the profile cache, which kk-mod-scraper reads; the mapping only
-// gets it once the account has an entry in the authors list, see addKknowAuthors).
+// kknow.cc or in Telegram chats (their profile goes to the profile cache, which kk-mod-scraper
+// reads; the mapping only gets it once the account has an entry in the authors list, see
+// addKknowAuthors).
 func (a *App) profileAccounts() []string {
 	set := a.corePixivAccounts()
-	for _, id := range a.kknowAccounts() {
+	for _, id := range a.extraAccounts() {
 		set[id] = true
 	}
 	ids := make([]string, 0, len(set))

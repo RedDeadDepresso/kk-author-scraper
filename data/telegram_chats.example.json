@@ -1,0 +1,7 @@
+{
+  "chats": [
+    "https://t.me/some_public_channel",
+    { "link": "https://t.me/c/1234567890", "post_topic": 42 },
+    { "link": "https://t.me/c/9876543210", "no_lookup": true }
+  ]
+}

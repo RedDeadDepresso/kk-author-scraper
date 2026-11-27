@@ -83,7 +83,7 @@ func TestPawchiveOverridesInMappingAndLookup(t *testing.T) {
 		return m
 	}
 	lookupPaw := func(m *Mapping) *LookupPawchive {
-		u := m.buildLookup().Users["123"]
+		u := m.buildLookup(nil).Users["123"]
 		if u == nil {
 			t.Fatal("no lookup user 123")
 		}

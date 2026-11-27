@@ -259,6 +259,7 @@ type App struct {
 	pixivPath   string
 	kknowPath   string
 	kknow       *KknowCache // pixiv accounts found on kknow.cc
+	tgPixiv     *tgExport   // pixiv accounts and posts found in Telegram chats (tgsource.go)
 
 	pawOverrides pawchiveOverrides // manual pawchive matches by authors.json row name
 
@@ -785,6 +786,11 @@ func run() (err error) {
 	noKknow := flag.Bool("no-kknow", false, "skip searching kknow.cc for pixiv accounts")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
+	tgChats := flag.String("telegram-chats", "", "JSON file with the Telegram chat links to export for pixiv links (default <data>/telegram_chats.json; the step is skipped when the file does not exist)")
+	tgOut := flag.String("telegram-out", "", "where the pixiv users and posts found in those chats are saved (default <data>/telegram_pixiv.json)")
+	tgSession := flag.String("telegram-session", "", "directory of the Telegram login session (default $TELEGRAM_SESSION_DIR or telegram_session; a tdl data dir such as ~/.tdl/data reuses a tdl login)")
+	noTelegram := flag.Bool("no-telegram", false, "skip the Telegram chat export")
+	tgOnly := flag.Bool("telegram-only", false, "only run the Telegram chat export, then exit")
 	flag.Parse()
 	if *lookupOnly {
 		if *lookupPath == "" {
@@ -795,7 +801,15 @@ func run() (err error) {
 			return fmt.Errorf("loading mapping: %w", err)
 		}
 		m.init()
-		return writeLookup(m, *lookupPath)
+		tgPath := *tgOut
+		if tgPath == "" {
+			tgPath = filepath.Join(*dataDir, "telegram_pixiv.json")
+		}
+		tg := &tgExport{}
+		if err := loadJSON(tgPath, tg); err != nil {
+			return fmt.Errorf("loading %s: %w", tgPath, err)
+		}
+		return writeLookup(m, tg, *lookupPath)
 	}
 	if *bepisCards == "" {
 		*bepisCards = filepath.Join(*cacheDir, "bepis", "cards.json")
@@ -805,6 +819,21 @@ func run() (err error) {
 	}
 
 	loadEnv(*envFile)
+
+	if *tgOut == "" {
+		*tgOut = filepath.Join(*dataDir, "telegram_pixiv.json")
+	}
+	if *tgOnly || !*noTelegram {
+		if err := telegramStep(*dataDir, *tgChats, *tgOut, *tgSession, *tgOnly); err != nil {
+			if *tgOnly || errors.Is(err, context.Canceled) {
+				return err
+			}
+			log.Printf("telegram: %v (continuing without it)", err)
+		}
+	}
+	if *tgOnly {
+		return nil
+	}
 
 	a := &App{
 		http:          &http.Client{Timeout: 30 * time.Second},
@@ -821,6 +850,7 @@ func run() (err error) {
 		profilePath:   filepath.Join(*cacheDir, "pixiv", "profiles.json"),
 		kknowPath:     filepath.Join(*cacheDir, "pixiv", "kknow.json"),
 		kknow:         &KknowCache{},
+		tgPixiv:       &tgExport{},
 	}
 	if a.session == "" {
 		log.Println("warning: PIXIV_PHPSESSID not set; restricted works will be unavailable")
@@ -831,10 +861,12 @@ func run() (err error) {
 		loadJSON(a.pixivPath, &a.pixivCache),
 		loadJSON(a.profilePath, &a.profileCache),
 		loadJSON(a.kknowPath, a.kknow),
+		loadJSON(*tgOut, a.tgPixiv),
 	); err != nil {
 		return fmt.Errorf("loading state: %w", err)
 	}
 	a.mapping.init()
+	a.tgPixiv.init()
 	a.fileMemo = map[string]fileResult{}
 	if *authorsFile == "" {
 		*authorsFile = filepath.Join(*dataDir, "authors.json")
@@ -959,11 +991,11 @@ pages:
 	if *pixivLinks && ctx.Err() == nil {
 		a.runPixivLinks(ctx, *pixivLinksAge, *pixivLinksMax)
 	}
-	// The accounts found on kknow.cc, whose profile is known now, become authors.json entries
-	// before the pawchive and bepis matching, which use that list.
-	if !*noKknow {
+	// The accounts found on kknow.cc and in Telegram chats, whose profile is known now, become
+	// authors.json entries before the pawchive and bepis matching, which use that list.
+	if !*noKknow || len(a.tgPixiv.PixivUsers) > 0 {
 		if n := a.addKknowAuthors(); n > 0 {
-			log.Printf("kknow: %d pixiv accounts added to the authors list", n)
+			log.Printf("kknow/telegram: %d pixiv accounts added to the authors list", n)
 		}
 	}
 	// Pawchive matching is recomputed over the whole mapping every run
@@ -989,7 +1021,7 @@ pages:
 		}
 	}
 	if *lookupPath != "" && ctx.Err() == nil {
-		if err := writeLookup(a.mapping, *lookupPath); err != nil {
+		if err := writeLookup(a.mapping, a.tgPixiv, *lookupPath); err != nil {
 			return err
 		}
 	}

@@ -38,3 +38,6 @@ _site/
 
 # re-downloaded on every run (the pawchive creators list is ~16 MB and changes daily)
 cache/pawchive_creators.json
+
+# Telegram login session (secret)
+telegram_session/

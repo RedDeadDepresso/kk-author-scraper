@@ -14,6 +14,9 @@ package main
 // entry, with the pixiv link and the pawchive, bepis, download and telegram matches the other
 // rows get (matched by pixiv id, fanbox / patreon links on the profile, and the profile name).
 //
+// Pixiv accounts found in Telegram chats (tgsource.go, data/telegram_pixiv.json) take the same
+// path from there on: their profile is read and they become authors.json entries by the same rules.
+//
 // If the forum wants a login for searching, put the Cookie header value of a logged in browser
 // session in the KKNOW_COOKIE environment variable (it is only sent to kknow.cc).
 
@@ -491,8 +494,28 @@ func (a *App) kknowAccounts() []string {
 	return ids
 }
 
+// extraAccounts lists the pixiv accounts that have no koikatsucards author and come from outside
+// the crawl: those found on kknow.cc and those found in Telegram chats (tgsource.go).
+func (a *App) extraAccounts() []string {
+	set := map[string]bool{}
+	for _, id := range a.kknowAccounts() {
+		set[id] = true
+	}
+	if a.tgPixiv != nil {
+		for id := range a.tgPixiv.PixivUsers {
+			set[id] = true
+		}
+	}
+	ids := make([]string, 0, len(set))
+	for id := range set {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+	return ids
+}
+
 // addKknowAuthors adds an authors.json entry (named after the pixiv profile) for every account
-// found on kknow.cc whose profile was read and that has no entry yet, so that the authors file,
+// found on kknow.cc or in a Telegram chat whose profile was read and that has no entry yet, so that the authors file,
 // pawchive, bepis and telegram matching treat it like the entries of the file. An account that
 // is already in the file (by pixiv id) or that belongs to a koikatsucards author is skipped, and
 // so is one whose profile is unavailable or has no name: it is tried again once its profile
@@ -500,7 +523,7 @@ func (a *App) kknowAccounts() []string {
 // account yet is added to that entry instead of getting a second one. Returns how many accounts
 // were added (to a new or an existing entry).
 func (a *App) addKknowAuthors() int {
-	ids := a.kknowAccounts()
+	ids := a.extraAccounts()
 	if len(ids) == 0 {
 		return 0
 	}

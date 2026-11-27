@@ -25,6 +25,18 @@ type Lookup struct {
 	Authors map[string]string `json:"authors"`
 	// Users: pixiv user id -> koikatsucards author slugs and bepis author names.
 	Users map[string]*LookupUser `json:"users"`
+	// Telegram: where pixiv posts and accounts were seen in the Telegram chats of
+	// data/telegram_chats.json (omitted when there are none).
+	Telegram *LookupTelegram `json:"telegram,omitempty"`
+}
+
+// LookupTelegram maps a pixiv id to the first Telegram message that links it, as the path of
+// its t.me link: "name/123" (public chat), "c/1234567890/123" (private chat or channel), with
+// the forum topic after the chat when the message is in one ("name/42/123"). The link is
+// https://t.me/<path>. Chats marked no_lookup in the chat list are not included.
+type LookupTelegram struct {
+	Posts map[string]string `json:"posts"` // pixiv post id
+	Users map[string]string `json:"users"` // pixiv user id
 }
 
 // LookupUser is one pixiv account.
@@ -45,16 +57,20 @@ const lookupVersion = 1
 
 // writeLookup builds the lookup file from m and writes it to path. It is
 // not kept in the repository: the GitHub Pages workflow generates and deploys it.
-func writeLookup(m *Mapping, path string) error {
-	ext := m.buildLookup()
+func writeLookup(m *Mapping, tg *tgExport, path string) error {
+	ext := m.buildLookup(tg)
 	if err := saveJSONCompact(path, ext); err != nil {
 		return err
 	}
 	log.Printf("lookup file: %d posts, %d accounts -> %s", len(ext.Posts), len(ext.Users), path)
+	if ext.Telegram != nil {
+		log.Printf("lookup file: %d telegram posts, %d telegram accounts", len(ext.Telegram.Posts), len(ext.Telegram.Users))
+	}
 	return nil
 }
 
-func (m *Mapping) buildLookup() *Lookup {
+// buildLookup builds the lookup structure; tg (may be nil) adds the Telegram sightings.
+func (m *Mapping) buildLookup(tg *tgExport) *Lookup {
 	s := &Lookup{
 		Version: lookupVersion,
 		URLs: map[string]string{
@@ -101,7 +117,43 @@ func (m *Mapping) buildLookup() *Lookup {
 			s.Users[id] = u
 		}
 	}
+	s.Telegram = tg.lookup()
 	return s
+}
+
+// tgMessagePath is the t.me link path of a message (see LookupTelegram). Topic 1 is the General
+// topic, which is also what chats without topics report, and has no place in the link.
+func tgMessagePath(chat string, topic, msg int) string {
+	if topic > 1 {
+		return chat + "/" + strconv.Itoa(topic) + "/" + strconv.Itoa(msg)
+	}
+	return chat + "/" + strconv.Itoa(msg)
+}
+
+// lookup returns the Telegram part of the lookup file, nil when there is nothing to show.
+func (e *tgExport) lookup() *LookupTelegram {
+	if e == nil {
+		return nil
+	}
+	out := &LookupTelegram{Posts: map[string]string{}, Users: map[string]string{}}
+	public := func(chat string) bool {
+		st := e.Chats[chat]
+		return st == nil || !st.NoLookup
+	}
+	for id, p := range e.PixivPosts {
+		if public(p.Chat) {
+			out.Posts[id] = tgMessagePath(p.Chat, p.Topic, p.MessageID)
+		}
+	}
+	for id, u := range e.PixivUsers {
+		if public(u.Chat) {
+			out.Users[id] = tgMessagePath(u.Chat, u.Topic, u.MessageID)
+		}
+	}
+	if len(out.Posts) == 0 && len(out.Users) == 0 {
+		return nil
+	}
+	return out
 }
 
 // saveJSONCompact writes minified JSON atomically (the lookup file is shipped to clients).
