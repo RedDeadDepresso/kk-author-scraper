@@ -1,7 +1,7 @@
 package main
 
 // Manual pawchive matches, for the authors where the automatic one is wrong. They are the
-// "pawchive" field of data/overrides.json (see overrides.go), keyed by the exact name of a row
+// "pawchive" field of config/overrides.json (see overrides.go), keyed by the exact name of a row
 // of authors.json:
 //
 //	"Some Author":  { "pawchive": "https://pawchive.pw/fanbox/user/123456" }

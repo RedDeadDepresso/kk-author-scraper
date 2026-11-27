@@ -55,9 +55,9 @@ type tgOptions struct {
 
 // telegramStep runs the telegram source with the defaults filled in. When the chat list does
 // not exist the step is skipped, unless only is set (then it is an error).
-func telegramStep(dataDir, chatsPath, outPath, sessionDir string, only bool) error {
+func telegramStep(dataDir, configDir, chatsPath, outPath, sessionDir string, only bool) error {
 	if chatsPath == "" {
-		chatsPath = filepath.Join(dataDir, "telegram_chats.json")
+		chatsPath = filepath.Join(configDir, "telegram_chats.json")
 	}
 	if outPath == "" {
 		outPath = filepath.Join(dataDir, "telegram_pixiv.json")
@@ -70,7 +70,7 @@ func telegramStep(dataDir, chatsPath, outPath, sessionDir string, only bool) err
 	}
 	if _, err := os.Stat(chatsPath); errors.Is(err, os.ErrNotExist) {
 		if only {
-			return fmt.Errorf("telegram chat list %s not found (see data/telegram_chats.example.json)", chatsPath)
+			return fmt.Errorf("telegram chat list %s not found (see config/telegram_chats.example.json)", chatsPath)
 		}
 		return nil
 	}

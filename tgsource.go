@@ -19,7 +19,7 @@ import (
 )
 
 // ---------------------------------------------------------------------------
-// Chat list (data/telegram_chats.json)
+// Chat list (config/telegram_chats.json)
 // ---------------------------------------------------------------------------
 
 // tgChatCfg is one entry of the chat list. In JSON it is either a bare link string or

@@ -6,7 +6,7 @@ from [tdl](https://github.com/iyear/tdl) (AGPL-3.0) live in `internal/tgcore`, s
 
 ## Setup
 
-1. List the chats in `data/telegram_chats.json` (see `data/telegram_chats.example.json`):
+1. List the chats in `config/telegram_chats.json` (see `config/telegram_chats.example.json`):
 
    ```json
    {
@@ -39,7 +39,7 @@ from [tdl](https://github.com/iyear/tdl) (AGPL-3.0) live in `internal/tgcore`, s
    existing `tdl login`, run with `-telegram-session ~/.tdl/data`.
 
 Without `-telegram-only`, the export runs first in a normal scrape, but only when
-`data/telegram_chats.json` exists; a Telegram failure is logged and the scrape goes on.
+`config/telegram_chats.json` exists; a Telegram failure is logged and the scrape goes on.
 `-no-telegram` skips it.
 
    - `no_lookup` (optional, `true`): keep this chat's messages out of the lookup file (see below).

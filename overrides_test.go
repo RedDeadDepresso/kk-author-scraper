@@ -86,7 +86,7 @@ func TestLoadOverridesRejectsMistakes(t *testing.T) {
 
 // The overrides that were in telegram_overrides.json were moved to overrides.json.
 func TestRealOverridesFileLoads(t *testing.T) {
-	o, err := loadOverrides(filepath.Join("data", "overrides.json"))
+	o, err := loadOverrides(filepath.Join("config", "overrides.json"))
 	if err != nil {
 		t.Fatal(err)
 	}

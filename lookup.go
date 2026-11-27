@@ -26,7 +26,7 @@ type Lookup struct {
 	// Users: pixiv user id -> koikatsucards author slugs and bepis author names.
 	Users map[string]*LookupUser `json:"users"`
 	// Telegram: where pixiv posts and accounts were seen in the Telegram chats of
-	// data/telegram_chats.json (omitted when there are none).
+	// config/telegram_chats.json (omitted when there are none).
 	Telegram *LookupTelegram `json:"telegram,omitempty"`
 }
 

@@ -749,6 +749,7 @@ func (a *App) process(ctx context.Context, c Card) error {
 func run() (err error) {
 	envFile := flag.String("env", ".env", "path to .env file")
 	dataDir := flag.String("data", "data", "directory for mapping.json")
+	configDir := flag.String("config", "config", "directory of the hand-edited inputs (overrides.json, telegram_chats.json, telegram_tags.txt)")
 	cacheDir := flag.String("cache", "cache", "directory for cache files")
 	startPage := flag.Int("start-page", 1, "first listing page")
 	maxPages := flag.Int("max-pages", 0, "stop after this many pages (0 = no limit)")
@@ -778,15 +779,15 @@ func run() (err error) {
 	rentryFile := flag.String("rentry-file", "", "use this local saved rentry HTML instead of downloading")
 	sourceMaxAge := flag.Duration("source-max-age", 24*time.Hour, "re-download names.json and the rentry page when older than this")
 	pixivIcons := flag.Bool("pixiv-icons", true, "look up pixiv profile icons for authors without a pawchive account")
-	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <data>/telegram_tags.txt)")
-	overridesPath := flag.String("overrides", "", `manual corrections by authors.json row name: {"name": {"telegram": ..., "pawchive": ...}} (default <data>/overrides.json)`)
+	tgTags := flag.String("telegram-tags", "", "text file with the channel's #hashtags (default <config>/telegram_tags.txt)")
+	overridesPath := flag.String("overrides", "", `manual corrections by authors.json row name: {"name": {"telegram": ..., "pawchive": ...}} (default <config>/overrides.json)`)
 	kknowURL := flag.String("kknow-search", kknowSearchURL, "kknow.cc search whose posts are read for pixiv user links (only its query and ordering are used)")
 	kknowPages := flag.Int("kknow-max-pages", 30, "most result pages read per kknow.cc search")
 	kknowDelay := flag.Duration("kknow-delay", 1500*time.Millisecond, "pause between requests to kknow.cc")
 	noKknow := flag.Bool("no-kknow", false, "skip searching kknow.cc for pixiv accounts")
 	noBepis := flag.Bool("no-bepis", false, "skip the bepis step (fetching the cards and matching authors)")
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
-	tgChats := flag.String("telegram-chats", "", "JSON file with the Telegram chat links to export for pixiv links (default <data>/telegram_chats.json; the step is skipped when the file does not exist)")
+	tgChats := flag.String("telegram-chats", "", "JSON file with the Telegram chat links to export for pixiv links (default <config>/telegram_chats.json; the step is skipped when the file does not exist)")
 	tgOut := flag.String("telegram-out", "", "where the pixiv users and posts found in those chats are saved (default <data>/telegram_pixiv.json)")
 	tgSession := flag.String("telegram-session", "", "directory of the Telegram login session (default $TELEGRAM_SESSION_DIR or telegram_session; a tdl data dir such as ~/.tdl/data reuses a tdl login)")
 	noTelegram := flag.Bool("no-telegram", false, "skip the Telegram chat export")
@@ -824,7 +825,7 @@ func run() (err error) {
 		*tgOut = filepath.Join(*dataDir, "telegram_pixiv.json")
 	}
 	if *tgOnly || !*noTelegram {
-		if err := telegramStep(*dataDir, *tgChats, *tgOut, *tgSession, *tgOnly); err != nil {
+		if err := telegramStep(*dataDir, *configDir, *tgChats, *tgOut, *tgSession, *tgOnly); err != nil {
 			if *tgOnly || errors.Is(err, context.Canceled) {
 				return err
 			}
@@ -872,10 +873,10 @@ func run() (err error) {
 		*authorsFile = filepath.Join(*dataDir, "authors.json")
 	}
 	if *tgTags == "" {
-		*tgTags = filepath.Join(*dataDir, "telegram_tags.txt")
+		*tgTags = filepath.Join(*configDir, "telegram_tags.txt")
 	}
 	if *overridesPath == "" {
-		*overridesPath = filepath.Join(*dataDir, "overrides.json")
+		*overridesPath = filepath.Join(*configDir, "overrides.json")
 	}
 	ov, err := loadOverrides(*overridesPath)
 	if err != nil {

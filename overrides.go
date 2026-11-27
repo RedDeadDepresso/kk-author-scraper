@@ -1,6 +1,6 @@
 package main
 
-// data/overrides.json holds the manual corrections of the automatic matching. It is a JSON object
+// config/overrides.json holds the manual corrections of the automatic matching. It is a JSON object
 // keyed by the exact name of a row of authors.json; every value is an object with the fields
 // to correct. A field that is missing is left to the automatic matching, a field that is empty
 // removes the automatic result:
