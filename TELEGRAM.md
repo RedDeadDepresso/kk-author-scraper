@@ -84,3 +84,25 @@ Every pixiv user found in `data/telegram_pixiv.json` is treated like an account 
 
 Typical use: `go run .` (exports new Telegram messages, reads the new profiles, updates authors.json).
 Pixiv post links are only stored in `telegram_pixiv.json`; they are not used for authors.
+
+## Running in CI
+
+A login code cannot be typed in a workflow, so log in once on your machine and give CI the saved session:
+
+1. Run `go run . -telegram-only` locally and enter the login code. This also fills the peer cache
+   in the session, which `t.me/c/<id>` chats need.
+2. Encode the session (compressed, to stay under GitHub's 48 KB secret limit):
+
+   ```
+   tar czf - telegram_session | base64 -w0
+   ```
+
+3. Save the output as the repository secret `TELEGRAM_SESSION`.
+
+`.github/workflows/scrape.yml` restores it before the scraper runs. Without the secret the telegram
+step fails with "not logged in", which is logged and the scrape goes on. The session is only read,
+never written back; `data/telegram_pixiv.json` is committed, so each run reads only new messages.
+
+Use a dedicated Telegram account: a session used from a datacenter IP can get flagged or logged
+out, and anyone who can read the secret controls the account. If the session dies, repeat the
+steps above.

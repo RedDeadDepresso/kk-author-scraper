@@ -28,6 +28,16 @@ jobs:
         with:
           go-version-file: go.mod
 
+      # Telegram login for the pixiv-link export (see TELEGRAM.md, "Running in CI"). Without
+      # the secret the telegram step fails with "not logged in", which is logged and skipped.
+      - name: Restore Telegram session
+        env:
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+        run: |
+          if [ -n "$TELEGRAM_SESSION" ]; then
+            echo "$TELEGRAM_SESSION" | base64 -d | tar xzf -
+          fi
+
       # Incremental: stops at the newest post of the previous run, so most runs are short.
       # PIXIV_PHPSESSID is optional (restricted works are unavailable without it).
       - name: Run scraper
