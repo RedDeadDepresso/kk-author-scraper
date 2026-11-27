@@ -23,9 +23,9 @@ func TestParseHashtags(t *testing.T) {
 
 func TestTelegramApply(t *testing.T) {
 	dir := t.TempDir()
-	tags := filepath.Join(dir, "tags.txt")
+	tags := filepath.Join(dir, "tags.json")
 	ov := filepath.Join(dir, "ov.json")
-	os.WriteFile(tags, []byte("#Haku #As@hi #shared #kard #wrong"), 0o644)
+	os.WriteFile(tags, []byte(`[{"source":"a","tags":["Haku","As@hi","shared"]},{"source":"b","tags":["#kard","wrong","HAKU"]}]`), 0o644)
 	os.WriteFile(ov, []byte(`{"Kardia": {"telegram": "#kard"}, "Wrongly": {"telegram": ""}, "Both": {"telegram": ["#Haku", "kard"]}}`), 0o644)
 	o, err := loadOverrides(ov)
 	if err != nil {
@@ -71,7 +71,7 @@ func TestTelegramApply(t *testing.T) {
 }
 
 func TestTelegramMissingFiles(t *testing.T) {
-	tt, err := loadTelegramTags("/nonexistent/a.txt", nil)
+	tt, err := loadTelegramTags("/nonexistent/a.json", nil)
 	if err != nil || len(tt.byNorm) != 0 || len(tt.overrides) != 0 {
 		t.Fatalf("%v %+v", err, tt)
 	}
@@ -79,8 +79,8 @@ func TestTelegramMissingFiles(t *testing.T) {
 
 func TestTelegramAliasesAddExtraTags(t *testing.T) {
 	dir := t.TempDir()
-	tags := filepath.Join(dir, "tags.txt")
-	os.WriteFile(tags, []byte("#hatoko #Horai #Third"), 0o644)
+	tags := filepath.Join(dir, "tags.json")
+	os.WriteFile(tags, []byte(`[{"source":"a","tags":["hatoko","Horai"]},{"source":"b","tags":["Third"]}]`), 0o644)
 	tt, err := loadTelegramTags(tags, nil)
 	if err != nil {
 		t.Fatal(err)
@@ -103,5 +103,22 @@ func TestTagListJSON(t *testing.T) {
 	b, _ := json.Marshal(AuthorRow{})
 	if !strings.Contains(string(b), `"telegram":[]`) {
 		t.Fatalf("%s", b)
+	}
+}
+
+func TestTelegramTagsDedupAcrossSources(t *testing.T) {
+	dir := t.TempDir()
+	tags := filepath.Join(dir, "tags.json")
+	os.WriteFile(tags, []byte(`[{"source":"a","tags":["Haku","#Horai"]},{"source":"b","tags":["haku","Third","horai"]}]`), 0o644)
+	tt, err := loadTelegramTags(tags, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tt.order) != 3 || tt.byNorm[normName("haku")] != "Haku" {
+		t.Fatalf("%v %v", tt.order, tt.byNorm)
+	}
+	os.WriteFile(tags, []byte("#not json"), 0o644)
+	if _, err := loadTelegramTags(tags, nil); err == nil {
+		t.Fatal("want error for invalid JSON")
 	}
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"regexp"
 	"strings"
@@ -40,7 +41,7 @@ func (l *TagList) UnmarshalJSON(b []byte) error {
 // telegramTags holds the channel's author hashtags and manual overrides.
 type telegramTags struct {
 	byNorm    map[string]string   // normalized hashtag -> hashtag as written (first one wins)
-	order     []string            // normalized hashtags in the order of the tags file
+	order     []string            // normalized hashtags in the order of the tags file (sources in file order)
 	overrides map[string][]string // exact author name -> extra hashtags (empty = never link this author)
 }
 
@@ -59,17 +60,33 @@ func parseHashtags(text string) []string {
 	return out
 }
 
-// loadTelegramTags reads a text file containing #hashtags (anything else in it is ignored).
+// tagSource is one entry of the tags file: a label that only organizes the tags, and its
+// hashtags (with or without the "#").
+type tagSource struct {
+	Source string   `json:"source"`
+	Tags   []string `json:"tags"`
+}
+
+// loadTelegramTags reads a JSON file of the form [{"source": "...", "tags": ["..."]}].
+// The source is only for organizing the file. Tags are deduplicated across all sources
+// (case-insensitive, punctuation ignored; the first one wins) before they are used.
 // overrides are the manual hashtags by exact author name (see overrides.go; an empty list means
 // the author gets none). A missing tags file is not an error.
 func loadTelegramTags(tagsPath string, overrides map[string][]string) (*telegramTags, error) {
 	t := &telegramTags{byNorm: map[string]string{}, overrides: map[string][]string{}}
 	if b, err := os.ReadFile(tagsPath); err == nil {
-		for _, tag := range parseHashtags(string(b)) {
-			if k := normName(tag); k != "" {
-				if _, ok := t.byNorm[k]; !ok {
-					t.byNorm[k] = tag
-					t.order = append(t.order, k)
+		var sources []tagSource
+		if err := json.Unmarshal(b, &sources); err != nil {
+			return nil, fmt.Errorf("%s: %w", tagsPath, err)
+		}
+		for _, src := range sources {
+			for _, raw := range src.Tags {
+				tag := cleanHashtag(raw)
+				if k := normName(tag); k != "" {
+					if _, ok := t.byNorm[k]; !ok {
+						t.byNorm[k] = tag
+						t.order = append(t.order, k)
+					}
 				}
 			}
 		}
