@@ -1,0 +1,4981 @@
+{
+  "updated_at": "2026-11-27T22:23:40Z",
+  "chats": {
+    "c/2549022984": {
+      "last_message_id": 77175,
+      "updated_at": "2026-11-27T22:23:40Z"
+    },
+    "koikatu_share": {
+      "last_message_id": 17698,
+      "updated_at": "2026-11-27T22:12:43Z"
+    },
+    "koikatunews": {
+      "last_message_id": 35519,
+      "updated_at": "2026-11-27T22:12:29Z"
+    }
+  },
+  "links": {
+    "https://catbox.moe/c/eg6cxc": {
+      "url": "https://catbox.moe/c/eg6cxc",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17609,
+          "topic": 296,
+          "date": "2025-07-12T22:33:30Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/16JT4wE8a9ga7HT_OshyuX8n8aCRZAc2_": {
+      "url": "https://drive.google.com/drive/folders/16JT4wE8a9ga7HT_OshyuX8n8aCRZAc2_",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 68674,
+          "topic": 299,
+          "date": "2026-09-22T12:28:32Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/18SCxf2j_oMOSuLAVX0YsTIexGgc9-q6N?usp=sharing": {
+      "url": "https://drive.google.com/drive/folders/18SCxf2j_oMOSuLAVX0YsTIexGgc9-q6N?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 11218,
+          "topic": 2372,
+          "date": "2025-06-05T20:44:21Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1GuWGplbiWLbIUYAjoGmXrxwYJCpKXg0p": {
+      "url": "https://drive.google.com/drive/folders/1GuWGplbiWLbIUYAjoGmXrxwYJCpKXg0p",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 23730,
+          "topic": 1,
+          "date": "2025-07-30T05:37:58Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1I2WiqOQyJBCqvRg0vaJ8BoUYrcbIABvG": {
+      "url": "https://drive.google.com/drive/folders/1I2WiqOQyJBCqvRg0vaJ8BoUYrcbIABvG",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25052,
+          "topic": 2372,
+          "date": "2025-09-16T05:10:32Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1U6c4WuNt9KTEZ1-bp75EKo4uBlAHAkfm": {
+      "url": "https://drive.google.com/drive/folders/1U6c4WuNt9KTEZ1-bp75EKo4uBlAHAkfm",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 23202,
+          "topic": 1,
+          "date": "2025-07-17T13:48:58Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1YctjEUsOXs7INQuWdu5-6biI32WgeK6D": {
+      "url": "https://drive.google.com/drive/folders/1YctjEUsOXs7INQuWdu5-6biI32WgeK6D",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 12319,
+          "topic": 2372,
+          "date": "2025-06-11T17:58:38Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1bhLcHqbQY5Ls09dFa8SjdEv7qFRWUdn0?usp=drive_link": {
+      "url": "https://drive.google.com/drive/folders/1bhLcHqbQY5Ls09dFa8SjdEv7qFRWUdn0?usp=drive_link",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 21747,
+          "topic": 301,
+          "date": "2025-08-14T16:38:06Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1l1PMRPiIgCts00f40EKRVdv2nyTxR1Ek?usp=sharing": {
+      "url": "https://drive.google.com/drive/folders/1l1PMRPiIgCts00f40EKRVdv2nyTxR1Ek?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 11338,
+          "topic": 1,
+          "date": "2024-10-31T01:36:56Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1thGxCfzxhtskxYLoNUYeIUHPfkjVximY?usp=sharing": {
+      "url": "https://drive.google.com/drive/folders/1thGxCfzxhtskxYLoNUYeIUHPfkjVximY?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 53247,
+          "topic": 602,
+          "date": "2026-05-08T21:00:28Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/folders/1yBnIwNvM6QNSrBqGKo2k4vAA_ea_gYRL": {
+      "url": "https://drive.google.com/drive/folders/1yBnIwNvM6QNSrBqGKo2k4vAA_ea_gYRL",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 21154,
+          "topic": 299,
+          "date": "2025-08-10T02:43:48Z"
+        }
+      ]
+    },
+    "https://drive.google.com/drive/u/0/folders/1YZlIX_7pCotR8rI95xeNDs1Y_mGPGeYP": {
+      "url": "https://drive.google.com/drive/u/0/folders/1YZlIX_7pCotR8rI95xeNDs1Y_mGPGeYP",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 32204,
+          "topic": 301,
+          "date": "2025-12-01T19:48:28Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/13nlpel3Nwg4R9CH2qrNE4k5fcK9Qza6o/view?usp=sharing": {
+      "url": "https://drive.google.com/file/d/13nlpel3Nwg4R9CH2qrNE4k5fcK9Qza6o/view?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 7749,
+          "topic": 602,
+          "date": "2025-05-21T07:13:54Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/14ZvrTCOSplyt3OtQ9xiPd_wOmurGLIaL/view?usp=drive_link": {
+      "url": "https://drive.google.com/file/d/14ZvrTCOSplyt3OtQ9xiPd_wOmurGLIaL/view?usp=drive_link",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 26286,
+          "topic": 299,
+          "date": "2025-09-30T05:09:32Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/16SkvKzQqLK0-5q_y1oRzz5298iJ4dGn5/view": {
+      "url": "https://drive.google.com/file/d/16SkvKzQqLK0-5q_y1oRzz5298iJ4dGn5/view",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17317,
+          "topic": 602,
+          "date": "2025-07-10T21:35:23Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/18tUBe82Y5rGbP-7WYVQwNggcsMXZ124f/view?usp=drive_link": {
+      "url": "https://drive.google.com/file/d/18tUBe82Y5rGbP-7WYVQwNggcsMXZ124f/view?usp=drive_link",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 35360,
+          "topic": 301,
+          "date": "2025-12-31T05:42:25Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1AzhlbSa7xvfYmTQCupKBY2INYdL969mE/view?usp=drive_link": {
+      "url": "https://drive.google.com/file/d/1AzhlbSa7xvfYmTQCupKBY2INYdL969mE/view?usp=drive_link",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 35158,
+          "topic": 301,
+          "date": "2025-12-29T00:42:41Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1Ttj31XSm_E1MGZCD-VwD8s14wkyHIMhh/view?usp=sharing": {
+      "url": "https://drive.google.com/file/d/1Ttj31XSm_E1MGZCD-VwD8s14wkyHIMhh/view?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 45828,
+          "topic": 301,
+          "date": "2026-03-17T18:46:31Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1Wcl-LOosZ8k_BLBwLysQDEsxZyCiqi7e/view": {
+      "url": "https://drive.google.com/file/d/1Wcl-LOosZ8k_BLBwLysQDEsxZyCiqi7e/view",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 3574,
+          "topic": 301,
+          "date": "2025-05-10T12:56:41Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1ZKCf-fWGtYINJsSQNPE5wShAl-_r5D22/view": {
+      "url": "https://drive.google.com/file/d/1ZKCf-fWGtYINJsSQNPE5wShAl-_r5D22/view",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 74555,
+          "topic": 301,
+          "date": "2026-11-14T08:56:19Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1aUQEMsoRh680txxqkENX_RABTRR6uWSs/view?usp=drive_link": {
+      "url": "https://drive.google.com/file/d/1aUQEMsoRh680txxqkENX_RABTRR6uWSs/view?usp=drive_link",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 35360,
+          "topic": 301,
+          "date": "2025-12-31T05:42:25Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1kmd2Td_8hm5LtZYI8EPu_FfQvT3s98JN/view?usp=sharing": {
+      "url": "https://drive.google.com/file/d/1kmd2Td_8hm5LtZYI8EPu_FfQvT3s98JN/view?usp=sharing",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 35361,
+          "topic": 301,
+          "date": "2025-12-31T05:54:06Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1ss-H3NHaBiyaA33erLPnNa9qKASc8Gos/view": {
+      "url": "https://drive.google.com/file/d/1ss-H3NHaBiyaA33erLPnNa9qKASc8Gos/view",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 21082,
+          "topic": 2372,
+          "date": "2025-08-09T11:42:49Z"
+        }
+      ]
+    },
+    "https://drive.google.com/file/d/1vFe32AjIjEkz5l674K48RSrpeCbC-ybK/view": {
+      "url": "https://drive.google.com/file/d/1vFe32AjIjEkz5l674K48RSrpeCbC-ybK/view",
+      "service": "gdrive",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 3575,
+          "topic": 301,
+          "date": "2025-05-10T12:57:05Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/0jtkgw.png": {
+      "url": "https://files.catbox.moe/0jtkgw.png",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 6111,
+          "topic": 301,
+          "date": "2025-05-14T08:23:02Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/2ml4xj.png": {
+      "url": "https://files.catbox.moe/2ml4xj.png",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1105,
+          "topic": 602,
+          "date": "2025-05-04T09:34:48Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/fg8vga.7z": {
+      "url": "https://files.catbox.moe/fg8vga.7z",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 23797,
+          "topic": 296,
+          "date": "2025-09-02T00:04:46Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/gpuji6.zip": {
+      "url": "https://files.catbox.moe/gpuji6.zip",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 12208,
+          "topic": 301,
+          "date": "2025-06-11T05:33:29Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/r98z8l.zip": {
+      "url": "https://files.catbox.moe/r98z8l.zip",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1706,
+          "topic": 301,
+          "date": "2025-05-06T14:15:02Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/v757as.zip": {
+      "url": "https://files.catbox.moe/v757as.zip",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 21378,
+          "topic": 301,
+          "date": "2025-08-11T16:27:40Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/wt71be.rar": {
+      "url": "https://files.catbox.moe/wt71be.rar",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29858,
+          "topic": 1,
+          "date": "2026-02-15T10:33:41Z"
+        }
+      ]
+    },
+    "https://files.catbox.moe/ziq50o.zip": {
+      "url": "https://files.catbox.moe/ziq50o.zip",
+      "service": "catbox",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28487,
+          "topic": 1,
+          "date": "2025-12-20T05:15:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/06ATd4": {
+      "url": "https://gofile.io/d/06ATd4",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/0TGTW6": {
+      "url": "https://gofile.io/d/0TGTW6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26862,
+          "topic": 1,
+          "date": "2025-10-30T03:31:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/0mnAb4": {
+      "url": "https://gofile.io/d/0mnAb4",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28291,
+          "topic": 1,
+          "date": "2025-12-14T06:02:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/11Nw3V": {
+      "url": "https://gofile.io/d/11Nw3V",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27919,
+          "topic": 1,
+          "date": "2025-12-02T08:16:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/1FiNxL": {
+      "url": "https://gofile.io/d/1FiNxL",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 5021,
+          "topic": 301,
+          "date": "2025-05-11T17:39:04Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/1Qljr4": {
+      "url": "https://gofile.io/d/1Qljr4",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30376,
+          "topic": 296,
+          "date": "2025-11-13T14:07:49Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/1rzFWq": {
+      "url": "https://gofile.io/d/1rzFWq",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34855,
+          "topic": 296,
+          "date": "2025-12-26T20:22:42Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/2TLGe6": {
+      "url": "https://gofile.io/d/2TLGe6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25361,
+          "topic": 2372,
+          "date": "2025-09-20T02:00:02Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/2fGTLf": {
+      "url": "https://gofile.io/d/2fGTLf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 31059,
+          "topic": 2372,
+          "date": "2025-11-19T17:19:49Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 27509,
+          "topic": 1,
+          "date": "2025-11-19T06:42:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/2jL7sd": {
+      "url": "https://gofile.io/d/2jL7sd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/32r8wc": {
+      "url": "https://gofile.io/d/32r8wc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 50401,
+          "topic": 301,
+          "date": "2026-04-20T01:55:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/36TtO8": {
+      "url": "https://gofile.io/d/36TtO8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 29664,
+          "topic": 301,
+          "date": "2025-11-05T14:09:55Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/3AQ2Y0": {
+      "url": "https://gofile.io/d/3AQ2Y0",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26800,
+          "topic": 1,
+          "date": "2025-10-27T08:17:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/3Bg5xS": {
+      "url": "https://gofile.io/d/3Bg5xS",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28646,
+          "topic": 1,
+          "date": "2025-12-26T05:42:08Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/3BycfR": {
+      "url": "https://gofile.io/d/3BycfR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31278,
+          "topic": 1,
+          "date": "2026-04-26T08:35:31Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/3I2j2S": {
+      "url": "https://gofile.io/d/3I2j2S",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 49270,
+          "topic": 301,
+          "date": "2026-04-12T02:19:29Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/3hKxrG": {
+      "url": "https://gofile.io/d/3hKxrG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28039,
+          "topic": 1,
+          "date": "2025-12-06T06:39:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/40Q36h": {
+      "url": "https://gofile.io/d/40Q36h",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39562,
+          "topic": 33518,
+          "date": "2026-01-25T15:51:37Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/41xVVg": {
+      "url": "https://gofile.io/d/41xVVg",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 31738,
+          "topic": 296,
+          "date": "2025-11-26T23:45:28Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 27745,
+          "topic": 1,
+          "date": "2025-11-27T05:17:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/49IK5v": {
+      "url": "https://gofile.io/d/49IK5v",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39142,
+          "topic": 33518,
+          "date": "2026-01-21T14:32:38Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/4EGYD7": {
+      "url": "https://gofile.io/d/4EGYD7",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30375,
+          "topic": 296,
+          "date": "2025-11-13T14:06:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/4R2enG": {
+      "url": "https://gofile.io/d/4R2enG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/4eRBM8": {
+      "url": "https://gofile.io/d/4eRBM8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 12288,
+          "topic": 301,
+          "date": "2025-06-11T14:17:12Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/4f85Sf": {
+      "url": "https://gofile.io/d/4f85Sf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25278,
+          "topic": 2372,
+          "date": "2025-09-19T01:40:03Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/4lwlZF": {
+      "url": "https://gofile.io/d/4lwlZF",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42459,
+          "topic": 296,
+          "date": "2026-02-20T20:57:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/5ImRyC": {
+      "url": "https://gofile.io/d/5ImRyC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34855,
+          "topic": 296,
+          "date": "2025-12-26T20:22:42Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/5SBghz": {
+      "url": "https://gofile.io/d/5SBghz",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42463,
+          "topic": 2372,
+          "date": "2026-02-20T21:03:48Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/5rRTjd": {
+      "url": "https://gofile.io/d/5rRTjd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10351,
+          "topic": 2372,
+          "date": "2025-05-31T17:14:23Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/5uk6JRmX": {
+      "url": "https://gofile.io/d/5uk6JRmX",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76848,
+          "topic": 296,
+          "date": "2026-11-24T05:14:18Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/5ygt7": {
+      "url": "https://gofile.io/d/5ygt7",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 18426,
+          "topic": 301,
+          "date": "2025-07-19T15:02:43Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/6Jkcve": {
+      "url": "https://gofile.io/d/6Jkcve",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/6UDgxl": {
+      "url": "https://gofile.io/d/6UDgxl",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47705,
+          "topic": 296,
+          "date": "2026-03-30T16:48:38Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/6u20qi": {
+      "url": "https://gofile.io/d/6u20qi",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/70WNER": {
+      "url": "https://gofile.io/d/70WNER",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 18027,
+          "topic": 296,
+          "date": "2025-07-17T08:45:07Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/75Gc8b": {
+      "url": "https://gofile.io/d/75Gc8b",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42460,
+          "topic": 296,
+          "date": "2026-02-20T20:58:49Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/7CCdoh": {
+      "url": "https://gofile.io/d/7CCdoh",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 32806,
+          "topic": 301,
+          "date": "2025-12-07T15:47:16Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/7P3msA1q": {
+      "url": "https://gofile.io/d/7P3msA1q",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76849,
+          "topic": 296,
+          "date": "2026-11-24T05:14:37Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/7rC1ug": {
+      "url": "https://gofile.io/d/7rC1ug",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34273,
+          "topic": 296,
+          "date": "2025-12-20T16:28:13Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/84kVX9": {
+      "url": "https://gofile.io/d/84kVX9",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25751,
+          "topic": 301,
+          "date": "2025-09-23T23:26:52Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/8Am5ya": {
+      "url": "https://gofile.io/d/8Am5ya",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34039,
+          "topic": 296,
+          "date": "2025-12-18T17:01:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/8SpMP6": {
+      "url": "https://gofile.io/d/8SpMP6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30646,
+          "topic": 1,
+          "date": "2026-03-26T10:28:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/8ekTHO": {
+      "url": "https://gofile.io/d/8ekTHO",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27915,
+          "topic": 1,
+          "date": "2025-12-02T06:15:25Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/8khREvpN": {
+      "url": "https://gofile.io/d/8khREvpN",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76849,
+          "topic": 296,
+          "date": "2026-11-24T05:14:37Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/9QpDQ9": {
+      "url": "https://gofile.io/d/9QpDQ9",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26512,
+          "topic": 1,
+          "date": "2025-10-18T04:19:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/9ffOCK": {
+      "url": "https://gofile.io/d/9ffOCK",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30324,
+          "topic": 1,
+          "date": "2026-03-11T05:57:45Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/A2AQ3A": {
+      "url": "https://gofile.io/d/A2AQ3A",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26551,
+          "topic": 1,
+          "date": "2025-10-19T05:36:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/A4GuIk": {
+      "url": "https://gofile.io/d/A4GuIk",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ADcMOZ": {
+      "url": "https://gofile.io/d/ADcMOZ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29673,
+          "topic": 1,
+          "date": "2026-02-06T10:13:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/AV3XcK": {
+      "url": "https://gofile.io/d/AV3XcK",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29403,
+          "topic": 1,
+          "date": "2026-01-25T06:14:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/AnLdc3": {
+      "url": "https://gofile.io/d/AnLdc3",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30064,
+          "topic": 1,
+          "date": "2026-02-27T04:51:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/BCTeBT": {
+      "url": "https://gofile.io/d/BCTeBT",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/BJaQmc": {
+      "url": "https://gofile.io/d/BJaQmc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28163,
+          "topic": 1,
+          "date": "2025-12-10T07:34:12Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/CozqKt": {
+      "url": "https://gofile.io/d/CozqKt",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30213,
+          "topic": 1,
+          "date": "2026-03-06T08:34:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/D9B7JP": {
+      "url": "https://gofile.io/d/D9B7JP",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26511,
+          "topic": 1,
+          "date": "2025-10-18T02:21:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DBE7MN": {
+      "url": "https://gofile.io/d/DBE7MN",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 50600,
+          "topic": 301,
+          "date": "2026-04-20T09:46:31Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DJxMci": {
+      "url": "https://gofile.io/d/DJxMci",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29908,
+          "topic": 1,
+          "date": "2026-02-19T10:14:50Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DN0u1t": {
+      "url": "https://gofile.io/d/DN0u1t",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31479,
+          "topic": 1,
+          "date": "2026-05-06T10:59:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DNNmEu": {
+      "url": "https://gofile.io/d/DNNmEu",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39143,
+          "topic": 296,
+          "date": "2026-01-21T14:33:48Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DQEPJC": {
+      "url": "https://gofile.io/d/DQEPJC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47700,
+          "topic": 296,
+          "date": "2026-03-30T16:37:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DbWX9w": {
+      "url": "https://gofile.io/d/DbWX9w",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 25971,
+          "topic": 1,
+          "date": "2025-09-30T08:39:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DlbhPH": {
+      "url": "https://gofile.io/d/DlbhPH",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/DzRcsj": {
+      "url": "https://gofile.io/d/DzRcsj",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 51182,
+          "topic": 299,
+          "date": "2026-04-22T16:39:08Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/EAnWmI": {
+      "url": "https://gofile.io/d/EAnWmI",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31494,
+          "topic": 1,
+          "date": "2026-05-07T08:48:10Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ED7K1O": {
+      "url": "https://gofile.io/d/ED7K1O",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28037,
+          "topic": 1,
+          "date": "2025-12-06T06:07:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ETkCkd": {
+      "url": "https://gofile.io/d/ETkCkd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26827,
+          "topic": 1,
+          "date": "2025-10-28T07:53:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ETwspM": {
+      "url": "https://gofile.io/d/ETwspM",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39684,
+          "topic": 602,
+          "date": "2026-01-26T20:57:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/EYcHql": {
+      "url": "https://gofile.io/d/EYcHql",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29293,
+          "topic": 1,
+          "date": "2026-01-20T05:54:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/EmRwvs": {
+      "url": "https://gofile.io/d/EmRwvs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28647,
+          "topic": 1,
+          "date": "2025-12-26T05:42:52Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Ey4224": {
+      "url": "https://gofile.io/d/Ey4224",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 62616,
+          "topic": 296,
+          "date": "2026-08-06T09:02:13Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/F2QJ6D": {
+      "url": "https://gofile.io/d/F2QJ6D",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 55325,
+          "topic": 2372,
+          "date": "2026-05-25T12:39:14Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/FeEWzn": {
+      "url": "https://gofile.io/d/FeEWzn",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30647,
+          "topic": 1,
+          "date": "2026-03-26T10:30:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/FkCe8a": {
+      "url": "https://gofile.io/d/FkCe8a",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42455,
+          "topic": 296,
+          "date": "2026-02-20T20:44:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Fwa2luCd": {
+      "url": "https://gofile.io/d/Fwa2luCd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76850,
+          "topic": 296,
+          "date": "2026-11-24T05:14:50Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/G8Thpk": {
+      "url": "https://gofile.io/d/G8Thpk",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47701,
+          "topic": 296,
+          "date": "2026-03-30T16:40:59Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/GEn8P2": {
+      "url": "https://gofile.io/d/GEn8P2",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42462,
+          "topic": 296,
+          "date": "2026-02-20T21:02:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/GIXEKw": {
+      "url": "https://gofile.io/d/GIXEKw",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 57447,
+          "topic": 301,
+          "date": "2026-06-10T07:28:06Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/GP3eBd": {
+      "url": "https://gofile.io/d/GP3eBd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30861,
+          "topic": 1,
+          "date": "2026-04-06T06:56:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Gfhm5o": {
+      "url": "https://gofile.io/d/Gfhm5o",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/GqQ1Pc": {
+      "url": "https://gofile.io/d/GqQ1Pc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 61117,
+          "topic": 301,
+          "date": "2026-07-20T04:10:30Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/H4bcVY": {
+      "url": "https://gofile.io/d/H4bcVY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30354,
+          "topic": 1,
+          "date": "2026-03-12T07:12:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/HD2ZIY": {
+      "url": "https://gofile.io/d/HD2ZIY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 11044,
+          "topic": 301,
+          "date": "2025-06-04T15:35:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/HS3gFh": {
+      "url": "https://gofile.io/d/HS3gFh",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10800,
+          "topic": 296,
+          "date": "2025-06-03T06:24:31Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/HUQXit": {
+      "url": "https://gofile.io/d/HUQXit",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/HXlRLb": {
+      "url": "https://gofile.io/d/HXlRLb",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34745,
+          "topic": 301,
+          "date": "2025-12-25T07:51:41Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/HylL7R": {
+      "url": "https://gofile.io/d/HylL7R",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1702,
+          "topic": 301,
+          "date": "2025-05-06T14:09:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/IUebNvyq": {
+      "url": "https://gofile.io/d/IUebNvyq",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 34582,
+          "topic": 1,
+          "date": "2026-10-10T04:49:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/J6IiAs": {
+      "url": "https://gofile.io/d/J6IiAs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32589,
+          "topic": 1,
+          "date": "2026-06-29T03:35:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/JZ0wFW": {
+      "url": "https://gofile.io/d/JZ0wFW",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34038,
+          "topic": 296,
+          "date": "2025-12-18T17:01:18Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/K17kHL": {
+      "url": "https://gofile.io/d/K17kHL",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28805,
+          "topic": 1,
+          "date": "2025-12-31T10:29:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/K9v3B0": {
+      "url": "https://gofile.io/d/K9v3B0",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39138,
+          "topic": 296,
+          "date": "2026-01-21T14:22:38Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/KAI8GI": {
+      "url": "https://gofile.io/d/KAI8GI",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29404,
+          "topic": 1,
+          "date": "2026-01-25T06:24:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/KRDZUr": {
+      "url": "https://gofile.io/d/KRDZUr",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/KwQCFV": {
+      "url": "https://gofile.io/d/KwQCFV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34907,
+          "topic": 2374,
+          "date": "2025-12-27T07:58:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LBAYfp": {
+      "url": "https://gofile.io/d/LBAYfp",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LFhTbp": {
+      "url": "https://gofile.io/d/LFhTbp",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17840,
+          "topic": 296,
+          "date": "2025-07-15T05:36:11Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LV7yG8": {
+      "url": "https://gofile.io/d/LV7yG8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33343,
+          "topic": 296,
+          "date": "2025-12-12T14:38:30Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LVt0nc": {
+      "url": "https://gofile.io/d/LVt0nc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42457,
+          "topic": 296,
+          "date": "2026-02-20T20:55:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LgNjGm": {
+      "url": "https://gofile.io/d/LgNjGm",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34559,
+          "topic": 296,
+          "date": "2025-12-22T19:08:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/LinaVH": {
+      "url": "https://gofile.io/d/LinaVH",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26051,
+          "topic": 1,
+          "date": "2025-10-03T05:41:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Lvw5ub": {
+      "url": "https://gofile.io/d/Lvw5ub",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28166,
+          "topic": 1,
+          "date": "2025-12-10T07:45:48Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/MAD4xJ": {
+      "url": "https://gofile.io/d/MAD4xJ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30328,
+          "topic": 1,
+          "date": "2026-03-11T06:08:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/MHAVyK": {
+      "url": "https://gofile.io/d/MHAVyK",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34172,
+          "topic": 33518,
+          "date": "2025-12-19T20:42:43Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/MQjVys": {
+      "url": "https://gofile.io/d/MQjVys",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30084,
+          "topic": 301,
+          "date": "2025-11-11T02:01:12Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/MXpnQi": {
+      "url": "https://gofile.io/d/MXpnQi",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31181,
+          "topic": 1,
+          "date": "2026-04-21T05:03:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/MdyVac": {
+      "url": "https://gofile.io/d/MdyVac",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 25711,
+          "topic": 1,
+          "date": "2025-09-22T07:40:28Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/N5tilu": {
+      "url": "https://gofile.io/d/N5tilu",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30209,
+          "topic": 1,
+          "date": "2026-03-06T05:01:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/NAy9U0": {
+      "url": "https://gofile.io/d/NAy9U0",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34559,
+          "topic": 296,
+          "date": "2025-12-22T19:08:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Nbzzk2": {
+      "url": "https://gofile.io/d/Nbzzk2",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 24593,
+          "topic": 1,
+          "date": "2025-08-21T10:11:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Ncq2BS": {
+      "url": "https://gofile.io/d/Ncq2BS",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27586,
+          "topic": 1,
+          "date": "2025-11-22T04:35:27Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/NgSBuo": {
+      "url": "https://gofile.io/d/NgSBuo",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28038,
+          "topic": 1,
+          "date": "2025-12-06T06:17:19Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/NjIq5K": {
+      "url": "https://gofile.io/d/NjIq5K",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 24836,
+          "topic": 2372,
+          "date": "2025-09-13T14:20:59Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Nr4DBR": {
+      "url": "https://gofile.io/d/Nr4DBR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39138,
+          "topic": 296,
+          "date": "2026-01-21T14:22:38Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/OGcPrU": {
+      "url": "https://gofile.io/d/OGcPrU",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28450,
+          "topic": 1,
+          "date": "2025-12-19T05:23:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/OKbJuD": {
+      "url": "https://gofile.io/d/OKbJuD",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 45803,
+          "topic": 296,
+          "date": "2026-03-17T13:06:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/OQmi6Z": {
+      "url": "https://gofile.io/d/OQmi6Z",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29785,
+          "topic": 1,
+          "date": "2026-02-11T10:24:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/OdVtVo": {
+      "url": "https://gofile.io/d/OdVtVo",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29378,
+          "topic": 1,
+          "date": "2026-01-24T08:56:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/OdgwcZ": {
+      "url": "https://gofile.io/d/OdgwcZ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Otsriw": {
+      "url": "https://gofile.io/d/Otsriw",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31390,
+          "topic": 1,
+          "date": "2026-05-02T09:00:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/P1XXWc": {
+      "url": "https://gofile.io/d/P1XXWc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47703,
+          "topic": 296,
+          "date": "2026-03-30T16:46:06Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/PAnY5V": {
+      "url": "https://gofile.io/d/PAnY5V",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 36784,
+          "topic": 33518,
+          "date": "2026-01-07T15:11:59Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/PJMqyk": {
+      "url": "https://gofile.io/d/PJMqyk",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 23431,
+          "topic": 296,
+          "date": "2025-08-29T14:00:17Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/PoW0gs": {
+      "url": "https://gofile.io/d/PoW0gs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 36783,
+          "topic": 296,
+          "date": "2026-01-07T15:10:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/PvCtdt": {
+      "url": "https://gofile.io/d/PvCtdt",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28449,
+          "topic": 1,
+          "date": "2025-12-19T05:21:07Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Q8PhG3": {
+      "url": "https://gofile.io/d/Q8PhG3",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10900,
+          "topic": 2372,
+          "date": "2025-06-03T18:59:55Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/QFIBzV": {
+      "url": "https://gofile.io/d/QFIBzV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Qw7ztj": {
+      "url": "https://gofile.io/d/Qw7ztj",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10913,
+          "topic": 301,
+          "date": "2025-06-03T19:20:33Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/R95w9N": {
+      "url": "https://gofile.io/d/R95w9N",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29046,
+          "topic": 1,
+          "date": "2026-01-09T05:05:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/R9X0vi": {
+      "url": "https://gofile.io/d/R9X0vi",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 5039,
+          "topic": 301,
+          "date": "2025-05-11T19:25:17Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/RDaxzf": {
+      "url": "https://gofile.io/d/RDaxzf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26767,
+          "topic": 1,
+          "date": "2025-10-26T05:37:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/RK01IR": {
+      "url": "https://gofile.io/d/RK01IR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 53964,
+          "topic": 301,
+          "date": "2026-05-13T13:01:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/RRWJO8": {
+      "url": "https://gofile.io/d/RRWJO8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 59092,
+          "topic": 299,
+          "date": "2026-06-27T11:26:38Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Ri0Dgn": {
+      "url": "https://gofile.io/d/Ri0Dgn",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 31195,
+          "topic": 296,
+          "date": "2025-11-21T20:29:47Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 27554,
+          "topic": 1,
+          "date": "2025-11-21T07:04:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Rme1vPW8": {
+      "url": "https://gofile.io/d/Rme1vPW8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76850,
+          "topic": 296,
+          "date": "2026-11-24T05:14:50Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/RxbjVN": {
+      "url": "https://gofile.io/d/RxbjVN",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/SJS3ld": {
+      "url": "https://gofile.io/d/SJS3ld",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39139,
+          "topic": 296,
+          "date": "2026-01-21T14:26:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/SLxBuG": {
+      "url": "https://gofile.io/d/SLxBuG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28541,
+          "topic": 1,
+          "date": "2025-12-22T06:10:07Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/SPNIMv": {
+      "url": "https://gofile.io/d/SPNIMv",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42462,
+          "topic": 296,
+          "date": "2026-02-20T21:02:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Sw38ZR": {
+      "url": "https://gofile.io/d/Sw38ZR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28293,
+          "topic": 1,
+          "date": "2025-12-14T07:39:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/SxrrjR": {
+      "url": "https://gofile.io/d/SxrrjR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28272,
+          "topic": 1,
+          "date": "2025-12-12T15:05:35Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/T3km9d": {
+      "url": "https://gofile.io/d/T3km9d",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47715,
+          "topic": 296,
+          "date": "2026-03-30T17:07:33Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TDFwCV": {
+      "url": "https://gofile.io/d/TDFwCV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 24078,
+          "topic": 301,
+          "date": "2025-09-05T04:08:28Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TRR98B": {
+      "url": "https://gofile.io/d/TRR98B",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27897,
+          "topic": 1,
+          "date": "2025-12-01T13:31:56Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TX2cJI": {
+      "url": "https://gofile.io/d/TX2cJI",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30372,
+          "topic": 296,
+          "date": "2025-11-13T14:05:11Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TiY5rf": {
+      "url": "https://gofile.io/d/TiY5rf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32324,
+          "topic": 1,
+          "date": "2026-06-17T01:20:12Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TmWlEW": {
+      "url": "https://gofile.io/d/TmWlEW",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30083,
+          "topic": 301,
+          "date": "2025-11-11T02:00:52Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/TxJSjs": {
+      "url": "https://gofile.io/d/TxJSjs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47702,
+          "topic": 2374,
+          "date": "2026-03-30T16:44:03Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/UB2bmq": {
+      "url": "https://gofile.io/d/UB2bmq",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26930,
+          "topic": 1,
+          "date": "2025-11-01T01:54:17Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/UCPW4S": {
+      "url": "https://gofile.io/d/UCPW4S",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 36788,
+          "topic": 2372,
+          "date": "2026-01-07T15:31:28Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 28981,
+          "topic": 1,
+          "date": "2026-01-06T06:14:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/UE3yEC": {
+      "url": "https://gofile.io/d/UE3yEC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29716,
+          "topic": 1,
+          "date": "2026-02-09T07:43:40Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/UpqkdD": {
+      "url": "https://gofile.io/d/UpqkdD",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29350,
+          "topic": 1,
+          "date": "2026-01-22T07:32:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/V8jcki": {
+      "url": "https://gofile.io/d/V8jcki",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29294,
+          "topic": 1,
+          "date": "2026-01-20T05:55:21Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/V97Qer": {
+      "url": "https://gofile.io/d/V97Qer",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17522,
+          "topic": 301,
+          "date": "2025-07-12T10:01:48Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Vq3VGO": {
+      "url": "https://gofile.io/d/Vq3VGO",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32002,
+          "topic": 1,
+          "date": "2026-05-31T13:34:40Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Vx461z": {
+      "url": "https://gofile.io/d/Vx461z",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30353,
+          "topic": 1,
+          "date": "2026-03-12T05:59:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/W5jlcq": {
+      "url": "https://gofile.io/d/W5jlcq",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/WAHj06": {
+      "url": "https://gofile.io/d/WAHj06",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10528,
+          "topic": 301,
+          "date": "2025-06-01T22:13:19Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/WZGNJI": {
+      "url": "https://gofile.io/d/WZGNJI",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29715,
+          "topic": 1,
+          "date": "2026-02-09T07:20:30Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/WfG2g6": {
+      "url": "https://gofile.io/d/WfG2g6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 23454,
+          "topic": 1,
+          "date": "2025-07-23T09:59:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/WfoLpx": {
+      "url": "https://gofile.io/d/WfoLpx",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 56800,
+          "topic": 301,
+          "date": "2026-06-06T04:38:23Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/WxqixY": {
+      "url": "https://gofile.io/d/WxqixY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30121,
+          "topic": 1,
+          "date": "2026-02-28T14:29:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/XBOMmM": {
+      "url": "https://gofile.io/d/XBOMmM",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32944,
+          "topic": 1,
+          "date": "2026-07-15T04:50:21Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/XJEfu0uF": {
+      "url": "https://gofile.io/d/XJEfu0uF",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 70444,
+          "topic": 301,
+          "date": "2026-10-08T02:42:21Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/XjI3tY": {
+      "url": "https://gofile.io/d/XjI3tY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32588,
+          "topic": 1,
+          "date": "2026-06-29T03:05:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/XuVm21": {
+      "url": "https://gofile.io/d/XuVm21",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/Y8RdaZ": {
+      "url": "https://gofile.io/d/Y8RdaZ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31263,
+          "topic": 1,
+          "date": "2026-04-25T05:52:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/YQWY0w": {
+      "url": "https://gofile.io/d/YQWY0w",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29348,
+          "topic": 1,
+          "date": "2026-01-22T06:22:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/YSigxa": {
+      "url": "https://gofile.io/d/YSigxa",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30065,
+          "topic": 1,
+          "date": "2026-02-27T04:52:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/YZfTXw": {
+      "url": "https://gofile.io/d/YZfTXw",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27208,
+          "topic": 1,
+          "date": "2025-11-10T04:28:36Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/YaWLiE": {
+      "url": "https://gofile.io/d/YaWLiE",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/YdWcbe": {
+      "url": "https://gofile.io/d/YdWcbe",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25946,
+          "topic": 301,
+          "date": "2025-09-26T11:41:53Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ZBFeZL": {
+      "url": "https://gofile.io/d/ZBFeZL",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47712,
+          "topic": 2372,
+          "date": "2026-03-30T16:56:49Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ZdLQHB": {
+      "url": "https://gofile.io/d/ZdLQHB",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10796,
+          "topic": 301,
+          "date": "2025-06-03T06:16:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ZfNZJu": {
+      "url": "https://gofile.io/d/ZfNZJu",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/aZGhqwgj": {
+      "url": "https://gofile.io/d/aZGhqwgj",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 70159,
+          "topic": 70076,
+          "date": "2026-10-05T19:02:14Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/acIT7Z": {
+      "url": "https://gofile.io/d/acIT7Z",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 5191,
+          "topic": 301,
+          "date": "2025-05-12T06:14:20Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/atPipp": {
+      "url": "https://gofile.io/d/atPipp",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 3308,
+          "topic": 301,
+          "date": "2025-05-10T06:20:37Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/avyn2e": {
+      "url": "https://gofile.io/d/avyn2e",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ay7kmy": {
+      "url": "https://gofile.io/d/ay7kmy",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27349,
+          "topic": 1,
+          "date": "2025-11-14T10:20:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/c3AMEo": {
+      "url": "https://gofile.io/d/c3AMEo",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30082,
+          "topic": 301,
+          "date": "2025-11-11T02:00:35Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/c4c63023-30b7-4d22-a195-8aed7a372cdd": {
+      "url": "https://gofile.io/d/c4c63023-30b7-4d22-a195-8aed7a372cdd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 68029,
+          "topic": 296,
+          "date": "2026-09-17T10:21:41Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/cGZWch": {
+      "url": "https://gofile.io/d/cGZWch",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/cv7air": {
+      "url": "https://gofile.io/d/cv7air",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 20611,
+          "topic": 301,
+          "date": "2025-08-06T08:52:26Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/d3UJDf": {
+      "url": "https://gofile.io/d/d3UJDf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29349,
+          "topic": 1,
+          "date": "2026-01-22T06:31:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/d8muI3": {
+      "url": "https://gofile.io/d/d8muI3",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dB8j0i": {
+      "url": "https://gofile.io/d/dB8j0i",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26828,
+          "topic": 1,
+          "date": "2025-10-28T07:54:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dCXTYI": {
+      "url": "https://gofile.io/d/dCXTYI",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28384,
+          "topic": 1,
+          "date": "2025-12-16T11:33:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dOkyoc": {
+      "url": "https://gofile.io/d/dOkyoc",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28204,
+          "topic": 1,
+          "date": "2025-12-11T08:19:13Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dPkmSV": {
+      "url": "https://gofile.io/d/dPkmSV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 29449,
+          "topic": 296,
+          "date": "2025-11-03T03:16:50Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dVGwEY": {
+      "url": "https://gofile.io/d/dVGwEY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28488,
+          "topic": 1,
+          "date": "2025-12-20T06:05:40Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dieLlF": {
+      "url": "https://gofile.io/d/dieLlF",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/dvJm1R": {
+      "url": "https://gofile.io/d/dvJm1R",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 49344,
+          "topic": 33493,
+          "date": "2026-04-13T08:10:24Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ehZd8o": {
+      "url": "https://gofile.io/d/ehZd8o",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47716,
+          "topic": 296,
+          "date": "2026-03-30T17:08:32Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/fgcX7e": {
+      "url": "https://gofile.io/d/fgcX7e",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10743,
+          "topic": 2372,
+          "date": "2025-06-03T01:46:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/g0xXuJ": {
+      "url": "https://gofile.io/d/g0xXuJ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gBxg1T": {
+      "url": "https://gofile.io/d/gBxg1T",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 23508,
+          "topic": 301,
+          "date": "2025-08-30T04:38:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gCzqJU": {
+      "url": "https://gofile.io/d/gCzqJU",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gTqxA1": {
+      "url": "https://gofile.io/d/gTqxA1",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30591,
+          "topic": 1,
+          "date": "2026-03-23T07:07:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gY4cpt": {
+      "url": "https://gofile.io/d/gY4cpt",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 51626,
+          "topic": 2372,
+          "date": "2026-04-25T14:39:17Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 31265,
+          "topic": 1,
+          "date": "2026-04-25T09:57:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ga5th9": {
+      "url": "https://gofile.io/d/ga5th9",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30373,
+          "topic": 296,
+          "date": "2025-11-13T14:05:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ghbzvZ": {
+      "url": "https://gofile.io/d/ghbzvZ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10930,
+          "topic": 301,
+          "date": "2025-06-03T20:43:04Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gl8NRx": {
+      "url": "https://gofile.io/d/gl8NRx",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27546,
+          "topic": 1,
+          "date": "2025-11-21T05:34:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/gxeVNs": {
+      "url": "https://gofile.io/d/gxeVNs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27417,
+          "topic": 1,
+          "date": "2025-11-17T05:43:33Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/h76czJ": {
+      "url": "https://gofile.io/d/h76czJ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27378,
+          "topic": 1,
+          "date": "2025-11-16T07:36:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/hG6yKE": {
+      "url": "https://gofile.io/d/hG6yKE",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28609,
+          "topic": 1,
+          "date": "2025-12-24T07:16:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/hcsAuf": {
+      "url": "https://gofile.io/d/hcsAuf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 56801,
+          "topic": 301,
+          "date": "2026-06-06T04:38:36Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/hhxhtS": {
+      "url": "https://gofile.io/d/hhxhtS",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/hjkjpX": {
+      "url": "https://gofile.io/d/hjkjpX",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 9216,
+          "topic": 296,
+          "date": "2025-05-26T04:50:06Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/hxQP5Q": {
+      "url": "https://gofile.io/d/hxQP5Q",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/i5oApl": {
+      "url": "https://gofile.io/d/i5oApl",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31774,
+          "topic": 1,
+          "date": "2026-05-21T05:34:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/iEptwQ": {
+      "url": "https://gofile.io/d/iEptwQ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28249,
+          "topic": 1,
+          "date": "2025-12-12T08:01:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jRf8PM": {
+      "url": "https://gofile.io/d/jRf8PM",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28645,
+          "topic": 1,
+          "date": "2025-12-26T05:40:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jdakow": {
+      "url": "https://gofile.io/d/jdakow",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 27056,
+          "topic": 301,
+          "date": "2025-10-08T10:01:14Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jmTDSO": {
+      "url": "https://gofile.io/d/jmTDSO",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29293,
+          "topic": 1,
+          "date": "2026-01-20T05:54:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jqTglG": {
+      "url": "https://gofile.io/d/jqTglG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26428,
+          "topic": 1,
+          "date": "2025-10-15T08:59:29Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jrbBjE": {
+      "url": "https://gofile.io/d/jrbBjE",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 24438,
+          "topic": 301,
+          "date": "2025-09-09T02:52:53Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/jy3Urr": {
+      "url": "https://gofile.io/d/jy3Urr",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 29448,
+          "topic": 296,
+          "date": "2025-11-03T03:15:27Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/k3nU73": {
+      "url": "https://gofile.io/d/k3nU73",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29359,
+          "topic": 1,
+          "date": "2026-01-22T10:52:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/k7cIKM": {
+      "url": "https://gofile.io/d/k7cIKM",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42458,
+          "topic": 296,
+          "date": "2026-02-20T20:56:11Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kIbRYAST": {
+      "url": "https://gofile.io/d/kIbRYAST",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 70324,
+          "topic": 602,
+          "date": "2026-10-06T20:21:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kUg3aP": {
+      "url": "https://gofile.io/d/kUg3aP",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29809,
+          "topic": 1,
+          "date": "2026-02-13T06:35:24Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kWByKE": {
+      "url": "https://gofile.io/d/kWByKE",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28414,
+          "topic": 1,
+          "date": "2025-12-18T06:12:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kkuXlz": {
+      "url": "https://gofile.io/d/kkuXlz",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 25932,
+          "topic": 1,
+          "date": "2025-09-29T06:25:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kpDKJd": {
+      "url": "https://gofile.io/d/kpDKJd",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10671,
+          "topic": 301,
+          "date": "2025-06-02T14:45:35Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/kxPZPi": {
+      "url": "https://gofile.io/d/kxPZPi",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27564,
+          "topic": 1,
+          "date": "2025-11-21T10:35:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/l9xGNy": {
+      "url": "https://gofile.io/d/l9xGNy",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27832,
+          "topic": 1,
+          "date": "2025-11-30T05:05:24Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/lB0U2b": {
+      "url": "https://gofile.io/d/lB0U2b",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27252,
+          "topic": 1,
+          "date": "2025-11-12T07:14:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/lfpo6e3h": {
+      "url": "https://gofile.io/d/lfpo6e3h",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 76848,
+          "topic": 296,
+          "date": "2026-11-24T05:14:18Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/lq9Pwb": {
+      "url": "https://gofile.io/d/lq9Pwb",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 58900,
+          "topic": 301,
+          "date": "2026-06-25T01:24:13Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/lqxUqe": {
+      "url": "https://gofile.io/d/lqxUqe",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 51894,
+          "topic": 301,
+          "date": "2026-04-28T10:44:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/m7e6ex": {
+      "url": "https://gofile.io/d/m7e6ex",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 8118,
+          "topic": 301,
+          "date": "2025-05-22T13:35:12Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/m9cjO6": {
+      "url": "https://gofile.io/d/m9cjO6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26863,
+          "topic": 1,
+          "date": "2025-10-30T05:32:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/mINxX1": {
+      "url": "https://gofile.io/d/mINxX1",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31379,
+          "topic": 1,
+          "date": "2026-05-01T12:47:56Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/mcD99m": {
+      "url": "https://gofile.io/d/mcD99m",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47707,
+          "topic": 2372,
+          "date": "2026-03-30T16:54:34Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/mqdo9U": {
+      "url": "https://gofile.io/d/mqdo9U",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 22998,
+          "topic": 301,
+          "date": "2025-08-25T17:04:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/n2VAyT": {
+      "url": "https://gofile.io/d/n2VAyT",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30378,
+          "topic": 1,
+          "date": "2026-03-14T08:43:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/nFsbUm": {
+      "url": "https://gofile.io/d/nFsbUm",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30666,
+          "topic": 1,
+          "date": "2026-03-28T04:54:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ndChaL": {
+      "url": "https://gofile.io/d/ndChaL",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30794,
+          "topic": 1,
+          "date": "2026-04-02T13:02:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/njpiks": {
+      "url": "https://gofile.io/d/njpiks",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32959,
+          "topic": 1,
+          "date": "2026-07-15T13:33:10Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/nszg2B": {
+      "url": "https://gofile.io/d/nszg2B",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/o5vOsy": {
+      "url": "https://gofile.io/d/o5vOsy",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28448,
+          "topic": 1,
+          "date": "2025-12-19T05:06:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/o7HehX": {
+      "url": "https://gofile.io/d/o7HehX",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27687,
+          "topic": 1,
+          "date": "2025-11-25T10:47:53Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/oBBWmG": {
+      "url": "https://gofile.io/d/oBBWmG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42457,
+          "topic": 296,
+          "date": "2026-02-20T20:55:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/oHKofw": {
+      "url": "https://gofile.io/d/oHKofw",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 11140,
+          "topic": 301,
+          "date": "2025-06-05T10:30:45Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/oiz9Mu": {
+      "url": "https://gofile.io/d/oiz9Mu",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 33178,
+          "topic": 1,
+          "date": "2026-07-25T13:32:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pC9hPP": {
+      "url": "https://gofile.io/d/pC9hPP",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31391,
+          "topic": 1,
+          "date": "2026-05-02T09:03:19Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pEp8d1": {
+      "url": "https://gofile.io/d/pEp8d1",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 38301,
+          "topic": 296,
+          "date": "2026-01-15T10:21:55Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pJImAN": {
+      "url": "https://gofile.io/d/pJImAN",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 40285,
+          "topic": 296,
+          "date": "2026-01-31T12:02:11Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pK1EhN": {
+      "url": "https://gofile.io/d/pK1EhN",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 52690,
+          "topic": 2372,
+          "date": "2026-05-03T14:15:00Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 26007,
+          "topic": 1,
+          "date": "2025-10-01T05:35:14Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pKfEtV": {
+      "url": "https://gofile.io/d/pKfEtV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33214,
+          "topic": 2372,
+          "date": "2025-12-11T10:04:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/pV99lz": {
+      "url": "https://gofile.io/d/pV99lz",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26156,
+          "topic": 1,
+          "date": "2025-10-06T06:17:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ppGxlp": {
+      "url": "https://gofile.io/d/ppGxlp",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ps8qhy": {
+      "url": "https://gofile.io/d/ps8qhy",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 56332,
+          "topic": 602,
+          "date": "2026-06-02T13:12:48Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/q9qlGR": {
+      "url": "https://gofile.io/d/q9qlGR",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28760,
+          "topic": 1,
+          "date": "2025-12-30T06:04:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/qG0lwz": {
+      "url": "https://gofile.io/d/qG0lwz",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 23925,
+          "topic": 301,
+          "date": "2025-09-03T08:42:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/qaP4aQ": {
+      "url": "https://gofile.io/d/qaP4aQ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28766,
+          "topic": 1,
+          "date": "2025-12-30T06:19:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/qr4nti": {
+      "url": "https://gofile.io/d/qr4nti",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33343,
+          "topic": 296,
+          "date": "2025-12-12T14:38:30Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/qrusuj": {
+      "url": "https://gofile.io/d/qrusuj",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 32945,
+          "topic": 1,
+          "date": "2026-07-15T05:51:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rBTd69": {
+      "url": "https://gofile.io/d/rBTd69",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 36786,
+          "topic": 296,
+          "date": "2026-01-07T15:14:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rImVLq": {
+      "url": "https://gofile.io/d/rImVLq",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34040,
+          "topic": 296,
+          "date": "2025-12-18T17:02:19Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rJdvF2": {
+      "url": "https://gofile.io/d/rJdvF2",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30184,
+          "topic": 1,
+          "date": "2026-03-04T07:41:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rLnRAf": {
+      "url": "https://gofile.io/d/rLnRAf",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26052,
+          "topic": 1,
+          "date": "2025-10-03T05:43:53Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rn5Ylo": {
+      "url": "https://gofile.io/d/rn5Ylo",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 22648,
+          "topic": 296,
+          "date": "2025-08-23T02:36:59Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/rw4YIr": {
+      "url": "https://gofile.io/d/rw4YIr",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42456,
+          "topic": 296,
+          "date": "2026-02-20T20:51:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/sK97oO": {
+      "url": "https://gofile.io/d/sK97oO",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 32060,
+          "topic": 296,
+          "date": "2025-11-30T14:02:06Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/sZqL2M": {
+      "url": "https://gofile.io/d/sZqL2M",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42455,
+          "topic": 296,
+          "date": "2026-02-20T20:44:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/skAc8l": {
+      "url": "https://gofile.io/d/skAc8l",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 32186,
+          "topic": 296,
+          "date": "2025-12-01T15:14:03Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/sxymI6": {
+      "url": "https://gofile.io/d/sxymI6",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28164,
+          "topic": 1,
+          "date": "2025-12-10T07:37:41Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/t2p69I": {
+      "url": "https://gofile.io/d/t2p69I",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 35223,
+          "topic": 296,
+          "date": "2025-12-29T13:56:44Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/t4Avkl": {
+      "url": "https://gofile.io/d/t4Avkl",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10796,
+          "topic": 301,
+          "date": "2025-06-03T06:16:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/t5vgQP": {
+      "url": "https://gofile.io/d/t5vgQP",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30372,
+          "topic": 296,
+          "date": "2025-11-13T14:05:11Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/tDjyIC": {
+      "url": "https://gofile.io/d/tDjyIC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26552,
+          "topic": 1,
+          "date": "2025-10-19T06:02:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/tiivdG": {
+      "url": "https://gofile.io/d/tiivdG",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/tqki6w": {
+      "url": "https://gofile.io/d/tqki6w",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29401,
+          "topic": 1,
+          "date": "2026-01-25T06:04:36Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/txuuoy": {
+      "url": "https://gofile.io/d/txuuoy",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 24734,
+          "topic": 1,
+          "date": "2025-08-25T06:40:29Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/uByWaJ": {
+      "url": "https://gofile.io/d/uByWaJ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 23677,
+          "topic": 301,
+          "date": "2025-08-31T15:32:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/uKCtKj": {
+      "url": "https://gofile.io/d/uKCtKj",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 26323,
+          "topic": 1,
+          "date": "2025-10-11T08:44:32Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/uOy5EJ": {
+      "url": "https://gofile.io/d/uOy5EJ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 31277,
+          "topic": 1,
+          "date": "2026-04-26T08:25:56Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/uch9kV": {
+      "url": "https://gofile.io/d/uch9kV",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/utnLm8": {
+      "url": "https://gofile.io/d/utnLm8",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 22997,
+          "topic": 301,
+          "date": "2025-08-25T17:02:25Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/vMHRbY": {
+      "url": "https://gofile.io/d/vMHRbY",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 61677,
+          "topic": 2372,
+          "date": "2026-07-26T05:22:45Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/vN6aXp": {
+      "url": "https://gofile.io/d/vN6aXp",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42462,
+          "topic": 296,
+          "date": "2026-02-20T21:02:46Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/vVx9M5": {
+      "url": "https://gofile.io/d/vVx9M5",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47699,
+          "topic": 296,
+          "date": "2026-03-30T16:31:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/vnoCWv": {
+      "url": "https://gofile.io/d/vnoCWv",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30374,
+          "topic": 296,
+          "date": "2025-11-13T14:06:17Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/vqM2Si": {
+      "url": "https://gofile.io/d/vqM2Si",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28601,
+          "topic": 1,
+          "date": "2025-12-24T06:00:51Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/w3inTC": {
+      "url": "https://gofile.io/d/w3inTC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 49445,
+          "topic": 301,
+          "date": "2026-04-14T19:22:53Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/w8Sp5p": {
+      "url": "https://gofile.io/d/w8Sp5p",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47714,
+          "topic": 2372,
+          "date": "2026-03-30T17:03:09Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/wGjXad": {
+      "url": "https://gofile.io/d/wGjXad",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 39141,
+          "topic": 296,
+          "date": "2026-01-21T14:30:35Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/wImtMQ": {
+      "url": "https://gofile.io/d/wImtMQ",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 30379,
+          "topic": 1,
+          "date": "2026-03-14T08:48:58Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/wKxvya": {
+      "url": "https://gofile.io/d/wKxvya",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42464,
+          "topic": 2372,
+          "date": "2026-02-20T21:04:25Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/wW97xl": {
+      "url": "https://gofile.io/d/wW97xl",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 28765,
+          "topic": 1,
+          "date": "2025-12-30T06:17:01Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/whkyxH": {
+      "url": "https://gofile.io/d/whkyxH",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 48213,
+          "topic": 301,
+          "date": "2026-04-03T08:30:24Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/wiXD0A": {
+      "url": "https://gofile.io/d/wiXD0A",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 51895,
+          "topic": 301,
+          "date": "2026-04-28T10:44:02Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/x77DTH": {
+      "url": "https://gofile.io/d/x77DTH",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 54151,
+          "topic": 301,
+          "date": "2026-05-15T08:25:34Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/x9FzhL": {
+      "url": "https://gofile.io/d/x9FzhL",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 20338,
+          "topic": 296,
+          "date": "2025-08-03T17:32:24Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/xIF0ne": {
+      "url": "https://gofile.io/d/xIF0ne",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 42465,
+          "topic": 2372,
+          "date": "2026-02-20T21:05:03Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/xYGyzW": {
+      "url": "https://gofile.io/d/xYGyzW",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 29499,
+          "topic": 1,
+          "date": "2026-01-29T08:56:26Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/xbVxqa": {
+      "url": "https://gofile.io/d/xbVxqa",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47961,
+          "topic": 33493,
+          "date": "2026-04-01T13:35:47Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/xz6WpC": {
+      "url": "https://gofile.io/d/xz6WpC",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 34559,
+          "topic": 296,
+          "date": "2025-12-22T19:08:39Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/yPNoed": {
+      "url": "https://gofile.io/d/yPNoed",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 22703,
+          "topic": 296,
+          "date": "2025-08-23T13:19:00Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/ymocVg": {
+      "url": "https://gofile.io/d/ymocVg",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47706,
+          "topic": 296,
+          "date": "2026-03-30T16:52:54Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/zBtVKu": {
+      "url": "https://gofile.io/d/zBtVKu",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 19595,
+          "topic": 296,
+          "date": "2025-07-28T16:13:05Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/zCVFTw": {
+      "url": "https://gofile.io/d/zCVFTw",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30081,
+          "topic": 301,
+          "date": "2025-11-10T22:06:43Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/zMcqEs": {
+      "url": "https://gofile.io/d/zMcqEs",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 31196,
+          "topic": 296,
+          "date": "2025-11-21T20:30:46Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 27554,
+          "topic": 1,
+          "date": "2025-11-21T07:04:22Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/zQ3LrA": {
+      "url": "https://gofile.io/d/zQ3LrA",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 49727,
+          "topic": 2372,
+          "date": "2026-04-17T08:42:29Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 31105,
+          "topic": 1,
+          "date": "2026-04-17T06:52:57Z"
+        }
+      ]
+    },
+    "https://gofile.io/d/zwCqso": {
+      "url": "https://gofile.io/d/zwCqso",
+      "service": "gofile",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33213,
+          "topic": 2372,
+          "date": "2025-12-11T10:04:18Z"
+        }
+      ]
+    },
+    "https://mega.nz/#F!Bs9m2IJZ!GV1i6uaQOgaj0HPDBmDuvg": {
+      "url": "https://mega.nz/#F!Bs9m2IJZ!GV1i6uaQOgaj0HPDBmDuvg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 62113,
+          "topic": 301,
+          "date": "2026-07-30T10:28:21Z"
+        }
+      ]
+    },
+    "https://mega.nz/#F!upYGBTAZ!S1lMalC33LYEditk7GwzgQ!GpJEiLwK": {
+      "url": "https://mega.nz/#F!upYGBTAZ!S1lMalC33LYEditk7GwzgQ!GpJEiLwK",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 12559,
+          "topic": 301,
+          "date": "2025-06-13T00:26:34Z"
+        }
+      ]
+    },
+    "https://mega.nz/#P!AgCq7kaYqtOUnf79v-nKRTMbr7DYv9Mj59CCFJSj7nN5vNM2_Ppp-iJWrXMFgv8D9HsXydNEmbRTOTfYQ7bYn66yuV2bBfzA3QuylAyS6lYwrNxBKemrmQ": {
+      "url": "https://mega.nz/#P!AgCq7kaYqtOUnf79v-nKRTMbr7DYv9Mj59CCFJSj7nN5vNM2_Ppp-iJWrXMFgv8D9HsXydNEmbRTOTfYQ7bYn66yuV2bBfzA3QuylAyS6lYwrNxBKemrmQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 14529,
+          "topic": 301,
+          "date": "2025-06-19T05:39:31Z"
+        }
+      ]
+    },
+    "https://mega.nz/fdc919a3-94e2-425b-a100-6d23492bd16c": {
+      "url": "https://mega.nz/fdc919a3-94e2-425b-a100-6d23492bd16c",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 65923,
+          "topic": 296,
+          "date": "2026-09-01T00:19:36Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/2PJz2Rob#MU5GyLltYDL0R84UB6I37amHxzT7vgG46I3MjreNJck": {
+      "url": "https://mega.nz/file/2PJz2Rob#MU5GyLltYDL0R84UB6I37amHxzT7vgG46I3MjreNJck",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10729,
+          "topic": 2372,
+          "date": "2025-06-03T00:03:14Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/2iwGRK7I#AZdbV1qGeQqiaR9XrUlQH_JqUoRpTjkM7jhIJFlg1iI": {
+      "url": "https://mega.nz/file/2iwGRK7I#AZdbV1qGeQqiaR9XrUlQH_JqUoRpTjkM7jhIJFlg1iI",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25093,
+          "topic": 301,
+          "date": "2025-09-16T11:26:03Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/51pBAIJY#sBPl7Fm-XsXrHKFRCSPHUVY8ucGyyKrcnDSzNB1B_2Q": {
+      "url": "https://mega.nz/file/51pBAIJY#sBPl7Fm-XsXrHKFRCSPHUVY8ucGyyKrcnDSzNB1B_2Q",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1857,
+          "topic": 301,
+          "date": "2025-05-07T03:47:07Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/F9EBTbDC#j7wDCil94WkGAKvUSgiZ_fn3CxGqesDAcm-FZr_5epw": {
+      "url": "https://mega.nz/file/F9EBTbDC#j7wDCil94WkGAKvUSgiZ_fn3CxGqesDAcm-FZr_5epw",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 54166,
+          "topic": 296,
+          "date": "2026-05-15T11:23:42Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/GUcXlRDC#XPteI4wBZPI6YszaWLa4FyhGLRd7NzMvV9iICfFB_zU": {
+      "url": "https://mega.nz/file/GUcXlRDC#XPteI4wBZPI6YszaWLa4FyhGLRd7NzMvV9iICfFB_zU",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 13681,
+          "topic": 2372,
+          "date": "2025-06-16T17:24:15Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/Q0sQQLBA#eiKCBB4RH0cp2TeY2G4p-vIXQcAtLtvavn6Z-2DTqUg": {
+      "url": "https://mega.nz/file/Q0sQQLBA#eiKCBB4RH0cp2TeY2G4p-vIXQcAtLtvavn6Z-2DTqUg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 14934,
+          "topic": 301,
+          "date": "2025-06-21T15:56:14Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/ToYXhSZA#tljWPiO47YCE34hDSJzqFpRqN6HT4_C2xM1I_sEbxJE": {
+      "url": "https://mega.nz/file/ToYXhSZA#tljWPiO47YCE34hDSJzqFpRqN6HT4_C2xM1I_sEbxJE",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33283,
+          "topic": 301,
+          "date": "2025-12-11T15:51:32Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/XK5BxRwA#mpOnHncSIsOO1JzLGF8SVVXzK4mTH44qQT9QugHKj3k": {
+      "url": "https://mega.nz/file/XK5BxRwA#mpOnHncSIsOO1JzLGF8SVVXzK4mTH44qQT9QugHKj3k",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 4715,
+          "topic": 301,
+          "date": "2025-05-10T17:17:01Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/YjQiHB7Q#VzkwaOAUI5ECRUPiPM3U9t0wtfspxBvCjy67_-SCXtQ": {
+      "url": "https://mega.nz/file/YjQiHB7Q#VzkwaOAUI5ECRUPiPM3U9t0wtfspxBvCjy67_-SCXtQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 29348,
+          "topic": 301,
+          "date": "2025-11-01T14:45:14Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/Z5YjXARL#ZFL9lXZEAi46Xmdqkk1yBrmVwfMSfUz2Fke5cJFdKrQ": {
+      "url": "https://mega.nz/file/Z5YjXARL#ZFL9lXZEAi46Xmdqkk1yBrmVwfMSfUz2Fke5cJFdKrQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 66107,
+          "topic": 602,
+          "date": "2026-09-03T14:42:50Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/ZJpgjQDY#7h2qR7XSw3EQMJEQ-giir1lFFjVZ8wdTUpmnsuofjOI": {
+      "url": "https://mega.nz/file/ZJpgjQDY#7h2qR7XSw3EQMJEQ-giir1lFFjVZ8wdTUpmnsuofjOI",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 18305,
+          "topic": 299,
+          "date": "2025-07-19T10:36:49Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/azRjSaTA#xh8GLnq0my3ZE4xW2cd7jODuchZIvFZDKB3W0YcPO58": {
+      "url": "https://mega.nz/file/azRjSaTA#xh8GLnq0my3ZE4xW2cd7jODuchZIvFZDKB3W0YcPO58",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 33870,
+          "topic": 299,
+          "date": "2025-12-16T18:11:42Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/d15VkabT#AOqcxoCp3wxTTrXz8pwP-uhT6ztKDaTscznXAHr3TYI": {
+      "url": "https://mega.nz/file/d15VkabT#AOqcxoCp3wxTTrXz8pwP-uhT6ztKDaTscznXAHr3TYI",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27892,
+          "topic": 1,
+          "date": "2025-12-01T11:03:01Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/ollxGZTL#WTAY0JPfiNIkQdelMe5O6lAYyMdROvj0BzBV9WMv0j8": {
+      "url": "https://mega.nz/file/ollxGZTL#WTAY0JPfiNIkQdelMe5O6lAYyMdROvj0BzBV9WMv0j8",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 47797,
+          "topic": 299,
+          "date": "2026-03-31T05:54:21Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/pN9TgCIQ#pp0ylx9lZ9VBLJLV2kdpwqSfPo-1agkYYZMsF-Iozy0": {
+      "url": "https://mega.nz/file/pN9TgCIQ#pp0ylx9lZ9VBLJLV2kdpwqSfPo-1agkYYZMsF-Iozy0",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 20753,
+          "topic": 299,
+          "date": "2025-08-07T09:50:36Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/rmJ3EB7J#wmKNkcnT7yqt2nnOXJm9vvB4jqwkXBlitOOYVMugjI4": {
+      "url": "https://mega.nz/file/rmJ3EB7J#wmKNkcnT7yqt2nnOXJm9vvB4jqwkXBlitOOYVMugjI4",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 18520,
+          "topic": 2372,
+          "date": "2025-07-19T23:17:41Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/saUGDI5C#4ganMUfePMoHcQZn66c-FnBTBMQC9G2g_ju55mU82Ao": {
+      "url": "https://mega.nz/file/saUGDI5C#4ganMUfePMoHcQZn66c-FnBTBMQC9G2g_ju55mU82Ao",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 11579,
+          "topic": 301,
+          "date": "2025-06-07T17:47:51Z"
+        }
+      ]
+    },
+    "https://mega.nz/file/xgAHWYSb#N8QxEujKFMQgB3ac214nI0P_vWe6VmFwx8KG2iLpwEw": {
+      "url": "https://mega.nz/file/xgAHWYSb#N8QxEujKFMQgB3ac214nI0P_vWe6VmFwx8KG2iLpwEw",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 63583,
+          "topic": 301,
+          "date": "2026-08-16T12:15:34Z"
+        }
+      ]
+    },
+    "https://mega.nz/fm/Y0whGCqB": {
+      "url": "https://mega.nz/fm/Y0whGCqB",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17611,
+          "topic": 296,
+          "date": "2025-07-12T22:34:26Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/0MxhUBgA#TgJGpy36ZTrPU0Twpi1J0g": {
+      "url": "https://mega.nz/folder/0MxhUBgA#TgJGpy36ZTrPU0Twpi1J0g",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 70686,
+          "topic": 304,
+          "date": "2026-10-10T14:14:56Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/0jZGRRwQ#gl0m7xlCiXgTNkW7NidyeQ/folder/l6hyGCTa": {
+      "url": "https://mega.nz/folder/0jZGRRwQ#gl0m7xlCiXgTNkW7NidyeQ/folder/l6hyGCTa",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 27124,
+          "topic": 301,
+          "date": "2025-10-09T13:18:06Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/1RgXEYTD#0NC29O6HN8dwNrbH03JXww": {
+      "url": "https://mega.nz/folder/1RgXEYTD#0NC29O6HN8dwNrbH03JXww",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 9116,
+          "topic": 301,
+          "date": "2025-05-25T19:46:18Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/1nc3mTQS#rXHq8WYjWLBrJQs4UCqllQ": {
+      "url": "https://mega.nz/folder/1nc3mTQS#rXHq8WYjWLBrJQs4UCqllQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 40028,
+          "topic": 296,
+          "date": "2026-01-29T02:38:25Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/3Z0U1DLY#sfGBmdyXm291etTZIeEmfg": {
+      "url": "https://mega.nz/folder/3Z0U1DLY#sfGBmdyXm291etTZIeEmfg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 31088,
+          "topic": 296,
+          "date": "2025-11-20T10:08:29Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/3m4TXTxY#MK_4LXiO2-ZjIkPit9AWJQ": {
+      "url": "https://mega.nz/folder/3m4TXTxY#MK_4LXiO2-ZjIkPit9AWJQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 30622,
+          "topic": 299,
+          "date": "2025-11-15T18:33:03Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/4i43ia5C#gl0m7xlCiXgTNkW7NidyeQ/folder/lnohFIJR": {
+      "url": "https://mega.nz/folder/4i43ia5C#gl0m7xlCiXgTNkW7NidyeQ/folder/lnohFIJR",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25398,
+          "topic": 301,
+          "date": "2025-09-20T10:51:38Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/5VEHASwB#C5H1mcugkds1PMwPsvhZ6w": {
+      "url": "https://mega.nz/folder/5VEHASwB#C5H1mcugkds1PMwPsvhZ6w",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 26164,
+          "topic": 602,
+          "date": "2025-09-28T12:31:14Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/7vRWyYTB#pT8QTX87PNOSRlhb6OnZdQ": {
+      "url": "https://mega.nz/folder/7vRWyYTB#pT8QTX87PNOSRlhb6OnZdQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27628,
+          "topic": 1,
+          "date": "2025-11-23T04:15:55Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/CNhBiJJC#xAZ4Q-rLxeEhOwZiOP3r3g": {
+      "url": "https://mega.nz/folder/CNhBiJJC#xAZ4Q-rLxeEhOwZiOP3r3g",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1601,
+          "topic": 296,
+          "date": "2025-05-06T02:46:40Z"
+        },
+        {
+          "chat": "koikatunews",
+          "message_id": 15749,
+          "topic": 1,
+          "date": "2025-01-22T11:21:20Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/CWpEBAgJ#4wWIwLrjQEYIng7DUxBBHg": {
+      "url": "https://mega.nz/folder/CWpEBAgJ#4wWIwLrjQEYIng7DUxBBHg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 8052,
+          "topic": 301,
+          "date": "2025-05-22T08:02:28Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/CmBRCQZS#F1lgt2CsLk99Yjrg4ud7ew": {
+      "url": "https://mega.nz/folder/CmBRCQZS#F1lgt2CsLk99Yjrg4ud7ew",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17390,
+          "topic": 301,
+          "date": "2025-07-11T08:52:30Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/EjRQXTSQ#YPh4OJG4btBX3jaAudjcsA": {
+      "url": "https://mega.nz/folder/EjRQXTSQ#YPh4OJG4btBX3jaAudjcsA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 27124,
+          "topic": 1,
+          "date": "2025-11-08T05:01:33Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/FapkibDC#6JPFq9pn0StOYn2CSNb_nA": {
+      "url": "https://mega.nz/folder/FapkibDC#6JPFq9pn0StOYn2CSNb_nA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 8209,
+          "topic": 2372,
+          "date": "2025-05-22T21:15:44Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/FapkibDC#6JPFq9pn0StOYn2CSNb_nA/file/FD4ChIZQ": {
+      "url": "https://mega.nz/folder/FapkibDC#6JPFq9pn0StOYn2CSNb_nA/file/FD4ChIZQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 20752,
+          "topic": 2372,
+          "date": "2025-08-07T09:38:43Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/GRFRCKpB#mfygACR05Ovd3DqSoKGQWA": {
+      "url": "https://mega.nz/folder/GRFRCKpB#mfygACR05Ovd3DqSoKGQWA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 200,
+          "topic": 1,
+          "date": "2023-10-22T12:07:25Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/GksGiDpT#s_fAcMT_fUq6N1RzE1fbMQ": {
+      "url": "https://mega.nz/folder/GksGiDpT#s_fAcMT_fUq6N1RzE1fbMQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 28744,
+          "topic": 2372,
+          "date": "2025-10-25T14:55:45Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/HIkyxSZb#v0pl1ZrBuzdQKi5M7jwjrw": {
+      "url": "https://mega.nz/folder/HIkyxSZb#v0pl1ZrBuzdQKi5M7jwjrw",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 54638,
+          "topic": 33497,
+          "date": "2026-05-18T16:41:47Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/NuxF3aRZ#2_TmmOW803HV-aovjyA1_w": {
+      "url": "https://mega.nz/folder/NuxF3aRZ#2_TmmOW803HV-aovjyA1_w",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 9982,
+          "topic": 296,
+          "date": "2025-05-29T22:46:54Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/NuxF3aRZ#2_TmmOW803HV-aovjyA1_w/folder/Aqh3nYhL": {
+      "url": "https://mega.nz/folder/NuxF3aRZ#2_TmmOW803HV-aovjyA1_w/folder/Aqh3nYhL",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25395,
+          "topic": 301,
+          "date": "2025-09-20T10:47:44Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/NygAlBpJ#4kJLybspptZCdw9DA9eiOg": {
+      "url": "https://mega.nz/folder/NygAlBpJ#4kJLybspptZCdw9DA9eiOg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 59458,
+          "topic": 602,
+          "date": "2026-07-01T21:31:24Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/Q7ZVALjb#wdJn3Qkd7R7EPm3NwHW03A": {
+      "url": "https://mega.nz/folder/Q7ZVALjb#wdJn3Qkd7R7EPm3NwHW03A",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 24781,
+          "topic": 1,
+          "date": "2025-08-26T06:25:30Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/RGpV1JoZ#ZymY5P-mL2b-IKhG6xSM1Q": {
+      "url": "https://mega.nz/folder/RGpV1JoZ#ZymY5P-mL2b-IKhG6xSM1Q",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 62994,
+          "topic": 2372,
+          "date": "2026-08-09T11:07:45Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/SW5gQKiS#dXVfSpyCwc12NhsNINHuPQ": {
+      "url": "https://mega.nz/folder/SW5gQKiS#dXVfSpyCwc12NhsNINHuPQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 27088,
+          "topic": 299,
+          "date": "2025-10-08T18:59:25Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/UY0RXTpY#4qRN_T-L7H9Dk7q98CRFiA": {
+      "url": "https://mega.nz/folder/UY0RXTpY#4qRN_T-L7H9Dk7q98CRFiA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 201,
+          "topic": 1,
+          "date": "2023-10-22T12:08:58Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/UbQhQRTL#Zt2IBYqV6m9PnYqeJJSqGw": {
+      "url": "https://mega.nz/folder/UbQhQRTL#Zt2IBYqV6m9PnYqeJJSqGw",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 1672,
+          "topic": 301,
+          "date": "2025-05-06T10:43:23Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/UbQhQRTL#Zt2IBYqV6m9PnYqeJJSqGw/folder/oHhHwaqB": {
+      "url": "https://mega.nz/folder/UbQhQRTL#Zt2IBYqV6m9PnYqeJJSqGw/folder/oHhHwaqB",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 7890,
+          "topic": 602,
+          "date": "2025-05-21T21:49:32Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/VcdVjYgL#dqSaQ1l0_NEeuq4EV-CQKA": {
+      "url": "https://mega.nz/folder/VcdVjYgL#dqSaQ1l0_NEeuq4EV-CQKA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 45521,
+          "topic": 602,
+          "date": "2026-03-15T04:16:33Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/W74yRIYD#3HF1kkIyVmuWl7vOwAE6YQ": {
+      "url": "https://mega.nz/folder/W74yRIYD#3HF1kkIyVmuWl7vOwAE6YQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25966,
+          "topic": 301,
+          "date": "2025-09-26T16:39:17Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/X7ZkRZjZ#pqXBq3V8TB8EycHFyP5Kaw": {
+      "url": "https://mega.nz/folder/X7ZkRZjZ#pqXBq3V8TB8EycHFyP5Kaw",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 17942,
+          "topic": 1,
+          "date": "2025-03-05T14:54:04Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/ae4UiQbI#7TzRDStbbZmHq7FdGS0LCw/folder/PfwygJCa": {
+      "url": "https://mega.nz/folder/ae4UiQbI#7TzRDStbbZmHq7FdGS0LCw/folder/PfwygJCa",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 23202,
+          "topic": 1,
+          "date": "2025-07-17T13:48:58Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/lXA0URyK#SR7sxVjeGQoryveygUNnfQ": {
+      "url": "https://mega.nz/folder/lXA0URyK#SR7sxVjeGQoryveygUNnfQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 25870,
+          "topic": 296,
+          "date": "2025-09-25T11:03:10Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/lcwmCRQL#2LaaHxNt4iJPzk4KjnR9YQ": {
+      "url": "https://mega.nz/folder/lcwmCRQL#2LaaHxNt4iJPzk4KjnR9YQ",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 2943,
+          "topic": 602,
+          "date": "2025-05-09T18:33:11Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/o8ZxXZLR#XCwNVigG-0APfe_PVsNCNg": {
+      "url": "https://mega.nz/folder/o8ZxXZLR#XCwNVigG-0APfe_PVsNCNg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 25033,
+          "topic": 1,
+          "date": "2025-09-03T03:23:04Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/ow4xSIqK#O512yAZ5Plzy-uJlU0SK3Q/file/ghBnFb7Y": {
+      "url": "https://mega.nz/folder/ow4xSIqK#O512yAZ5Plzy-uJlU0SK3Q/file/ghBnFb7Y",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 18062,
+          "topic": 299,
+          "date": "2025-07-17T11:12:54Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/rKJgDL5J#8-W_TvOn-P-N9SDG8igs9Q": {
+      "url": "https://mega.nz/folder/rKJgDL5J#8-W_TvOn-P-N9SDG8igs9Q",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "koikatunews",
+          "message_id": 199,
+          "topic": 1,
+          "date": "2023-10-22T12:03:49Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/ulg1zYDb#m8aWCDHrauMC4Xw56NCm3g": {
+      "url": "https://mega.nz/folder/ulg1zYDb#m8aWCDHrauMC4Xw56NCm3g",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 20035,
+          "topic": 296,
+          "date": "2025-08-01T16:52:11Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/vvBUxbDA": {
+      "url": "https://mega.nz/folder/vvBUxbDA",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 74454,
+          "topic": 301,
+          "date": "2026-11-13T05:45:36Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/w7IS0Z7K#FrOyMvvI61nvR5lEJJU6fg": {
+      "url": "https://mega.nz/folder/w7IS0Z7K#FrOyMvvI61nvR5lEJJU6fg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 60506,
+          "topic": 301,
+          "date": "2026-07-13T15:54:51Z"
+        }
+      ]
+    },
+    "https://mega.nz/folder/yNVm0SLC#TZN_obEt2KfYIYfryVWAvg": {
+      "url": "https://mega.nz/folder/yNVm0SLC#TZN_obEt2KfYIYfryVWAvg",
+      "service": "mega",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 48550,
+          "topic": 296,
+          "date": "2026-04-05T22:22:32Z"
+        }
+      ]
+    },
+    "https://pixeldrain.com/u/HPRSxM6R": {
+      "url": "https://pixeldrain.com/u/HPRSxM6R",
+      "service": "pixeldrain",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 26163,
+          "topic": 602,
+          "date": "2025-09-28T12:18:03Z"
+        }
+      ]
+    },
+    "https://pixeldrain.com/u/mjr9D3wZ": {
+      "url": "https://pixeldrain.com/u/mjr9D3wZ",
+      "service": "pixeldrain",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10660,
+          "topic": 296,
+          "date": "2025-06-02T14:35:00Z"
+        }
+      ]
+    },
+    "https://pixeldrain.com/u/r7f2fDxD": {
+      "url": "https://pixeldrain.com/u/r7f2fDxD",
+      "service": "pixeldrain",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 17317,
+          "topic": 602,
+          "date": "2025-07-10T21:35:23Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/file/amef2xd23jwve9i/Zyzorix.rar/file": {
+      "url": "https://www.mediafire.com/file/amef2xd23jwve9i/Zyzorix.rar/file",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 15650,
+          "topic": 2372,
+          "date": "2025-06-27T19:05:48Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/file/i0v8b9n0tu37t60/Bazett.rar/file": {
+      "url": "https://www.mediafire.com/file/i0v8b9n0tu37t60/Bazett.rar/file",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 15651,
+          "topic": 2372,
+          "date": "2025-06-27T19:10:29Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/file/ivmjt2fwagr8u8a/MogelatteCharacterPack.rar/file": {
+      "url": "https://www.mediafire.com/file/ivmjt2fwagr8u8a/MogelatteCharacterPack.rar/file",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10636,
+          "topic": 296,
+          "date": "2025-06-02T12:18:49Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/file/rglezsw4hbh7kp2/[aragami.my.id]+Sinder+VTuber.rar/file": {
+      "url": "https://www.mediafire.com/file/rglezsw4hbh7kp2/[aragami.my.id]+Sinder+VTuber.rar/file",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 51393,
+          "topic": 301,
+          "date": "2026-04-24T04:32:07Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/file/rt2laq6one78z3g/Glamorous_Female_Aniamtions_for_CharaStudio_v.0.9.0.zipmod/file": {
+      "url": "https://www.mediafire.com/file/rt2laq6one78z3g/Glamorous_Female_Aniamtions_for_CharaStudio_v.0.9.0.zipmod/file",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 43533,
+          "topic": 299,
+          "date": "2026-03-02T03:51:39Z"
+        }
+      ]
+    },
+    "https://www.mediafire.com/folder/bm9kwu2wjshyl/Mods": {
+      "url": "https://www.mediafire.com/folder/bm9kwu2wjshyl/Mods",
+      "service": "mediafire",
+      "sightings": [
+        {
+          "chat": "c/2549022984",
+          "message_id": 10439,
+          "topic": 299,
+          "date": "2025-06-01T10:21:40Z"
+        }
+      ]
+    }
+  }
+}
