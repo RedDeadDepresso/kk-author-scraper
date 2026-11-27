@@ -1346,6 +1346,14 @@
       }
     ]
   },
+  "114367768": {
+    "available": true,
+    "name": "SCM World",
+    "image": "https://i.pximg.net/user-profile/img/2025/03/23/04/38/42/27135917_5a536f86c0b963eff62e86b80f63e0ac_170.png",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:02Z",
+    "profile": true
+  },
   "114641661": {
     "available": true,
     "name": "Fushuu2",
@@ -1776,6 +1784,21 @@
       }
     ]
   },
+  "125177526": {
+    "available": true,
+    "name": "Zholun",
+    "image": "https://i.pximg.net/user-profile/img/2026/07/10/10/12/29/29075786_de24bedfd586163aeb09f845682f0562_170.jpg",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:03Z",
+    "profile": true,
+    "comment": "3D Mod Creator for Koikatsu/Charastudio: Clothes, Maps, Objects.",
+    "links": [
+      {
+        "url": "https://twitter.com/Zholun7",
+        "source": "social:twitter"
+      }
+    ]
+  },
   "125769523": {
     "available": true,
     "name": "Kitsune Karma",
@@ -2119,6 +2142,29 @@
     "checked_at": "2026-11-22T06:03:56Z",
     "profile": true,
     "comment": "我发出来的都一定是免费，不发的花多少钱我都不会卖，不要问我收费买卡，没野种心情好了自然会发\n有好的ba模型可以发我移植\n已经变成没有gpt小姐活不下去的样子了"
+  },
+  "14164531": {
+    "available": true,
+    "name": "Ny9",
+    "image": "https://i.pximg.net/user-profile/img/2024/06/13/15/53/42/25991647_6fa339c8c36698f3b6ec5d183eabce73_170.jpg",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:05Z",
+    "profile": true,
+    "comment": "Patreon：https://patreon.com/cw/NY9_991\nfanbox: https://ny9.fanbox.cc/",
+    "links": [
+      {
+        "url": "https://patreon.com/cw/NY9_991",
+        "source": "comment"
+      },
+      {
+        "url": "https://ny9.fanbox.cc/",
+        "source": "comment"
+      },
+      {
+        "url": "https://twitter.com/qwedxzas0435471",
+        "source": "social:twitter"
+      }
+    ]
   },
   "14252508": {
     "available": true,
@@ -3597,6 +3643,29 @@
       {
         "url": "https://twitter.com/Erena_kk",
         "source": "social:twitter"
+      }
+    ]
+  },
+  "215478": {
+    "available": true,
+    "name": "DV8",
+    "image": "https://i.pximg.net/user-profile/img/2021/08/03/16/42/48/21152297_8d37e27ef957560d6564333f0ce3af3a_170.png",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:07Z",
+    "profile": true,
+    "comment": "Hello.  I make videos featuring fucking machines and BDSM.\r\n\r\nHere are my links if you would like to support me:\r\n\r\nhttps://dv8.fanbox.cc/\r\n\r\nhttps://www.patreon.com/dv8mmd\r\n\r\nhttps://paypal.me/dv8mmd?locale.x=en_US",
+    "links": [
+      {
+        "url": "https://dv8.fanbox.cc/",
+        "source": "comment"
+      },
+      {
+        "url": "https://www.patreon.com/dv8mmd",
+        "source": "comment"
+      },
+      {
+        "url": "https://paypal.me/dv8mmd?locale.x=en_US",
+        "source": "comment"
       }
     ]
   },
@@ -8792,6 +8861,26 @@
       }
     ]
   },
+  "7156793": {
+    "available": true,
+    "name": "イェイェバルディ",
+    "image": "https://i.pximg.net/user-profile/img/2024/02/12/06/43/03/25506883_80df72fdba17fdae6fab547bcf6289e5_170.jpg",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:09Z",
+    "profile": true,
+    "comment": "PATREON: https://www.patreon.com/Ye_Birdie",
+    "webpage": "https://www.patreon.com/Ye_Birdie",
+    "links": [
+      {
+        "url": "https://www.patreon.com/Ye_Birdie",
+        "source": "comment"
+      },
+      {
+        "url": "https://twitter.com/ye_birdie",
+        "source": "social:twitter"
+      }
+    ]
+  },
   "7159108": {
     "available": true,
     "name": "Laggen",
@@ -8808,6 +8897,13 @@
     "checked_at": "2026-11-22T06:15:26Z",
     "profile": true,
     "comment": "中/EN/日本語（Read only） YES\n本账号所有投稿作品均不得用于商业行为以及R18相关，本人将保留追究责任的权利。其他用处只需标明出处即可。\n倾听，感受，思考。"
+  },
+  "71910104": {
+    "available": false,
+    "error": "not found",
+    "with_session": true,
+    "checked_at": "2026-11-27T08:51:11Z",
+    "profile": true
   },
   "72173": {
     "available": true,

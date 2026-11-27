@@ -1,0 +1,6 @@
+{
+  "chats": [
+    "https://t.me/some_public_channel",
+    { "link": "https://t.me/koikatu_Share" }
+  ]
+}
