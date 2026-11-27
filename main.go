@@ -789,6 +789,7 @@ func run() (err error) {
 	authorsFile := flag.String("authors-file", "", "authors list: read at the start of the run and rewritten at the end (default <data>/authors.json)")
 	tgChats := flag.String("telegram-chats", "", "JSON file with the Telegram chat links to export for pixiv links (default <config>/telegram_chats.json; the step is skipped when the file does not exist)")
 	tgOut := flag.String("telegram-out", "", "where the pixiv users and posts found in those chats are saved (default <data>/telegram_pixiv.json)")
+	tgLinksOut := flag.String("telegram-links", "", "where the file-host links (mega, gofile, catbox, mediafire, pixeldrain, dropbox, google drive) found in those chats are saved (default <data>/telegram_links.json)")
 	tgSession := flag.String("telegram-session", "", "directory of the Telegram login session (default $TELEGRAM_SESSION_DIR or telegram_session; a tdl data dir such as ~/.tdl/data reuses a tdl login)")
 	noTelegram := flag.Bool("no-telegram", false, "skip the Telegram chat export")
 	tgOnly := flag.Bool("telegram-only", false, "only run the Telegram chat export, then exit")
@@ -825,7 +826,7 @@ func run() (err error) {
 		*tgOut = filepath.Join(*dataDir, "telegram_pixiv.json")
 	}
 	if *tgOnly || !*noTelegram {
-		if err := telegramStep(*dataDir, *configDir, *tgChats, *tgOut, *tgSession, *tgOnly); err != nil {
+		if err := telegramStep(*dataDir, *configDir, *tgChats, *tgOut, *tgLinksOut, *tgSession, *tgOnly); err != nil {
 			if *tgOnly || errors.Is(err, context.Canceled) {
 				return err
 			}

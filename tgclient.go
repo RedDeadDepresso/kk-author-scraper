@@ -50,17 +50,21 @@ var tgLimiter = ratelimit.New(rate.Every(500*time.Millisecond), 2) // same as td
 type tgOptions struct {
 	ChatsPath  string
 	OutPath    string
+	LinksPath  string
 	SessionDir string
 }
 
 // telegramStep runs the telegram source with the defaults filled in. When the chat list does
 // not exist the step is skipped, unless only is set (then it is an error).
-func telegramStep(dataDir, configDir, chatsPath, outPath, sessionDir string, only bool) error {
+func telegramStep(dataDir, configDir, chatsPath, outPath, linksPath, sessionDir string, only bool) error {
 	if chatsPath == "" {
 		chatsPath = filepath.Join(configDir, "telegram_chats.json")
 	}
 	if outPath == "" {
 		outPath = filepath.Join(dataDir, "telegram_pixiv.json")
+	}
+	if linksPath == "" {
+		linksPath = filepath.Join(dataDir, "telegram_links.json")
 	}
 	if sessionDir == "" {
 		sessionDir = os.Getenv("TELEGRAM_SESSION_DIR")
@@ -76,7 +80,7 @@ func telegramStep(dataDir, configDir, chatsPath, outPath, sessionDir string, onl
 	}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
-	return runTelegram(ctx, tgOptions{ChatsPath: chatsPath, OutPath: outPath, SessionDir: sessionDir})
+	return runTelegram(ctx, tgOptions{ChatsPath: chatsPath, OutPath: outPath, LinksPath: linksPath, SessionDir: sessionDir})
 }
 
 func runTelegram(ctx context.Context, o tgOptions) (err error) {
@@ -93,9 +97,16 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 		return fmt.Errorf("loading %s: %w", o.OutPath, err)
 	}
 	exp.init()
+	links := &tgLinks{}
+	if err := loadJSON(o.LinksPath, links); err != nil {
+		return fmt.Errorf("loading %s: %w", o.LinksPath, err)
+	}
+	links.init()
+	exp.links = links
 	save := func() error {
-		exp.UpdatedAt = time.Now().UTC().Format(time.RFC3339)
-		return saveJSON(o.OutPath, exp)
+		now := time.Now().UTC().Format(time.RFC3339)
+		exp.UpdatedAt, links.UpdatedAt = now, now
+		return errors.Join(saveJSON(o.OutPath, exp), saveJSON(o.LinksPath, links))
 	}
 	defer func() {
 		if serr := save(); serr != nil {
@@ -103,6 +114,11 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 		}
 	}()
 
+	for _, c := range chats { // keep the saved order in step with the list (the lookup file uses it)
+		if _, ck, _ := parseTelegramChat(c.Link); exp.Chats[ck] != nil {
+			exp.Chats[ck].Order = c.order
+		}
+	}
 	var failed []error
 	err = tgRun(ctx, o.SessionDir, func(ctx context.Context, api *tg.Client, manager *peers.Manager) error {
 		for _, c := range chats {
@@ -121,6 +137,7 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 				prev = st.LastMessageID
 			}
 			log.Printf("telegram: %s (%s), reading messages newer than #%d", c.Link, peer.VisibleName(), prev)
+			linksBefore := len(links.Links)
 			n, nu, np, serr := exp.scanChat(ck, c, tgHistory(ctx, api, peer))
 			if st := exp.Chats[ck]; st != nil && peer.VisibleName() != "" {
 				st.Title = peer.VisibleName()
@@ -133,7 +150,7 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 				failed = append(failed, fmt.Errorf("%s: %w", c.Link, serr))
 				continue
 			}
-			log.Printf("telegram: %s: %d new messages, %d new pixiv users, %d new pixiv posts", c.Link, n, nu, np)
+			log.Printf("telegram: %s: %d new messages, %d new pixiv users, %d new pixiv posts, %d new file links", c.Link, n, nu, np, len(links.Links)-linksBefore)
 			if err := save(); err != nil {
 				return err
 			}
@@ -143,7 +160,7 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 	if err != nil {
 		return err
 	}
-	log.Printf("telegram: %d pixiv users and %d pixiv posts in %s", len(exp.PixivUsers), len(exp.PixivPosts), o.OutPath)
+	log.Printf("telegram: %d pixiv users and %d pixiv posts in %s, %d file links in %s", len(exp.PixivUsers), len(exp.PixivPosts), o.OutPath, len(links.Links), o.LinksPath)
 	return errors.Join(failed...)
 }
 

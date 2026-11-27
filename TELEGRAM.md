@@ -49,8 +49,27 @@ Without `-telegram-only`, the export runs first in a normal scrape, but only whe
 `data/telegram_pixiv.json`:
 
 - `chats[<key>]`: `last_message_id` of the last complete export, `messages_scanned`, `title`.
-- `pixiv_users[<pixiv id>]` and `pixiv_posts[<artwork id>]`: canonical URL, plus the chat, message id
-  (and topic for posts) where it was first seen.
+- `pixiv_users[<pixiv id>]` and `pixiv_posts[<artwork id>]`: canonical URL and `sightings`, one per chat
+  that has the link: the chat, the oldest message of that chat with it (message id, topic, date).
+
+`data/telegram_links.json` (`-telegram-links` to move it) holds the file-host links found in the same messages, kept in
+a separate file because there can be thousands of them and nothing else reads them:
+
+- `links[<url>]`: `url`, `service` and `sightings` (one per chat, the oldest message of that chat with the link:
+  chat, message id, topic, date; a message link is `https://t.me/<chat>/<message id>` or `t.me/c/<id>/<message id>`).
+- `chats[<key>]`: the `last_message_id` of this file. It is separate from the pixiv file's, so either file can be
+  deleted and rebuilt alone; a rerun reads from the older of the two positions.
+
+Recognized hosts (and their subdomains): mega.nz / mega.co.nz / mega.io (`mega`), gofile.io (`gofile`),
+catbox.moe (`catbox`), mediafire.com (`mediafire`), pixeldrain.com / .net (`pixeldrain`), dropbox.com and
+dropboxusercontent.com (`dropbox`), drive.google.com and drive.usercontent.google.com (`gdrive`). Links come from the
+text, hidden text links and URL buttons, from every topic of a chat (`post_topic` only limits pixiv posts). The
+URL is saved as written after the host and path (https, lower-case host, trailing punctuation removed, `#key` of a
+mega link kept); two spellings of the same file are not merged. A mega key posted in a separate message is not
+joined to its link. Google Docs/Sheets links (docs.google.com) are not included.
+
+The links of `no_lookup` chats are saved here too (this file is not used for `lookup.json`). Like the other
+files in `data/` it is committed by the scrape workflow, so mind who can read the repository.
 
 ## Incremental exports
 
@@ -63,12 +82,14 @@ To force a full re-read, delete the chat's entry under `chats` in `data/telegram
 ## Browser extension (lookup.json)
 
 `lookup.json` for the KKAFIO Link Collector extension gets a `telegram` section (`go run . -lookup-only -lookup <path>`
-reads `data/telegram_pixiv.json` for it): `posts` and `users` map a pixiv id to the path of the first Telegram message
-that links it (`name/123`, `c/1234567890/123`, or `name/42/123` inside forum topic 42); the link is `https://t.me/<path>`.
+reads `data/telegram_pixiv.json` for it): `posts` and `users` map a pixiv id to the path of a Telegram message
+that links it. Chats marked `no_lookup` are skipped; of the others a post takes the chat that comes first in
+`telegram_chats.json` (saved as `order` in each chat's state) and a user the earliest message. The path looks like `name/123`, `c/1234567890/123`, or `name/42/123` inside forum topic 42, and the link is `https://t.me/<path>`.
 The extension then shows a **TG** badge on pixiv thumbnails of such posts and a Telegram chip on artwork and artist pages.
 
 `lookup.json` is published on GitHub Pages, so every chat that is not marked `"no_lookup": true` is public there:
-mark private chats (their `t.me/c/...` links only open for members, and show the chat id).
+mark private chats (their `t.me/c/...` links only open for members, and show the chat id). A link seen in a
+private and a public chat points at the public one; one seen only in private chats is left out.
 
 ## Authors
 

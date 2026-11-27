@@ -2,7 +2,7 @@ package main
 
 // Telegram source: chat links listed in a JSON file are exported (using gotd/td)
 // and every pixiv user link and pixiv post link found in the messages is collected into
-// data/telegram_pixiv.json. This file holds everything that needs no network, so it is
+// data/telegram_pixiv.json (file-host links into data/telegram_links.json, see tgfiles.go). This file holds everything that needs no network, so it is
 // unit-tested; tgclient.go does the Telegram part.
 
 import (
@@ -13,6 +13,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -36,6 +37,8 @@ type tgChatCfg struct {
 	Link      string `json:"link"`
 	PostTopic int    `json:"post_topic,omitempty"`
 	NoLookup  bool   `json:"no_lookup,omitempty"`
+
+	order int // 1-based position in the chat list (set by loadTelegramChats)
 }
 
 func (c *tgChatCfg) UnmarshalJSON(b []byte) error {
@@ -96,6 +99,7 @@ func loadTelegramChats(path string) ([]tgChatCfg, error) {
 		if c.PostTopic < 0 {
 			return nil, fmt.Errorf("%s: chat %q: post_topic must be a topic id", path, c.Link)
 		}
+		c.order = len(out) + 1
 		out = append(out, c)
 	}
 	return out, nil
@@ -229,28 +233,71 @@ type tgChatState struct {
 	Title         string `json:"title,omitempty"`
 	PostTopic     int    `json:"post_topic,omitempty"`
 	NoLookup      bool   `json:"no_lookup,omitempty"` // kept out of the lookup file
+	Order         int    `json:"order,omitempty"`     // 1-based position in the chat list: the lookup file prefers the lower one for posts
 	LastMessageID int    `json:"last_message_id"` // newest message of the last complete export
 	Scanned       int    `json:"messages_scanned"`
 	UpdatedAt     string `json:"updated_at,omitempty"`
 }
 
-// tgPixivUser / tgPixivPost say where a link was first seen (the oldest message of the chat).
-type tgPixivUser struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
+// tgSighting is where a link was seen in one chat: the oldest message of that chat that has it.
+type tgSighting struct {
 	Chat      string `json:"chat"`
 	MessageID int    `json:"message_id"`
 	Topic     int    `json:"topic,omitempty"`
 	Date      string `json:"date,omitempty"`
 }
 
-type tgPixivPost struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
-	Chat      string `json:"chat"`
-	MessageID int    `json:"message_id"`
-	Topic     int    `json:"topic,omitempty"`
-	Date      string `json:"date,omitempty"`
+// tgPixivLink is a pixiv account or post and every chat it was seen in (one sighting per chat,
+// sorted by chat key). The lookup file picks among them (see tgExport.lookup), so a post that a
+// private chat saw first can still point at a public chat.
+type tgPixivLink struct {
+	ID        string       `json:"id"`
+	URL       string       `json:"url"`
+	Sightings []tgSighting `json:"sightings"`
+}
+
+type (
+	tgPixivUser = tgPixivLink
+	tgPixivPost = tgPixivLink
+)
+
+// see records a sighting in chat (see seeSighting) and reports whether the link was unknown.
+func (l *tgPixivLink) see(chat string, m tgMessage) (isNew bool) {
+	return seeSighting(&l.Sightings, chat, m)
+}
+
+// seeSighting records a sighting in chat: a chat keeps only its oldest message with the link,
+// and the list stays sorted by chat key. It reports whether the list was empty before, i.e.
+// the link was seen in no chat at all.
+func seeSighting(list *[]tgSighting, chat string, m tgMessage) (isNew bool) {
+	isNew = len(*list) == 0
+	s := tgSighting{Chat: chat, MessageID: m.ID, Topic: m.Topic, Date: tgDate(m.Date)}
+	for i := range *list {
+		if (*list)[i].Chat != chat {
+			continue
+		}
+		if m.ID < (*list)[i].MessageID {
+			(*list)[i] = s
+		}
+		return isNew
+	}
+	*list = append(*list, s)
+	sort.Slice(*list, func(i, j int) bool { return (*list)[i].Chat < (*list)[j].Chat })
+	return isNew
+}
+
+// earlierSighting orders sightings by date (an unknown date last), then by chat key.
+func earlierSighting(a, b tgSighting) bool {
+	if a.Date != b.Date {
+		if a.Date == "" {
+			return false
+		}
+		if b.Date == "" {
+			return true
+		}
+		return a.Date < b.Date // RFC3339 in UTC sorts as text
+	}
+	return a.Chat < b.Chat
 }
 
 type tgExport struct {
@@ -258,6 +305,10 @@ type tgExport struct {
 	Chats      map[string]*tgChatState `json:"chats"`
 	PixivUsers map[string]*tgPixivUser `json:"pixiv_users"`
 	PixivPosts map[string]*tgPixivPost `json:"pixiv_posts"`
+
+	// links, when set, also collects the file-host links of the scanned messages (tgfiles.go).
+	// It is saved in its own file, so it is not part of this one.
+	links *tgLinks
 }
 
 func (e *tgExport) init() {
@@ -290,29 +341,32 @@ func tgDate(unix int) string {
 // record adds the pixiv links of one message and returns how many users and posts are new.
 // Pixiv posts only count when postTopic is 0 or the message is in that topic.
 func (e *tgExport) record(chat string, m tgMessage, postTopic int) (newUsers, newPosts int) {
+	if e.links != nil {
+		e.links.add(chat, m) // file-host links are not limited to post_topic
+	}
 	users, posts := extractPixiv(m.Texts...)
 	for _, id := range users {
-		old := e.PixivUsers[id]
-		switch {
-		case old == nil:
-			newUsers++
-		case old.Chat != chat || m.ID >= old.MessageID:
-			continue
+		l := e.PixivUsers[id]
+		if l == nil {
+			l = &tgPixivLink{ID: id, URL: pixivUserLink(id)}
+			e.PixivUsers[id] = l
 		}
-		e.PixivUsers[id] = &tgPixivUser{ID: id, URL: pixivUserLink(id), Chat: chat, MessageID: m.ID, Topic: m.Topic, Date: tgDate(m.Date)}
+		if l.see(chat, m) {
+			newUsers++
+		}
 	}
 	if postTopic != 0 && m.Topic != postTopic {
 		return newUsers, 0
 	}
 	for _, id := range posts {
-		old := e.PixivPosts[id]
-		switch {
-		case old == nil:
-			newPosts++
-		case old.Chat != chat || m.ID >= old.MessageID:
-			continue
+		l := e.PixivPosts[id]
+		if l == nil {
+			l = &tgPixivLink{ID: id, URL: pixivPostLink(id)}
+			e.PixivPosts[id] = l
 		}
-		e.PixivPosts[id] = &tgPixivPost{ID: id, URL: pixivPostLink(id), Chat: chat, MessageID: m.ID, Topic: m.Topic, Date: tgDate(m.Date)}
+		if l.see(chat, m) {
+			newPosts++
+		}
 	}
 	return newUsers, newPosts
 }
@@ -322,11 +376,21 @@ func (e *tgExport) record(chat string, m tgMessage, postTopic int) (newUsers, ne
 // finished, so an interrupted export is simply read again next run (links already found stay).
 // Changing a chat's post_topic starts that chat over, as the old export skipped other topics.
 func (e *tgExport) scan(chat string, cfg tgChatCfg, st *tgChatState, msgs iter.Seq2[tgMessage, error]) (scanned, newUsers, newPosts int, err error) {
-	prev := st.LastMessageID
+	pixivPrev := st.LastMessageID
 	if st.PostTopic != cfg.PostTopic {
-		prev = 0
+		pixivPrev = 0
 	}
-	newest := prev
+	prev, newest := pixivPrev, pixivPrev
+	if e.links != nil {
+		// the links file has its own position: read from the older one, so a links file that
+		// was deleted (or is new) is filled again without re-reading anything twice otherwise
+		linkPrev := 0
+		if lc := e.links.Chats[chat]; lc != nil {
+			linkPrev = lc.LastMessageID
+		}
+		prev = min(prev, linkPrev)
+		newest = max(newest, linkPrev)
+	}
 	for m, merr := range msgs {
 		if merr != nil {
 			return scanned, newUsers, newPosts, merr
@@ -343,6 +407,9 @@ func (e *tgExport) scan(chat string, cfg tgChatCfg, st *tgChatState, msgs iter.S
 		newPosts += p
 	}
 	st.LastMessageID = newest
+	if e.links != nil {
+		e.links.Chats[chat] = &tgLinkChat{LastMessageID: newest, UpdatedAt: time.Now().UTC().Format(time.RFC3339)}
+	}
 	st.PostTopic = cfg.PostTopic
 	st.Link = cfg.Link
 	st.Scanned += scanned
@@ -358,5 +425,8 @@ func (e *tgExport) scanChat(key string, cfg tgChatCfg, msgs iter.Seq2[tgMessage,
 		e.Chats[key] = st
 	}
 	st.NoLookup = cfg.NoLookup
+	if cfg.order > 0 {
+		st.Order = cfg.order
+	}
 	return e.scan(key, cfg, st, msgs)
 }

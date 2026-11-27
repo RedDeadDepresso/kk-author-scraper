@@ -1,6 +1,7 @@
 {
   "chats": [
-    "https://t.me/some_public_channel",
-    { "link": "https://t.me/koikatu_Share" }
+    "https://t.me/Koikatunews",
+    "https://t.me/koikatu_Share",
+    { "link": "https://t.me/c/2549022984", "post_topic": 42 }
   ]
 }

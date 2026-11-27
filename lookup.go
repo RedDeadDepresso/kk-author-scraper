@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"bytes"
 	"encoding/json"
 	"log"
@@ -30,7 +31,9 @@ type Lookup struct {
 	Telegram *LookupTelegram `json:"telegram,omitempty"`
 }
 
-// LookupTelegram maps a pixiv id to the first Telegram message that links it, as the path of
+// LookupTelegram maps a pixiv id to a Telegram message (among the chats that are not
+// no_lookup, so a private sighting never hides a public one; for posts the first chat of the
+// chat list that has it, for users the earliest message) that links it, as the path of
 // its t.me link: "name/123" (public chat), "c/1234567890/123" (private chat or channel), with
 // the forum topic after the chat when the message is in one ("name/42/123"). The link is
 // https://t.me/<path>. Chats marked no_lookup in the chat list are not included.
@@ -136,18 +139,39 @@ func (e *tgExport) lookup() *LookupTelegram {
 		return nil
 	}
 	out := &LookupTelegram{Posts: map[string]string{}, Users: map[string]string{}}
-	public := func(chat string) bool {
-		st := e.Chats[chat]
-		return st == nil || !st.NoLookup
+	// Among the sightings in chats that are not no_lookup: for posts the chat that comes first in
+	// the chat list (a chat without a known position comes last), for users the earliest message.
+	// Ties go to the earlier message, then the chat key.
+	pick := func(l *tgPixivLink, byOrder bool) (string, bool) {
+		rank := func(s *tgSighting) int {
+			if st := e.Chats[s.Chat]; byOrder && st != nil && st.Order > 0 {
+				return st.Order
+			}
+			return math.MaxInt
+		}
+		var best *tgSighting
+		for i := range l.Sightings {
+			s := &l.Sightings[i]
+			if st := e.Chats[s.Chat]; st != nil && st.NoLookup {
+				continue
+			}
+			if best == nil || rank(s) < rank(best) || rank(s) == rank(best) && earlierSighting(*s, *best) {
+				best = s
+			}
+		}
+		if best == nil {
+			return "", false
+		}
+		return tgMessagePath(best.Chat, best.Topic, best.MessageID), true
 	}
 	for id, p := range e.PixivPosts {
-		if public(p.Chat) {
-			out.Posts[id] = tgMessagePath(p.Chat, p.Topic, p.MessageID)
+		if path, ok := pick(p, true); ok {
+			out.Posts[id] = path
 		}
 	}
 	for id, u := range e.PixivUsers {
-		if public(u.Chat) {
-			out.Users[id] = tgMessagePath(u.Chat, u.Topic, u.MessageID)
+		if path, ok := pick(u, false); ok {
+			out.Users[id] = path
 		}
 	}
 	if len(out.Posts) == 0 && len(out.Users) == 0 {

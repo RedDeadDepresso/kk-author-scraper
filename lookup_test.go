@@ -80,3 +80,32 @@ func TestLookupTelegram(t *testing.T) {
 		t.Fatalf("%v %s", err, b)
 	}
 }
+
+// A post seen in several chats: a private (no_lookup) sighting never hides a public one; of the
+// public ones a post takes the chat that comes first in the chat list, a user the earliest message.
+func TestLookupTelegramSeveralChats(t *testing.T) {
+	e := &tgExport{}
+	e.init()
+	e.Chats["priv"] = &tgChatState{NoLookup: true, Order: 1}
+	e.Chats["pub1"] = &tgChatState{Order: 3}
+	e.Chats["pub2"] = &tgChatState{Order: 2} // listed before pub1
+	e.Chats["old"] = &tgChatState{}           // no known position: last
+	msg := func(id, date int) tgMessage {
+		return tgMessage{ID: id, Date: date, Topic: 1, Texts: []string{"pixiv.net/artworks/5 pixiv.net/artworks/6 pixiv.net/users/9"}}
+	}
+	e.record("priv", msg(1, 1700000000), 0) // the private chat saw it first
+	e.record("old", msg(2, 1700000001), 0)
+	e.record("pub2", msg(8, 1700000200), 0)
+	e.record("pub1", msg(4, 1700000100), 0) // earlier than pub2, but listed after it
+	e.record("priv", tgMessage{ID: 3, Date: 1700000300, Texts: []string{"pixiv.net/artworks/7"}}, 0) // private only
+	l := e.lookup()
+	if l.Posts["5"] != "pub2/8" || l.Posts["6"] != "pub2/8" {
+		t.Errorf("want the first listed public chat: %+v", l.Posts)
+	}
+	if l.Users["9"] != "old/2" {
+		t.Errorf("want the earliest public message for a user: %+v", l.Users)
+	}
+	if _, ok := l.Posts["7"]; ok {
+		t.Error("a post seen only in a no_lookup chat reached the lookup file")
+	}
+}

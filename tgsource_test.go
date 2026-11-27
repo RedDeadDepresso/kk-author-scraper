@@ -146,8 +146,14 @@ func TestRecordKeepsOldestSighting(t *testing.T) {
 	e.record("x", tgMessage{ID: 30, Texts: []string{"pixiv.net/users/1"}}, 0)
 	e.record("x", tgMessage{ID: 10, Texts: []string{"pixiv.net/users/1"}}, 0)
 	e.record("x", tgMessage{ID: 20, Texts: []string{"pixiv.net/users/1"}}, 0)
-	if got := e.PixivUsers["1"]; got.MessageID != 10 || got.URL != "https://www.pixiv.net/users/1" {
+	got := e.PixivUsers["1"]
+	if len(got.Sightings) != 1 || got.Sightings[0].MessageID != 10 || got.URL != "https://www.pixiv.net/users/1" {
 		t.Errorf("%+v", got)
+	}
+	// another chat adds its own sighting instead of replacing or being ignored
+	e.record("a", tgMessage{ID: 99, Texts: []string{"pixiv.net/users/1"}}, 0)
+	if got := e.PixivUsers["1"]; len(got.Sightings) != 2 || got.Sightings[0].Chat != "a" || got.Sightings[1].Chat != "x" || got.Sightings[1].MessageID != 10 {
+		t.Errorf("%+v", got.Sightings)
 	}
 }
 
@@ -168,5 +174,61 @@ func TestTelegramAccountsBecomeAuthors(t *testing.T) {
 	}
 	if e, _ := a.fileIdx.find("Foo"); e == nil || len(e.Links) != 1 || e.Links[0] != pixivBase+"/users/123" {
 		t.Errorf("no authors entry for the telegram account: %+v", e)
+	}
+}
+
+func TestExtractFileLinks(t *testing.T) {
+	text := `https://mega.nz/file/AbCd1234#KeY_-9 and http://MEGA.nz/folder/xyz#k.
+(https://gofile.io/d/abc123) www.mediafire.com/file/q1/name.zip/file, catbox: files.catbox.moe/x9y8.zip
+<https://pixeldrain.com/u/Pd12>」https://www.dropbox.com/scl/fi/aa/b.zip?rlkey=k&dl=0
+https://drive.google.com/file/d/1AbC/view?usp=sharing https://docs.google.com/document/d/1/edit
+notmega.nz/file/no a@mega.nz/x https://evil.com/mega.nz/file/no https://mega.nz/ https://mega.nz/file/AbCd1234#KeY_-9`
+	var got []string
+	for _, l := range extractFileLinks(text) {
+		got = append(got, l.Service+" "+l.URL)
+	}
+	want := []string{
+		"mega https://mega.nz/file/AbCd1234#KeY_-9",
+		"mega https://mega.nz/folder/xyz#k",
+		"gofile https://gofile.io/d/abc123",
+		"mediafire https://www.mediafire.com/file/q1/name.zip/file",
+		"catbox https://files.catbox.moe/x9y8.zip",
+		"pixeldrain https://pixeldrain.com/u/Pd12",
+		"dropbox https://www.dropbox.com/scl/fi/aa/b.zip?rlkey=k&dl=0",
+		"gdrive https://drive.google.com/file/d/1AbC/view?usp=sharing",
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got  %q\nwant %q", got, want)
+	}
+}
+
+func TestScanCollectsFileLinksAndResumesPerFile(t *testing.T) {
+	e := &tgExport{links: &tgLinks{}}
+	e.init()
+	e.links.init()
+	cfg := tgChatCfg{Link: "t.me/x", PostTopic: 5}
+	m := func(id, topic int, text string) tgMessage { return tgMessage{ID: id, Topic: topic, Date: 1700000000, Texts: []string{text}} }
+	// links are collected from every topic, even when post_topic limits the pixiv posts
+	if _, _, _, err := e.scanChat("x", cfg, seq(m(30, 1, "https://gofile.io/d/b"), m(10, 5, "https://gofile.io/d/a pixiv.net/artworks/1"))); err != nil {
+		t.Fatal(err)
+	}
+	e.record("y", m(3, 1, "https://gofile.io/d/b"), 0)
+	if len(e.links.Links) != 2 || len(e.links.Links["https://gofile.io/d/b"].Sightings) != 2 || e.links.Chats["x"].LastMessageID != 30 {
+		t.Fatalf("%+v", e.links)
+	}
+	// a deleted links file is filled again; the pixiv state alone would have stopped at 30
+	e.links = &tgLinks{}
+	e.links.init()
+	read := 0
+	counting := func(yield func(tgMessage, error) bool) {
+		for _, msg := range []tgMessage{m(30, 1, "https://gofile.io/d/b"), m(10, 5, "https://gofile.io/d/a")} {
+			read++
+			if !yield(msg, nil) {
+				return
+			}
+		}
+	}
+	if _, _, _, err := e.scanChat("x", cfg, counting); err != nil || read != 2 || len(e.links.Links) != 2 || e.Chats["x"].LastMessageID != 30 {
+		t.Fatalf("read=%d links=%d last=%d err=%v", read, len(e.links.Links), e.Chats["x"].LastMessageID, err)
 	}
 }
