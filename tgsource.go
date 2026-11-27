@@ -1,6 +1,6 @@
 package main
 
-// Telegram source: chat links listed in a JSON file are exported (with the tdl packages, github.com/iyear/tdl)
+// Telegram source: chat links listed in a JSON file are exported (using gotd/td)
 // and every pixiv user link and pixiv post link found in the messages is collected into
 // data/telegram_pixiv.json. This file holds everything that needs no network, so it is
 // unit-tested; tgclient.go does the Telegram part.

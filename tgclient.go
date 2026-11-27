@@ -1,8 +1,9 @@
 package main
 
-// The Telegram part of the telegram source (see tgsource.go), built on the tdl packages
-// (github.com/iyear/tdl, a normal Go dependency): its session storage, client setup (flood waits, retries, proxy) and peer
-// resolution. Messages are read with the same gotd history query tdl's "chat export" uses.
+// The Telegram part of the telegram source (see tgsource.go), built on gotd/td and
+// internal/tgcore (the few pieces of github.com/iyear/tdl it needs: session storage, client
+// setup with flood waits, retries and proxy, and peer resolution). Messages are read with the
+// same gotd history query tdl's "chat export" uses.
 
 import (
 	"bufio"
@@ -27,12 +28,7 @@ import (
 	"github.com/gotd/td/tg"
 	"golang.org/x/time/rate"
 
-	"github.com/iyear/tdl/core/storage"
-	tclientcore "github.com/iyear/tdl/core/tclient"
-	"github.com/iyear/tdl/core/util/tutil"
-	"github.com/iyear/tdl/pkg/key"
-	"github.com/iyear/tdl/pkg/kv"
-	tclient "github.com/iyear/tdl/pkg/tclient"
+	"kk-author-scraper/internal/tgcore"
 )
 
 // Credentials come from the environment (the .env file is loaded into it):
@@ -111,7 +107,7 @@ func runTelegram(ctx context.Context, o tgOptions) (err error) {
 	err = tgRun(ctx, o.SessionDir, func(ctx context.Context, api *tg.Client, manager *peers.Manager) error {
 		for _, c := range chats {
 			ident, ck, _ := parseTelegramChat(c.Link) // validated by loadTelegramChats
-			peer, perr := tutil.GetInputPeer(ctx, manager, ident)
+			peer, perr := tgcore.GetInputPeer(ctx, manager, ident)
 			if perr != nil {
 				if ctx.Err() != nil {
 					return ctx.Err()
@@ -214,26 +210,19 @@ func tgMessageTexts(m *tg.Message) []string {
 // tgRun opens the session storage, connects (logging in from the environment when the session
 // has none yet) and runs f with the connected client.
 func tgRun(ctx context.Context, sessionDir string, f func(context.Context, *tg.Client, *peers.Manager) error) error {
-	stg, err := kv.NewWithMap(map[string]string{
-		kv.DriverTypeKey: kv.DriverBolt.String(),
-		"path":           sessionDir,
-	})
+	db, kvd, err := tgcore.Open(sessionDir)
 	if err != nil {
 		return fmt.Errorf("opening telegram session storage %s: %w", sessionDir, err)
 	}
-	defer stg.Close()
-	kvd, err := stg.Open("default")
-	if err != nil {
-		return fmt.Errorf("opening telegram session storage %s: %w", sessionDir, err)
-	}
+	defer db.Close()
 	app, err := tgApp(ctx, kvd)
 	if err != nil {
 		return err
 	}
-	client, err := tclientcore.New(ctx, tclientcore.Options{
+	client, err := tgcore.NewClient(ctx, tgcore.Options{
 		AppID:            app.AppID,
 		AppHash:          app.AppHash,
-		Session:          storage.NewSession(kvd, false),
+		Session:          tgcore.NewSession(kvd),
 		Middlewares:      []telegram.Middleware{tgLimiter},
 		Proxy:            os.Getenv("TELEGRAM_PROXY"),
 		ReconnectTimeout: 5 * time.Minute,
@@ -251,7 +240,7 @@ func tgRun(ctx context.Context, sessionDir string, f func(context.Context, *tg.C
 				return err
 			}
 		}
-		manager := peers.Options{Storage: storage.NewPeers(kvd)}.Build(client.API())
+		manager := peers.Options{Storage: tgcore.NewPeers(kvd)}.Build(client.API())
 		return f(ctx, client.API(), manager)
 	})
 }
@@ -260,21 +249,19 @@ func tgRun(ctx context.Context, sessionDir string, f func(context.Context, *tg.C
 // otherwise the app stored with the session is used, and a new session gets tdl's desktop app,
 // as "tdl login -T code" does. Pointing -telegram-session at a tdl data dir (default
 // ~/.tdl/data) reuses an existing "tdl login".
-func tgApp(ctx context.Context, kvd storage.Storage) (tclient.App, error) {
+func tgApp(ctx context.Context, kvd tgcore.Storage) (tgcore.App, error) {
 	if idStr := os.Getenv("TELEGRAM_API_ID"); idStr != "" {
 		id, err := strconv.Atoi(strings.TrimSpace(idStr))
 		hash := strings.TrimSpace(os.Getenv("TELEGRAM_API_HASH"))
 		if err != nil || hash == "" {
-			return tclient.App{}, errors.New("TELEGRAM_API_ID must be a number and TELEGRAM_API_HASH must be set too")
+			return tgcore.App{}, errors.New("TELEGRAM_API_ID must be a number and TELEGRAM_API_HASH must be set too")
 		}
-		return tclient.App{AppID: id, AppHash: hash}, nil
+		return tgcore.App{AppID: id, AppHash: hash}, nil
 	}
-	if _, err := kvd.Get(ctx, key.App()); err != nil {
-		if err := kvd.Set(ctx, key.App(), []byte(tclient.AppDesktop)); err != nil {
-			return tclient.App{}, fmt.Errorf("saving telegram app: %w", err)
-		}
+	if err := tgcore.EnsureApp(ctx, kvd); err != nil {
+		return tgcore.App{}, fmt.Errorf("saving telegram app: %w", err)
 	}
-	return tclient.GetApp(kvd)
+	return tgcore.GetApp(kvd)
 }
 
 // tgLogin signs in with TELEGRAM_PHONE / TELEGRAM_PASSWORD; the login code is TELEGRAM_CODE or

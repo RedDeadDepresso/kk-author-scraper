@@ -1,8 +1,8 @@
 # Telegram chat export
 
 The scraper can read Telegram chats and collect every **pixiv user link** and **pixiv post link**
-posted in them. The Telegram login and client come from [tdl](https://github.com/iyear/tdl),
-which is used as a Go dependency.
+posted in them. The Telegram login and client use [gotd/td](https://github.com/gotd/td); the few pieces taken
+from [tdl](https://github.com/iyear/tdl) (AGPL-3.0) live in `internal/tgcore`, so tdl itself is not a dependency.
 
 ## Setup
 
@@ -26,22 +26,9 @@ which is used as a Go dependency.
 
 2. Put the credentials in `.env` (see `.env.example`): `TELEGRAM_PHONE`, and `TELEGRAM_PASSWORD`
    if the account has 2FA. `TELEGRAM_API_ID` / `TELEGRAM_API_HASH` are optional (your own app from
-   my.telegram.org; otherwise tdl's app is used).
+   my.telegram.org; otherwise the Telegram Desktop app is used).
 
-3. Add the dependency once, then run (this fills in `go.mod` and `go.sum`; commit both):
-
-   ```
-   go get github.com/iyear/tdl@latest
-   go get github.com/gotd/td@v0.140.0 github.com/gotd/contrib@v0.20.0
-   go mod tidy
-   ```
-
-   The second line matters: the scraper imports gotd/td directly, and without it `go mod tidy` picks the
-   newest gotd/td, which tdl's released core does not compile against (`*zap.Logger does not implement
-   "github.com/gotd/log".Logger`). Use the gotd/td and gotd/contrib versions that tdl's own `go.mod` lists.
-
-   If a newer tdl release ever breaks the build, pin the last working one with
-   `go get github.com/iyear/tdl@<version or commit>`. Then run:
+3. Run:
 
    ```
    go run . -telegram-only
