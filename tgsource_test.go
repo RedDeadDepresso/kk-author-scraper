@@ -38,8 +38,8 @@ func TestLoadTelegramChats(t *testing.T) {
 		os.WriteFile(p, []byte(s), 0o644)
 		return p
 	}
-	got, err := loadTelegramChats(write(`{"chats": ["https://t.me/a", {"link": "t.me/b", "post_topic": 5}, {"link": "t.me/c", "topic": 6, "no_lookup": true}]}`))
-	want := []tgChatCfg{{Link: "https://t.me/a"}, {Link: "t.me/b", PostTopic: 5}, {Link: "t.me/c", PostTopic: 6, NoLookup: true}}
+	got, err := loadTelegramChats(write(`{"chats": ["https://t.me/a", {"link": "t.me/b", "post_topic": 5}, {"link": "t.me/d", "topic": 6, "no_lookup": true}]}`))
+	want := []tgChatCfg{{Link: "https://t.me/a", order: 1}, {Link: "t.me/b", PostTopic: 5, order: 2}, {Link: "t.me/d", PostTopic: 6, NoLookup: true, order: 3}}
 	if err != nil || !reflect.DeepEqual(got, want) {
 		t.Fatalf("%v %v", got, err)
 	}

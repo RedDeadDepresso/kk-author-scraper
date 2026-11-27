@@ -49,6 +49,7 @@ func TestApplyBepisGroups(t *testing.T) {
 // Bepis names that always appear together become one row linking the name with the most cards.
 func TestBepisOnlyGroupsMergeIntoOneRow(t *testing.T) {
 	a := newTestApp(t)
+	a.fileIdx = nil // newTestApp loads data/authors.json when present; its entries would add rows
 	a.mapping.BepisAuthors["Alpha"] = &BepisAuthor{Name: "Alpha", URL: bepisAuthorURL("Alpha"), CardCount: 2, Group: []string{"Beta", "Alpha"}}
 	a.mapping.BepisAuthors["Beta"] = &BepisAuthor{Name: "Beta", URL: bepisAuthorURL("Beta"), CardCount: 7, Group: []string{"Beta", "Alpha"}}
 	a.mapping.BepisAuthors["Gamma"] = &BepisAuthor{Name: "Gamma", URL: bepisAuthorURL("Gamma"), CardCount: 1}
@@ -65,7 +66,7 @@ func TestBepisOnlyGroupsMergeIntoOneRow(t *testing.T) {
 	if r == nil || r.Links.Bepis != bepisAuthorURL("Beta") {
 		t.Fatalf("%+v", rows)
 	}
-	if strings.Join(r.Alias, ",") != "Beta,Alpha" {
+	if strings.Join(r.Alias, ",") != "Alpha" { // the row name (Beta, the name with the most cards) is not repeated as an alias
 		t.Fatalf("alias %v", r.Alias)
 	}
 }
